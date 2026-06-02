@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — Catalyst | Flexible Plans for Every Business</title>
+  <meta name="description" content="Transparent, flexible pricing plans. From startup essentials to full enterprise packages. Pay for what you need and scale as you grow." />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/pricing.css" />
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="../index.html" class="nav-logo">Catalyst</a>
+    <div class="nav-links">
+      <a href="services.html"  class="nav-link">Services</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="../index.html#process" class="nav-link">Process</a>
+      <a href="pricing.html"   class="nav-link active">Pricing</a>
+      <a href="faq.html"       class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="contact.html" class="btn btn--primary btn--sm">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html"  class="mobile-nav-link">Services</a>
+  <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="../index.html#process" class="mobile-nav-link">Process</a>
+  <a href="pricing.html"   class="mobile-nav-link">Pricing</a>
+  <a href="faq.html"       class="mobile-nav-link">FAQ</a>
+  <a href="contact.html"   class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- Page Hero -->
+<section class="page-hero" aria-label="Pricing hero">
+  <div class="container">
+    <div class="section-label">Transparent Pricing</div>
+    <h1>Flexible Plans</h1>
+    <p>Scale from startup to enterprise. Pay for what you need, upgrade as you grow. No hidden fees, no surprises.</p>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="section" aria-label="Pricing plans">
+  <div class="container">
+
+    <!-- Billing Toggle -->
+    <div class="billing-toggle reveal">
+      <span class="toggle-label active" id="label-monthly">Monthly</span>
+      <div class="toggle-switch" id="billing-toggle" role="switch" aria-checked="false" tabindex="0">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-label" id="label-yearly">Annual</span>
+      <span class="save-badge" id="save-badge" style="opacity:0.3;">Save 20%</span>
+    </div>
+
+    <!-- Plans -->
+    <div class="pricing-grid">
+
+      <!-- Professional -->
+      <div class="card pricing-card reveal stagger-1">
+        <div class="plan-name">Professional</div>
+        <div class="price" data-price="professional">$2,500</div>
+        <div class="price-period">/month</div>
+        <p class="plan-desc">Everything a growing business needs to establish a strong, professional online presence.</p>
+        <ul class="plan-features">
+          <li>Custom Professional Website</li>
+          <li>SEO Foundation Package</li>
+          <li>Basic Business Automation</li>
+          <li>Monthly Analytics Reports</li>
+          <li>Email &amp; Chat Support</li>
+          <li>3 Design Revisions</li>
+        </ul>
+        <a href="contact.html" class="btn btn--ghost btn--full">Choose Professional</a>
+      </div>
+
+      <!-- Enterprise (Featured) -->
+      <div class="card pricing-card featured reveal stagger-2">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="price" data-price="enterprise">$8,500</div>
+        <div class="price-period">/month</div>
+        <p class="plan-desc">The full-stack solution for businesses ready to scale aggressively and dominate their market.</p>
+        <ul class="plan-features">
+          <li>Custom Website + Digital Storefront</li>
+          <li>Advanced Automation Suite</li>
+          <li>Custom API Integrations</li>
+          <li>Real-time Analytics Dashboard</li>
+          <li>Priority 24/7 Support</li>
+          <li>Dedicated Account Manager</li>
+          <li>Quarterly Strategy Sessions</li>
+          <li>Unlimited Revisions</li>
+        </ul>
+        <a href="contact.html" class="btn btn--primary btn--full">Choose Enterprise</a>
+      </div>
+
+      <!-- Custom -->
+      <div class="card pricing-card reveal stagger-3">
+        <div class="plan-name">Custom</div>
+        <div class="price" style="-webkit-text-fill-color:var(--silver-bright); background:none;">Let's Talk</div>
+        <div class="price-period">&nbsp;</div>
+        <p class="plan-desc">Bespoke solutions for complex requirements. We build exactly what your business needs, nothing more, nothing less.</p>
+        <ul class="plan-features">
+          <li>Unlimited Services</li>
+          <li>Full-Stack Development</li>
+          <li>White-label Options</li>
+          <li>Dedicated Scrum Team</li>
+          <li>NDA &amp; SLA Available</li>
+          <li>Ongoing Partnership Model</li>
+        </ul>
+        <a href="contact.html" class="btn btn--ghost btn--full">Schedule Consultation</a>
+      </div>
+    </div>
+
+    <!-- Money back -->
+    <p style="text-align:center; color: var(--text-muted); font-size: var(--fs-sm); margin-top: 2rem;">
+      🛡️ 30-day satisfaction guarantee on all plans. Cancel anytime.
+    </p>
+
+    <!-- Comparison Table -->
+    <div class="comparison-section reveal">
+      <div class="section-header">
+        <div class="section-label">Full Comparison</div>
+        <h2>Plan Breakdown</h2>
+        <p>See exactly what's included in each plan so you can make the right decision for your business.</p>
+      </div>
+
+      <table class="comparison-table" aria-label="Plan comparison">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Professional</th>
+            <th class="highlight">Enterprise</th>
+            <th>Custom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Custom Website</td>
+            <td><span class="check">✓</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Digital Storefront</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Business Automation</td>
+            <td><span class="partial">Basic</span></td>
+            <td class="highlight"><span class="partial">Advanced</span></td>
+            <td><span class="check">Full</span></td>
+          </tr>
+          <tr>
+            <td>Custom Integrations</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Analytics Dashboard</td>
+            <td><span class="partial">Monthly Reports</span></td>
+            <td class="highlight"><span class="partial">Real-time</span></td>
+            <td><span class="check">Custom</span></td>
+          </tr>
+          <tr>
+            <td>Support Level</td>
+            <td>Email &amp; Chat</td>
+            <td class="highlight">24/7 Priority</td>
+            <td>Dedicated</td>
+          </tr>
+          <tr>
+            <td>Account Manager</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Strategy Sessions</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight">Quarterly</td>
+            <td>Monthly</td>
+          </tr>
+          <tr>
+            <td>Design Revisions</td>
+            <td>3</td>
+            <td class="highlight">Unlimited</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td>White-label</td>
+            <td><span class="cross">—</span></td>
+            <td class="highlight"><span class="cross">—</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pricing FAQ mini -->
+    <div class="pricing-faq reveal">
+      <div class="section-header">
+        <div class="section-label">Quick Answers</div>
+        <h2>Pricing Questions</h2>
+      </div>
+
+      <div class="faq-item active">
+        <div class="faq-question">
+          <span>Are there any setup fees?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          No hidden setup fees. The price you see is the price you pay. One-time project builds may have a separate upfront cost discussed during your consultation.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I switch plans later?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Yes, you can upgrade or downgrade your plan at any time. Upgrades take effect immediately; downgrades take effect at your next billing cycle.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What does the 30-day guarantee cover?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          If you're not completely satisfied within the first 30 days, we'll issue a full refund — no questions asked. We're that confident in our work.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you offer one-time project pricing?</span>
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Absolutely. Many clients prefer a one-time project model. Reach out via our Contact page and we'll provide a custom quote based on your project scope.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="section final-cta-section">
+  <div class="container">
+    <div class="final-cta-box reveal">
+      <div class="section-label" style="justify-content:center;">Not Sure Which Plan?</div>
+      <h2>Let's Figure It Out Together</h2>
+      <p>Book a free 30-minute call. We'll understand your needs and recommend the perfect plan — no pressure.</p>
+      <div class="final-cta-buttons">
+        <a href="contact.html" class="btn btn--primary btn--xl">Book Free Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Catalyst</span>
+        <p>Premium digital presence for ambitious businesses.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#web">Website Development</a></li>
+          <li><a href="services.html#ecom">Digital Storefronts</a></li>
+          <li><a href="services.html#automation">Business Automation</a></li>
+          <li><a href="services.html#brand">Brand Identity</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:hello@catalyst.com">hello@catalyst.com</a></li>
+          <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Catalyst. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/animations.js"></script>
+<script src="../js/contact.js"></script>
+<script src="../js/faq.js"></script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalyst — Premium Digital Presence for Ambitious Businesses</title>
+  <meta name="description" content="Catalyst builds premium websites, digital storefronts, and intelligent automation systems that help entrepreneurs and growing businesses thrive online." />
+  <meta name="theme-color" content="#040507" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/pages/home.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">Catalyst</a>
+
+    <div class="nav-links">
+      <a href="pages/services.html"  class="nav-link">Services</a>
+      <a href="pages/portfolio.html" class="nav-link">Portfolio</a>
+      <a href="index.html#process"   class="nav-link">Process</a>
+      <a href="pages/pricing.html"   class="nav-link">Pricing</a>
+      <a href="pages/faq.html"       class="nav-link">FAQ</a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="pages/contact.html" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="pages/contact.html" class="btn btn--primary btn--sm">Get Started</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
+  <a href="pages/services.html"  class="mobile-nav-link">Services</a>
+  <a href="pages/portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="index.html#process"   class="mobile-nav-link">Process</a>
+  <a href="pages/pricing.html"   class="mobile-nav-link">Pricing</a>
+  <a href="pages/faq.html"       class="mobile-nav-link">FAQ</a>
+  <a href="pages/contact.html"   class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section class="hero" id="home" aria-label="Hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-bg-orb-1"></div>
+  <div class="hero-bg-orb-2"></div>
+
+  <div class="hero-grid">
+    <!-- Left: Content -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">Trusted by 150+ Businesses Worldwide</div>
+
+      <h1>Build Your <span class="highlight">Business Presence</span> Online</h1>
+
+      <p class="hero-subtitle">
+        Transform your vision into a powerful digital experience. We create premium websites, digital storefronts, and automated systems that help entrepreneurs and growing businesses thrive.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="pages/contact.html" class="btn btn--primary btn--lg">Start Free Consultation</a>
+        <a href="pages/portfolio.html" class="btn btn--ghost btn--lg">See Our Work</a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="hero-trust-avatars">
+          <span>AS</span><span>MC</span><span>JR</span><span>PK</span><span>DL</span>
+        </div>
+        <div class="hero-trust-text">
+          <strong>150+ Happy Clients</strong>
+          ⭐⭐⭐⭐⭐ 4.9 average rating
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Device Mockup -->
+    <div class="hero-visual">
+      <div class="device-frame">
+        <div class="device-screen">
+          <div class="screen-header-row">
+            <div class="screen-dot screen-dot--red"></div>
+            <div class="screen-dot screen-dot--yellow"></div>
+            <div class="screen-dot screen-dot--green"></div>
+            <div class="screen-bar"></div>
+          </div>
+          <div class="screen-grid-2">
+            <div class="screen-card">
+              <div class="screen-card-num">$48.2k</div>
+              <div class="screen-card-lbl">Monthly Revenue</div>
+            </div>
+            <div class="screen-card">
+              <div class="screen-card-num">+142%</div>
+              <div class="screen-card-lbl">Growth Rate</div>
+            </div>
+          </div>
+          <div class="screen-line screen-line--lg"></div>
+          <div class="screen-line screen-line--md"></div>
+          <div class="screen-line screen-line--sm"></div>
+          <div class="screen-grid-2">
+            <div class="screen-card">
+              <div class="screen-card-num">2.8k</div>
+              <div class="screen-card-lbl">Visitors Today</div>
+            </div>
+            <div class="screen-card">
+              <div class="screen-card-num">98%</div>
+              <div class="screen-card-lbl">Uptime</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     MARQUEE — CLIENT LOGOS
+════════════════════════════════════════════════════════════ -->
+<div class="marquee-section">
+  <div class="marquee-track" aria-hidden="true">
+    <span class="marquee-item">TechVista</span>
+    <span class="marquee-item">LuxeMarket</span>
+    <span class="marquee-item">NovaBuild</span>
+    <span class="marquee-item">StudioX</span>
+    <span class="marquee-item">AlphaScale</span>
+    <span class="marquee-item">BrightPath</span>
+    <span class="marquee-item">PinnacleHQ</span>
+    <span class="marquee-item">StellarSoft</span>
+    <span class="marquee-item">CoreAxis</span>
+    <span class="marquee-item">VaultMedia</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item">TechVista</span>
+    <span class="marquee-item">LuxeMarket</span>
+    <span class="marquee-item">NovaBuild</span>
+    <span class="marquee-item">StudioX</span>
+    <span class="marquee-item">AlphaScale</span>
+    <span class="marquee-item">BrightPath</span>
+    <span class="marquee-item">PinnacleHQ</span>
+    <span class="marquee-item">StellarSoft</span>
+    <span class="marquee-item">CoreAxis</span>
+    <span class="marquee-item">VaultMedia</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     STATS
+════════════════════════════════════════════════════════════ -->
+<section class="section section--sm" aria-label="Key statistics">
+  <div class="container">
+    <div class="stats-bar reveal">
+      <div class="stat-item">
+        <div class="stat-value" data-count="150" data-suffix="+">0+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" data-count="98" data-suffix="%">0%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" data-count="5" data-suffix=" yrs">0</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" data-count="40" data-suffix="+">0+</div>
+        <div class="stat-label">Team Members</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════════════════ -->
+<section id="services" class="section services-section" aria-label="Our services">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">What We Do</div>
+      <h2>Our Services</h2>
+      <p>Everything you need to establish and grow your digital presence with professional expertise and craftsmanship.</p>
+    </div>
+
+    <div class="grid-auto" data-stagger>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">🌐</div>
+        <h3>Website Development</h3>
+        <p>Custom, high-performance websites built with modern technology. Fast, secure, and optimized for conversion.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">🛍️</div>
+        <h3>Digital Storefronts</h3>
+        <p>Complete e-commerce solutions that turn visitors into customers. Integrated payments, inventory, and analytics.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">⚙️</div>
+        <h3>Business Automation</h3>
+        <p>Streamline operations with intelligent automation. Save time and resources on repetitive tasks.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">🎨</div>
+        <h3>Brand Identity</h3>
+        <p>Cohesive branding that reflects your values. Logo design, visual systems, and brand guidelines included.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">📊</div>
+        <h3>Analytics &amp; Growth</h3>
+        <p>Data-driven strategies to understand your audience and optimize every touchpoint for growth.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">🔒</div>
+        <h3>Ongoing Support</h3>
+        <p>Dedicated support team ensuring your systems stay secure, fast, and competitive year-round.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 3rem;">
+      <a href="pages/services.html" class="btn btn--ghost">Explore All Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     WHY CATALYST
+════════════════════════════════════════════════════════════ -->
+<section class="section" aria-label="Why choose us">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Our Edge</div>
+      <h2>Why Choose Catalyst</h2>
+      <p>We combine premium design, technical excellence, and strategic thinking to deliver results that matter.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="card why-card reveal stagger-1">
+        <div class="why-number">01</div>
+        <h3>Trust</h3>
+        <p>Transparent partnerships. Clear communication. Proven results with real businesses across diverse industries.</p>
+      </div>
+      <div class="card why-card reveal stagger-2">
+        <div class="why-number">02</div>
+        <h3>Simplicity</h3>
+        <p>Complex technology made simple. Clean interfaces that your customers actually love to use every day.</p>
+      </div>
+      <div class="card why-card reveal stagger-3">
+        <div class="why-number">03</div>
+        <h3>Growth</h3>
+        <p>Systems designed to scale. As your business grows, your digital presence grows intelligently with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PROCESS
+════════════════════════════════════════════════════════════ -->
+<section id="process" class="section" aria-label="Our process">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">How It Works</div>
+      <h2>Our Process</h2>
+      <p>From concept to launch, we guide you every step of the way with clarity and precision.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="timeline-step reveal stagger-1">
+        <div class="timeline-marker">01</div>
+        <h3>Discover</h3>
+        <p>We understand your vision, goals, and audience through deep discovery conversations and thorough research.</p>
+      </div>
+      <div class="timeline-step reveal stagger-2">
+        <div class="timeline-marker">02</div>
+        <h3>Design</h3>
+        <p>Strategic design and planning. Wireframes, prototypes, and visual direction aligned precisely with your brand.</p>
+      </div>
+      <div class="timeline-step reveal stagger-3">
+        <div class="timeline-marker">03</div>
+        <h3>Develop</h3>
+        <p>Expert development with clean code, security best practices, and rigorous performance optimization.</p>
+      </div>
+      <div class="timeline-step reveal stagger-4">
+        <div class="timeline-marker">04</div>
+        <h3>Launch</h3>
+        <p>Smooth deployment, thorough testing, and hands-on training. Your team is fully ready for success.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════════════ -->
+<section class="section testimonials-section" aria-label="Client testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Success Stories</div>
+      <h2>What Our Clients Say</h2>
+      <p>Real businesses, real results, real growth — built with Catalyst.</p>
+    </div>
+
+    <div class="grid-auto">
+      <div class="card testimonial-card reveal stagger-1">
+        <div class="star-row">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">They didn't just build us a website. They transformed how we do business. Our online sales have grown 3× in 6 months.</p>
+        <div class="author-row">
+          <div class="author-avatar">AS</div>
+          <div>
+            <div class="author-name">Alexandra Stone</div>
+            <div class="author-role">Luxury Boutique Owner</div>
+          </div>
+        </div>
+      </div>
+      <div class="card testimonial-card reveal stagger-2">
+        <div class="star-row">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">The automation they set up has saved us 20 hours a week. It's like having an extra, dedicated team member on staff.</p>
+        <div class="author-row">
+          <div class="author-avatar">MC</div>
+          <div>
+            <div class="author-name">Marcus Chen</div>
+            <div class="author-role">E-commerce Founder</div>
+          </div>
+        </div>
+      </div>
+      <div class="card testimonial-card reveal stagger-3">
+        <div class="star-row">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">Professional, thoughtful, and incredibly responsive. They understand premium quality and deliver it every single time.</p>
+        <div class="author-row">
+          <div class="author-avatar">JR</div>
+          <div>
+            <div class="author-name">Jordan Rodriguez</div>
+            <div class="author-role">SaaS Startup CEO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════════════════════════ -->
+<section class="section final-cta-section" aria-label="Call to action">
+  <div class="container">
+    <div class="final-cta-box reveal">
+      <div class="section-label" style="justify-content:center;">Ready to Transform?</div>
+      <h2>Build Your Dream Digital Presence</h2>
+      <p>Let's discuss how we can help you create a powerful online presence that drives real, measurable growth for your business.</p>
+      <div class="final-cta-buttons">
+        <a href="pages/contact.html" class="btn btn--primary btn--xl">Start Free Consultation</a>
+        <a href="pages/portfolio.html" class="btn btn--steel btn--xl">View Our Portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Catalyst</span>
+        <p>Premium digital presence for ambitious businesses. We build the systems that help you grow faster and smarter.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="pages/services.html#web">Website Development</a></li>
+          <li><a href="pages/services.html#ecom">Digital Storefronts</a></li>
+          <li><a href="pages/services.html#automation">Business Automation</a></li>
+          <li><a href="pages/services.html#brand">Brand Identity</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="pages/portfolio.html">Portfolio</a></li>
+          <li><a href="pages/pricing.html">Pricing</a></li>
+          <li><a href="pages/faq.html">FAQ</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:hello@catalyst.com">hello@catalyst.com</a></li>
+          <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Twitter / X</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Catalyst. Premium digital presence for ambitious businesses. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/counter.js"></script>
+</body>
+</html>
