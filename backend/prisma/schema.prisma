@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lead {
+  id           String        @id @default(uuid())
+  name         String
+  email        String
+  phone        String?
+  company      String?
+  budget       String?
+  service      String?
+  message      String?
+  source       String        @default("website")
+  status       String        @default("new")
+  score        Int           @default(50)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  chatSessions ChatSession[]
+}
+
+model Project {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  status      String    @default("active")
+  client      String?
+  budget      Float?
+  startDate   DateTime?
+  endDate     DateTime?
+  tags        String?
+  imageUrl    String?
+  liveUrl     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model BlogPost {
+  id         String   @id @default(uuid())
+  title      String
+  slug       String   @unique
+  content    String
+  excerpt    String?
+  coverImage String?
+  tags       String?
+  published  Boolean  @default(false)
+  views      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  icon        String?
+  price       String?
+  features    String?
+  category    String?
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PortfolioItem {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  category    String?
+  client      String?
+  imageUrl    String?
+  liveUrl     String?
+  metrics     String?
+  tags        String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ChatSession {
+  id        String   @id @default(uuid())
+  messages  String
+  leadId    String?
+  lead      Lead?    @relation(fields: [leadId], references: [id])
+  converted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Analytics {
+  id        String   @id @default(uuid())
+  page      String
+  event     String
+  metadata  String?
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Catalyst AI Agency | AI Automation Insights</title>
+  <meta name="description" content="Explore expert insights on AI automation, lead generation, chatbots, and web development from the Catalyst AI Agency team. Stay ahead with actionable strategies." />
+  <meta name="keywords" content="AI automation, AI agency blog, chatbot development, lead generation AI, WhatsApp automation, Next.js, business automation" />
+  <meta property="og:title" content="Blog — Catalyst AI Agency | AI Automation Insights" />
+  <meta property="og:description" content="Explore expert insights on AI automation, lead generation, chatbots, and web development from the Catalyst AI Agency team." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog — Catalyst AI Agency | AI Automation Insights" />
+  <meta name="twitter:description" content="Explore expert insights on AI automation, lead generation, chatbots, and web development from the Catalyst AI Agency team." />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/blog.css" />
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="../index.html" class="nav-logo">Catalyst</a>
+    <div class="nav-links">
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="blog.html" class="nav-link active">Blog</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="contact.html" class="btn btn--primary btn--sm">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+  <a href="blog.html" class="mobile-nav-link">Blog</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- Page Hero -->
+<section class="blog-hero" aria-label="Blog hero">
+  <div class="container">
+    <div class="section-label reveal">Knowledge Hub</div>
+    <h1 class="reveal">Insights &amp; Updates</h1>
+    <p class="reveal">Actionable strategies, case studies, and deep-dives on AI automation, lead generation, and modern web development — written by practitioners, not theorists.</p>
+
+    <div class="blog-search-wrap reveal">
+      <span class="search-icon">🔍</span>
+      <input
+        type="search"
+        id="blog-search"
+        class="blog-search-input"
+        placeholder="Search articles…"
+        aria-label="Search blog posts"
+        autocomplete="off"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Blog Section -->
+<section class="blog-section" aria-label="Blog articles">
+  <div class="container">
+
+    <!-- Category Filter -->
+    <div class="cat-filter reveal" role="group" aria-label="Filter by category">
+      <button class="cat-btn active" data-category="all" id="cat-all">All Posts</button>
+      <button class="cat-btn" data-category="ai-automation" id="cat-automation">AI Automation</button>
+      <button class="cat-btn" data-category="web-dev" id="cat-webdev">Web Development</button>
+      <button class="cat-btn" data-category="case-study" id="cat-case">Case Studies</button>
+      <button class="cat-btn" data-category="tutorial" id="cat-tutorial">Tutorials</button>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid reveal" id="blog-grid">
+
+      <!-- Post 1: AI Automation -->
+      <article class="blog-card reveal" data-category="ai-automation" data-title="how ai automation saved this e-commerce brand 40 hours per week">
+        <div class="blog-card-cover" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1a4480 70%, #0d2137 100%);">
+          <span class="blog-card-cover-icon">🤖</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-badge badge--automation">AI Automation</span>
+          <h2 class="blog-card-title">How AI Automation Saved This E-commerce Brand 40 Hours Per Week</h2>
+          <p class="blog-card-excerpt">Discover how one Indian e-commerce brand eliminated repetitive workflows using LangChain agents and Make.com — and what it means for your operations.</p>
+          <div class="blog-card-meta">
+            <span>8 min read</span>
+            <span class="blog-card-meta-dot"></span>
+            <span>May 28, 2025</span>
+          </div>
+          <div class="blog-card-author">
+            <div class="author-avatar">RK</div>
+            <div class="author-info">
+              <div class="author-name">Rohit Kumar</div>
+              <div class="author-role">AI Automation Lead</div>
+            </div>
+            <a href="blog-post.html" class="blog-card-read-more" aria-label="Read full article">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 2: Case Study -->
+      <article class="blog-card reveal" data-category="case-study" data-title="from 50 to 500 leads/month: ai lead generation in healthcare">
+        <div class="blog-card-cover" style="background: linear-gradient(135deg, #0d1f0d 0%, #0f4c2a 40%, #166534 70%, #052e16 100%);">
+          <span class="blog-card-cover-icon">📈</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-badge badge--case-study">Case Study</span>
+          <h2 class="blog-card-title">From 50 to 500 Leads/Month: AI Lead Generation in Healthcare</h2>
+          <p class="blog-card-excerpt">A Mumbai-based diagnostic clinic 10x'd their monthly leads using a GPT-4 powered WhatsApp funnel. Here's the exact playbook we built.</p>
+          <div class="blog-card-meta">
+            <span>11 min read</span>
+            <span class="blog-card-meta-dot"></span>
+            <span>May 20, 2025</span>
+          </div>
+          <div class="blog-card-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">MN</div>
+            <div class="author-info">
+              <div class="author-name">Meera Nair</div>
+              <div class="author-role">Growth Strategist</div>
+            </div>
+            <a href="blog-post.html" class="blog-card-read-more" aria-label="Read full article">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 3: Tutorial -->
+      <article class="blog-card reveal" data-category="tutorial" data-title="building your first ai chatbot with langchain and openai">
+        <div class="blog-card-cover" style="background: linear-gradient(135deg, #1a0f2e 0%, #3b1e6e 40%, #5b21b6 70%, #2e1065 100%);">
+          <span class="blog-card-cover-icon">🧑‍💻</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-badge badge--tutorial">Tutorial</span>
+          <h2 class="blog-card-title">Building Your First AI Chatbot with LangChain and OpenAI</h2>
+          <p class="blog-card-excerpt">A step-by-step technical guide for developers: set up a production-ready conversational AI agent using LangChain, OpenAI GPT-4, and a vector database in under 2 hours.</p>
+          <div class="blog-card-meta">
+            <span>15 min read</span>
+            <span class="blog-card-meta-dot"></span>
+            <span>May 15, 2025</span>
+          </div>
+          <div class="blog-card-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #7c3aed, #a78bfa);">PP</div>
+            <div class="author-info">
+              <div class="author-name">Priya Patel</div>
+              <div class="author-role">Senior AI Engineer</div>
+            </div>
+            <a href="blog-post.html" class="blog-card-read-more" aria-label="Read full article">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 4: AI Automation -->
+      <article class="blog-card reveal" data-category="ai-automation" data-title="whatsapp business automation: the complete 2025 guide">
+        <div class="blog-card-cover" style="background: linear-gradient(135deg, #0a1628 0%, #083344 40%, #0f4c5c 70%, #042f3d 100%);">
+          <span class="blog-card-cover-icon">💬</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-badge badge--automation">AI Automation</span>
+          <h2 class="blog-card-title">WhatsApp Business Automation: The Complete 2025 Guide</h2>
+          <p class="blog-card-excerpt">Everything you need to know about automating your WhatsApp Business account — from the Meta API setup to AI-driven conversation flows that convert at 3x the industry average.</p>
+          <div class="blog-card-meta">
+            <span>13 min read</span>
+            <span class="blog-card-meta-dot"></span>
+            <span>May 8, 2025</span>
+          </div>
+          <div class="blog-card-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #0891b2, #22d3ee);">AS</div>
+            <div class="author-info">
+              <div class="author-name">Arjun Singh</div>
+              <div class="author-role">Automation Architect</div>
+            </div>
+            <a href="blog-post.html" class="blog-card-read-more" aria-label="Read full article">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 5: Web Dev -->
+      <article class="blog-card reveal" data-category="web-dev" data-title="why your business needs a next.js website in 2025">
+        <div class="blog-card-cover" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%);">
+          <span class="blog-card-cover-icon">⚡</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-badge badge--web-dev">Web Dev</span>
+          <h2 class="blog-card-title">Why Your Business Needs a Next.js Website in 2025</h2>
+          <p class="blog-card-excerpt">Server-side rendering, edge caching, and built-in AI capabilities make Next.js 15 the undisputed choice for high-performance business websites. Here's the data to prove it.</p>
+          <div class="blog-card-meta">
+            <span>9 min read</span>
+            <span class="blog-card-meta-dot"></span>
+            <span>Apr 30, 2025</span>
+          </div>
+          <div class="blog-card-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #9333ea, #ec4899);">KR</div>
+            <div class="author-info">
+              <div class="author-name">Kavya Reddy</div>
+              <div class="author-role">Lead Web Developer</div>
+            </div>
+            <a href="blog-post.html" class="blog-card-read-more" aria-label="Read full article">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 6: Case Study -->
+      <article class="blog-card reveal" data-category="case-study" data-title="5x lead generation: how real estate ai transformed sales">
+        <div class="blog-card-cover" style="background: linear-gradient(135deg, #1a0a00 0%, #431407 40%, #7c2d12 70%, #450a0a 100%);">
+          <span class="blog-card-cover-icon">🏡</span>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-badge badge--case-study">Case Study</span>
+          <h2 class="blog-card-title">5x Lead Generation: How Real Estate AI Transformed Sales</h2>
+          <p class="blog-card-excerpt">A Bangalore-based real estate firm went from 80 to 400+ qualified leads per month after deploying our AI-powered lead qualification and follow-up automation system.</p>
+          <div class="blog-card-meta">
+            <span>10 min read</span>
+            <span class="blog-card-meta-dot"></span>
+            <span>Apr 22, 2025</span>
+          </div>
+          <div class="blog-card-author">
+            <div class="author-avatar">RK</div>
+            <div class="author-info">
+              <div class="author-name">Rohit Kumar</div>
+              <div class="author-role">AI Automation Lead</div>
+            </div>
+            <a href="blog-post.html" class="blog-card-read-more" aria-label="Read full article">Read More</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- No results message -->
+      <div class="blog-no-results" id="blog-no-results" role="status" aria-live="polite">
+        😔 No articles found. <a href="contact.html" style="color: var(--blue-bright);">Ask us a question directly →</a>
+      </div>
+
+    </div>
+    <!-- End Blog Grid -->
+
+    <!-- Pagination -->
+    <nav class="pagination" aria-label="Blog pagination">
+      <button class="page-btn" id="prev-page" aria-label="Previous page">&#8592;</button>
+      <button class="page-btn active" aria-current="page" aria-label="Page 1">1</button>
+      <button class="page-btn" aria-label="Page 2">2</button>
+      <button class="page-btn" aria-label="Page 3">3</button>
+      <span class="page-btn ellipsis" aria-hidden="true">…</span>
+      <button class="page-btn" aria-label="Page 8">8</button>
+      <button class="page-btn" id="next-page" aria-label="Next page">&#8594;</button>
+    </nav>
+
+    <!-- Newsletter CTA -->
+    <div class="newsletter-cta reveal" aria-label="Newsletter signup">
+      <h3>Stay Ahead of the AI Revolution</h3>
+      <p>Get weekly AI automation insights, case studies, and exclusive strategies delivered straight to your inbox. Join 4,800+ business owners and operators.</p>
+      <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <input
+          type="email"
+          class="newsletter-input"
+          id="newsletter-email"
+          placeholder="Enter your email address"
+          required
+          aria-label="Email address for newsletter"
+        />
+        <button type="submit" class="btn btn--primary" id="newsletter-submit">Subscribe Free</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Catalyst</span>
+        <p>AI-powered automation for ambitious businesses across India.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#web">Website Development</a></li>
+          <li><a href="services.html#automation">AI Automation</a></li>
+          <li><a href="services.html#chatbot">AI Chatbots</a></li>
+          <li><a href="services.html#leads">Lead Generation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:hello@catalystai.in">hello@catalystai.in</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Catalyst AI Agency. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/animations.js"></script>
+<script src="../js/counter.js"></script>
+
+<script>
+  /* ── Blog Filtering & Search ─────────────────────────────── */
+  (function () {
+    const grid      = document.getElementById('blog-grid');
+    const cards     = Array.from(grid.querySelectorAll('.blog-card'));
+    const noResults = document.getElementById('blog-no-results');
+    const searchInp = document.getElementById('blog-search');
+    const catBtns   = document.querySelectorAll('.cat-btn');
+
+    let activeCategory = 'all';
+    let searchQuery    = '';
+
+    function normalize(str) {
+      return str.toLowerCase().trim();
+    }
+
+    function filterCards() {
+      let visible = 0;
+
+      cards.forEach(card => {
+        const category = card.dataset.category || '';
+        const title    = card.dataset.title || '';
+        const excerpt  = card.querySelector('.blog-card-excerpt')?.textContent || '';
+
+        const matchCat    = activeCategory === 'all' || category === activeCategory;
+        const matchSearch = !searchQuery ||
+          normalize(title).includes(normalize(searchQuery)) ||
+          normalize(excerpt).includes(normalize(searchQuery));
+
+        const show = matchCat && matchSearch;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      noResults.classList.toggle('visible', visible === 0);
+    }
+
+    /* Category button click */
+    catBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        filterCards();
+      });
+    });
+
+    /* Search input */
+    let searchDebounce;
+    searchInp.addEventListener('input', () => {
+      clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(() => {
+        searchQuery = searchInp.value;
+        filterCards();
+      }, 250);
+    });
+
+    /* Pagination (UI only for this template) */
+    const pageBtns = document.querySelectorAll('.page-btn:not(.ellipsis):not(#prev-page):not(#next-page)');
+    pageBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pageBtns.forEach(b => { b.classList.remove('active'); b.removeAttribute('aria-current'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      });
+    });
+
+    /* Newsletter submit */
+    window.handleNewsletterSubmit = function (e) {
+      e.preventDefault();
+      const btn   = document.getElementById('newsletter-submit');
+      const email = document.getElementById('newsletter-email').value;
+      btn.textContent  = '✓ You\'re subscribed!';
+      btn.disabled     = true;
+      btn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+    };
+  })();
+</script>
+
+</body>
+</html>

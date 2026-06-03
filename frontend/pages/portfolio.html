@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Catalyst | Our Work</title>
-  <meta name="description" content="Explore Catalyst's portfolio of premium websites, digital storefronts, brand identities, and automation projects delivered for clients worldwide." />
+  <title>Portfolio — Catalyst AI Agency | AI Automation Case Studies</title>
+  <meta name="description" content="Explore Catalyst AI Agency's portfolio of AI automation projects, chatbots, and web development case studies. Real results for real businesses." />
+  <meta property="og:title" content="Portfolio — Catalyst AI Agency | AI Automation Case Studies" />
+  <meta property="og:description" content="Explore Catalyst AI Agency's portfolio of AI automation projects, chatbots, and web development case studies. Real results for real businesses." />
+  <meta property="og:type" content="website" />
 
   <link rel="stylesheet" href="../css/variables.css" />
   <link rel="stylesheet" href="../css/base.css" />
@@ -12,6 +15,150 @@
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/layout.css" />
   <link rel="stylesheet" href="../css/pages/portfolio.css" />
+
+  <style>
+    /* ── Portfolio page additions ── */
+    .card-thumb {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-category-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .project-client {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .client-name {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text-primary, #f0f6ff);
+    }
+
+    .client-industry {
+      font-size: 0.7rem;
+      color: var(--text-muted, #8892a4);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+    }
+
+    .project-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .metric {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .metric-val {
+      font-size: 1rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3B82F6, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .metric-key {
+      font-size: 0.62rem;
+      color: var(--text-muted, #8892a4);
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tech-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--blue-bright, #3B82F6);
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Filter bar enhancements for the new categories */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    /* Portfolio grid – auto-fill responsive masonry-like */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    .portfolio-item {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* CTA block */
+    .portfolio-cta {
+      margin-top: 4rem;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: rgba(59,130,246,0.06);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 1.5rem;
+    }
+
+    .portfolio-cta h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .portfolio-cta p {
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -19,11 +166,12 @@
   <nav class="nav-inner">
     <a href="../index.html" class="nav-logo">Catalyst</a>
     <div class="nav-links">
-      <a href="services.html"  class="nav-link">Services</a>
+      <a href="services.html" class="nav-link">Services</a>
       <a href="portfolio.html" class="nav-link active">Portfolio</a>
-      <a href="../index.html#process" class="nav-link">Process</a>
-      <a href="pricing.html"   class="nav-link">Pricing</a>
-      <a href="faq.html"       class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
     </div>
     <div class="nav-actions">
       <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
@@ -36,12 +184,13 @@
 </header>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="services.html"  class="mobile-nav-link">Services</a>
+  <a href="services.html" class="mobile-nav-link">Services</a>
   <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
-  <a href="../index.html#process" class="mobile-nav-link">Process</a>
-  <a href="pricing.html"   class="mobile-nav-link">Pricing</a>
-  <a href="faq.html"       class="mobile-nav-link">FAQ</a>
-  <a href="contact.html"   class="mobile-nav-link">Contact</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+  <a href="blog.html" class="mobile-nav-link">Blog</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
 </div>
 
 <!-- Page Hero -->
@@ -49,7 +198,7 @@
   <div class="container">
     <div class="section-label">Our Work</div>
     <h1>Portfolio</h1>
-    <p>A showcase of premium projects delivered with passion, precision, and a relentless focus on results for our clients.</p>
+    <p>Real AI automation success stories — from intelligent chatbots to enterprise-grade automation pipelines. Explore the systems we've built that drive measurable results.</p>
   </div>
 </section>
 
@@ -57,133 +206,351 @@
 <section class="section" aria-label="Project portfolio">
   <div class="container">
 
-    <!-- Filter -->
+    <!-- Filter Bar -->
     <div class="filter-bar reveal">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="web">Website</button>
-      <button class="filter-btn" data-filter="ecom">E-Commerce</button>
-      <button class="filter-btn" data-filter="brand">Branding</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ai-automation">AI Automation</button>
+      <button class="filter-btn" data-filter="web-dev">Web Dev</button>
       <button class="filter-btn" data-filter="saas">SaaS</button>
-      <button class="filter-btn" data-filter="mobile">Mobile</button>
+      <button class="filter-btn" data-filter="chatbots">Chatbots</button>
     </div>
 
-    <!-- Grid -->
+    <!-- Portfolio Grid -->
     <div class="portfolio-grid">
 
-      <div class="portfolio-item card" data-category="web">
-        <div class="card-thumb thumb-web">
-          <div class="thumb-icon">🌐</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 1: AI Order Processing -->
+      <div class="portfolio-item card reveal stagger-1" data-category="ai-automation">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #1a3a8a, #3B82F6); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">🤖</div>
+          <div class="project-category-badge">AI Automation</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">Website Development</div>
-          <h3>LuxeStone Jewellers</h3>
-          <p>Bespoke high-luxury e-catalogue with custom filtering, AR try-on integration, and enquiry management.</p>
+          <div class="project-client">
+            <span class="client-name">TechVista Solutions</span>
+            <span class="client-industry">E-Commerce</span>
+          </div>
+          <h3>AI Order Processing System</h3>
+          <p>End-to-end intelligent order management that auto-routes, validates, and fulfils orders with zero manual intervention — integrated directly with WhatsApp notifications.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">300%</span>
+              <span class="metric-key">Revenue Growth</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">40h</span>
+              <span class="metric-key">Saved / Week</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">95%</span>
+              <span class="metric-key">Error Reduction</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">OpenAI</span>
+            <span class="tech-tag">Zapier</span>
+            <span class="tech-tag">WhatsApp API</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="ecom">
-        <div class="card-thumb thumb-ecom">
-          <div class="thumb-icon">🛒</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 2: AI Patient Support Chatbot -->
+      <div class="portfolio-item card reveal stagger-2" data-category="chatbots">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #0a3d2e, #00b09b); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">💬</div>
+          <div class="project-category-badge">Chatbots</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">E-Commerce</div>
-          <h3>NovaSkin Cosmetics</h3>
-          <p>Full Shopify storefront redesign with custom checkout flow. Revenue grew 3× within 4 months of launch.</p>
+          <div class="project-client">
+            <span class="client-name">HealthFirst Clinic</span>
+            <span class="client-industry">Healthcare</span>
+          </div>
+          <h3>AI Patient Support Chatbot</h3>
+          <p>A HIPAA-aware GPT-4 powered chatbot handling appointment bookings, prescription reminders, and patient queries — freeing up the entire admin team.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">80%</span>
+              <span class="metric-key">Admin Saved</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">3×</span>
+              <span class="metric-key">Patient Volume</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">99%</span>
+              <span class="metric-key">Uptime</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">GPT-4</span>
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">WhatsApp API</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="brand">
-        <div class="card-thumb thumb-brand">
-          <div class="thumb-icon">🎨</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 3: B2B Analytics Platform -->
+      <div class="portfolio-item card reveal stagger-3" data-category="saas">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #2d1b69, #11998e); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">⚡</div>
+          <div class="project-category-badge">SaaS</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">Brand Identity</div>
-          <h3>AlphaScale Consulting</h3>
-          <p>Complete rebrand from logo to full design system. Positioned as a premium B2B consulting firm.</p>
+          <div class="project-client">
+            <span class="client-name">DataVault Analytics</span>
+            <span class="client-industry">SaaS</span>
+          </div>
+          <h3>B2B Analytics Platform</h3>
+          <p>Full-stack SaaS platform with real-time dashboards, AI-powered insights, and a seamless onboarding funnel that slashed churn by 38% in the first quarter.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">$2M</span>
+              <span class="metric-key">ARR Reached</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">38%</span>
+              <span class="metric-key">Less Churn</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">10k+</span>
+              <span class="metric-key">Active Users</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">AWS</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="saas">
-        <div class="card-thumb thumb-saas">
-          <div class="thumb-icon">📊</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 4: AI Lead Qualification -->
+      <div class="portfolio-item card reveal stagger-1" data-category="ai-automation">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #4A00E0, #8E2DE2); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">🎯</div>
+          <div class="project-category-badge">AI Automation</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">SaaS Platform</div>
-          <h3>DataVault Analytics</h3>
-          <p>Marketing website and onboarding flow for a B2B SaaS tool. Cut onboarding drop-off by 38%.</p>
+          <div class="project-client">
+            <span class="client-name">PrimeProperty Agency</span>
+            <span class="client-industry">Real Estate</span>
+          </div>
+          <h3>AI Lead Qualification System</h3>
+          <p>Intelligent pipeline that scores, segments, and nurtures incoming real estate leads 24/7 — automatically booking qualified prospects directly into the sales team's calendar.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">5×</span>
+              <span class="metric-key">Lead Generation</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">60%</span>
+              <span class="metric-key">Cost Reduction</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">24/7</span>
+              <span class="metric-key">Coverage</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">CRM API</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="mobile">
-        <div class="card-thumb thumb-mobile">
-          <div class="thumb-icon">📱</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 5: Custom E-Catalogue Website -->
+      <div class="portfolio-item card reveal stagger-2" data-category="web-dev">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #0F2027, #2C5364); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">🌐</div>
+          <div class="project-category-badge">Web Dev</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">Mobile App</div>
-          <h3>FitSync Health</h3>
-          <p>Landing page and waitlist funnel for a fitness tracking app. Collected 8,000 sign-ups pre-launch.</p>
+          <div class="project-client">
+            <span class="client-name">LuxeStone Jewellers</span>
+            <span class="client-industry">Luxury Retail</span>
+          </div>
+          <h3>Custom E-Catalogue Website</h3>
+          <p>Bespoke high-luxury e-catalogue with custom filtering, enquiry management, and a 99 PageSpeed score — setting the digital standard for premium jewellery brands in India.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">250%</span>
+              <span class="metric-key">Traffic Increase</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">180%</span>
+              <span class="metric-key">Conv. Rate</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">99</span>
+              <span class="metric-key">PageSpeed Score</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="ecom">
-        <div class="card-thumb thumb-ecom">
-          <div class="thumb-icon">🏪</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 6: WhatsApp Sales Bot -->
+      <div class="portfolio-item card reveal stagger-3" data-category="chatbots">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #16213e, #0f3460); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">🤖</div>
+          <div class="project-category-badge">Chatbots</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">E-Commerce</div>
-          <h3>UrbanGrain Furniture</h3>
-          <p>Custom WooCommerce store with 3D product viewer, room planner, and automated stock notifications.</p>
+          <div class="project-client">
+            <span class="client-name">AlphaScale Consulting</span>
+            <span class="client-industry">B2B Consulting</span>
+          </div>
+          <h3>WhatsApp Sales Bot</h3>
+          <p>A conversational sales assistant deployed on WhatsApp that qualifies prospects, handles objections, and books discovery calls — running entirely on autopilot.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">200%</span>
+              <span class="metric-key">Response Rate</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">50%</span>
+              <span class="metric-key">Less Manual</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">4.9★</span>
+              <span class="metric-key">Client Rating</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">WhatsApp API</span>
+            <span class="tech-tag">OpenAI</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="web">
-        <div class="card-thumb thumb-web">
-          <div class="thumb-icon">🏢</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 7: Shopify Storefront Redesign -->
+      <div class="portfolio-item card reveal stagger-1" data-category="web-dev">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #1a0533, #8A2387); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">🛒</div>
+          <div class="project-category-badge">Web Dev</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">Website Development</div>
-          <h3>Pinnacle Law Group</h3>
-          <p>Professional multi-practice law firm site with client portal, document uploads, and appointment booking.</p>
+          <div class="project-client">
+            <span class="client-name">NovaSkin Cosmetics</span>
+            <span class="client-industry">Beauty</span>
+          </div>
+          <h3>Shopify Storefront Redesign</h3>
+          <p>Full Shopify storefront redesign with a custom checkout flow, personalised product recommendations, and a loyalty rewards system that drove explosive revenue growth.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">3×</span>
+              <span class="metric-key">Revenue in 4mo</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">45%</span>
+              <span class="metric-key">Abandon Reduced</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">8k+</span>
+              <span class="metric-key">Orders / Month</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Shopify</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Stripe</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="brand">
-        <div class="card-thumb thumb-brand">
-          <div class="thumb-icon">✨</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 8: Business Automation Suite -->
+      <div class="portfolio-item card reveal stagger-2" data-category="saas">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #023020, #38b000); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">⚙️</div>
+          <div class="project-category-badge">SaaS</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">Brand Identity</div>
-          <h3>Stellarwave Agency</h3>
-          <p>Full brand identity and website for a creative agency. Helped them win 3 major retainer clients post-launch.</p>
+          <div class="project-client">
+            <span class="client-name">CoreOps Logistics</span>
+            <span class="client-industry">Logistics</span>
+          </div>
+          <h3>Business Automation Suite</h3>
+          <p>Modular automation platform covering invoicing, inventory alerts, delivery scheduling, and customer communication — eliminating 30 hours of manual work every week.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">30h</span>
+              <span class="metric-key">Saved / Week</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">99.9%</span>
+              <span class="metric-key">Uptime</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">$150k</span>
+              <span class="metric-key">Annual Savings</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Zapier</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-      <div class="portfolio-item card" data-category="saas">
-        <div class="card-thumb thumb-auto">
-          <div class="thumb-icon">🤖</div>
-          <div class="thumb-overlay-bar"></div>
+      <!-- 9: AI Financial Report Automation -->
+      <div class="portfolio-item card reveal stagger-3" data-category="ai-automation">
+        <div class="card-thumb" style="background: linear-gradient(135deg, #0d1117, #30363d); min-height: 160px; display:flex; align-items:center; justify-content:center;">
+          <div class="thumb-icon" style="font-size:3rem;">🧠</div>
+          <div class="project-category-badge">AI Automation</div>
         </div>
         <div class="card-body">
-          <div class="card-tag">Automation</div>
-          <h3>CoreOps Automation Suite</h3>
-          <p>End-to-end business automation for a logistics firm — saving 30 hours/week and eliminating manual errors.</p>
+          <div class="project-client">
+            <span class="client-name">FintechPro Global</span>
+            <span class="client-industry">Finance</span>
+          </div>
+          <h3>AI Financial Report Automation</h3>
+          <p>ML-powered pipeline that ingests raw financial data, validates entries, generates compliant reports, and distributes them in real-time — with 100% accuracy guaranteed.</p>
+          <div class="project-metrics">
+            <div class="metric">
+              <span class="metric-val">90%</span>
+              <span class="metric-key">Time Saved</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">100%</span>
+              <span class="metric-key">Accuracy</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">Real-time</span>
+              <span class="metric-key">Reports</span>
+            </div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">AWS</span>
+          </div>
+          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
-    </div>
+    </div><!-- /.portfolio-grid -->
 
     <!-- Portfolio CTA -->
     <div class="portfolio-cta reveal">
       <h3>Don't See Your Industry?</h3>
-      <p>We've worked across healthcare, legal, retail, tech, hospitality, and more. Let's talk about your project.</p>
+      <p>We've delivered AI automation across healthcare, legal, retail, fintech, logistics, and more. Let's talk about your project.</p>
       <a href="contact.html" class="btn btn--primary btn--lg">Start a Conversation</a>
     </div>
 
@@ -195,22 +562,24 @@
     <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-logo">Catalyst</span>
-        <p>Premium digital presence for ambitious businesses. We build the systems that help you grow faster.</p>
+        <p>Premium AI automation for ambitious businesses. We build the intelligent systems that help you grow faster.</p>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
         <ul>
-          <li><a href="services.html#web">Website Development</a></li>
-          <li><a href="services.html#ecom">Digital Storefronts</a></li>
-          <li><a href="services.html#automation">Business Automation</a></li>
-          <li><a href="services.html#brand">Brand Identity</a></li>
+          <li><a href="services.html#ai-automation">AI Automation</a></li>
+          <li><a href="services.html#chatbots">AI Chatbots</a></li>
+          <li><a href="services.html#web-dev">Web Development</a></li>
+          <li><a href="services.html#saas">SaaS Platforms</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
         <ul>
           <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -218,13 +587,13 @@
       <div class="footer-col">
         <h5>Contact</h5>
         <ul>
-          <li><a href="mailto:hello@catalyst.com">hello@catalyst.com</a></li>
-          <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+          <li><a href="mailto:hello@catalystai.in">hello@catalystai.in</a></li>
+          <li><a href="tel:+919999999999">+91 99999 99999</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Catalyst. All rights reserved.</p>
+      <p class="footer-copy">© 2025 Catalyst AI Agency. All rights reserved.</p>
       <div class="footer-socials">
         <a href="#" class="social-link">in</a>
         <a href="#" class="social-link">𝕏</a>
@@ -236,6 +605,24 @@
 
 <script src="../js/main.js"></script>
 <script src="../js/animations.js"></script>
-<script src="../js/contact.js"></script>
+<script>
+  // Portfolio filter functionality
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      document.querySelectorAll('.portfolio-item').forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.display = '';
+          item.style.opacity = '1';
+          item.style.transform = 'scale(1)';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

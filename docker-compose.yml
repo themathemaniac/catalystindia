@@ -1,0 +1,78 @@
+# ============================================================
+#  CATALYST AI AGENCY — Docker Compose
+#  Full stack: App + Nginx + (optional PostgreSQL)
+# ============================================================
+
+version: '3.9'
+
+services:
+
+  # ── Catalyst App ────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: catalyst-app
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: file:/app/backend/data/production.db
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+      GROK_API_KEY: ${GROK_API_KEY}
+      GROK_MODEL: ${GROK_MODEL:-grok-3}
+      EMAIL_HOST: ${EMAIL_HOST:-smtp.gmail.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PASS: ${EMAIL_PASS}
+      NOTIFICATION_EMAIL: ${NOTIFICATION_EMAIL}
+      ALLOWED_ORIGINS: https://catalystindia.com,https://www.catalystindia.com
+    volumes:
+      - catalyst_data:/app/backend/data
+    networks:
+      - catalyst-network
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  # ── Nginx Reverse Proxy ──────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: catalyst-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - nginx_cache:/var/cache/nginx
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - catalyst-network
+
+# ── Volumes ────────────────────────────────────────────────
+volumes:
+  catalyst_data:
+    driver: local
+  nginx_cache:
+    driver: local
+
+# ── Networks ───────────────────────────────────────────────
+networks:
+  catalyst-network:
+    driver: bridge

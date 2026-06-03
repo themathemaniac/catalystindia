@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads &amp; CRM — Catalyst Admin</title>
+  <meta name="description" content="Catalyst Admin — Lead Management and CRM" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/admin.css" />
+</head>
+<body data-page="leads">
+
+<div class="admin-layout">
+
+  <!-- ───────────── SIDEBAR ───────────── -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-logo">Catalyst<span>AI</span></div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="sidebar-link" id="nav-dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a href="leads.html" class="sidebar-link active" id="nav-leads">
+        <span class="nav-icon">👥</span>
+        <span class="nav-text">Leads / CRM</span>
+        <span class="nav-badge" id="leads-badge">0</span>
+      </a>
+      <a href="blog.html" class="sidebar-link" id="nav-blog">
+        <span class="nav-icon">📝</span>
+        <span class="nav-text">Blog</span>
+      </a>
+      <a href="portfolio.html" class="sidebar-link" id="nav-portfolio">
+        <span class="nav-icon">🎨</span>
+        <span class="nav-text">Portfolio</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-link logout-btn" id="sidebar-logout-btn" onclick="logout()">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ───────────── MAIN ───────────── -->
+  <main class="admin-main">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div>
+        <div class="topbar-greeting">Leads &amp; CRM</div>
+        <div class="topbar-date" id="topbar-date"></div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn-primary" id="export-csv-btn" onclick="exportLeadsCSV()">⬇ Export CSV</button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- ── Lead Status Strip ── -->
+      <div class="lead-stats-strip" id="lead-stats-strip">
+        <div class="stat-badge stat-badge-new">
+          <span class="stat-badge-count" id="stat-new">0</span>
+          <span class="stat-badge-label">New</span>
+        </div>
+        <div class="stat-badge stat-badge-contacted">
+          <span class="stat-badge-count" id="stat-contacted">0</span>
+          <span class="stat-badge-label">Contacted</span>
+        </div>
+        <div class="stat-badge stat-badge-qualified">
+          <span class="stat-badge-count" id="stat-qualified">0</span>
+          <span class="stat-badge-label">Qualified</span>
+        </div>
+        <div class="stat-badge stat-badge-closed">
+          <span class="stat-badge-count" id="stat-closed">0</span>
+          <span class="stat-badge-label">Closed</span>
+        </div>
+      </div>
+
+      <!-- ── Filters Bar ── -->
+      <div class="filters-bar">
+        <input
+          type="text"
+          class="search-input"
+          id="lead-search"
+          placeholder="Search by name or email..."
+          oninput="filterAndRenderLeads()"
+        />
+        <select class="filter-select" id="status-filter" onchange="filterAndRenderLeads()">
+          <option value="">All Statuses</option>
+          <option value="New">New</option>
+          <option value="Contacted">Contacted</option>
+          <option value="Qualified">Qualified</option>
+          <option value="Closed">Closed</option>
+        </select>
+        <select class="filter-select" id="source-filter" onchange="filterAndRenderLeads()">
+          <option value="">All Sources</option>
+          <option value="Chatbot">Chatbot</option>
+          <option value="Contact Form">Contact Form</option>
+          <option value="Direct">Direct</option>
+        </select>
+      </div>
+
+      <!-- ── Data Table ── -->
+      <div class="data-section">
+        <div class="data-section-header">
+          <div class="data-section-title">All Leads</div>
+          <div class="leads-count-label" id="leads-count">Loading...</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="leads-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Company</th>
+                <th>Budget (₹)</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Score</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody">
+              <tr>
+                <td colspan="10" class="loading-cell">Loading leads...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="leads-pagination"></div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ───────────── Lead Detail Modal ───────────── -->
+<div class="modal-overlay" id="lead-detail-modal">
+  <div class="modal-card modal-large">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-lead-name">Lead Details</div>
+      <button class="modal-close" onclick="closeModal('lead-detail-modal')">✕</button>
+    </div>
+    <div id="lead-detail-content" class="modal-body"></div>
+  </div>
+</div>
+
+<!-- ───────────── Status Change Modal ───────────── -->
+<div class="modal-overlay" id="status-change-modal">
+  <div class="modal-card modal-small">
+    <div class="modal-header">
+      <div class="modal-title">Change Status</div>
+      <button class="modal-close" onclick="closeModal('status-change-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="status-change-lead-id" />
+      <p style="color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:16px;">Select a new status for this lead:</p>
+      <div class="status-options">
+        <button class="status-option-btn new"       onclick="applyStatusChange('New')">🔵 New</button>
+        <button class="status-option-btn contacted"  onclick="applyStatusChange('Contacted')">🟡 Contacted</button>
+        <button class="status-option-btn qualified"  onclick="applyStatusChange('Qualified')">🟢 Qualified</button>
+        <button class="status-option-btn closed"     onclick="applyStatusChange('Closed')">🟣 Closed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/admin.js"></script>
+<script>
+  /* ─── Utilities ─── */
+  function logout() {
+    localStorage.removeItem('catalyst_admin_token');
+    window.location.href = 'index.html';
+  }
+
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
+
+  // Set date
+  document.getElementById('topbar-date').textContent = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  }).format(new Date());
+
+  /* ─── Demo Lead Data ─── */
+  const demoLeads = [
+    { id: 1,  name: 'Priya Sharma',    email: 'priya@techco.in',        phone: '+91 98765 43210', company: 'TechCo India',       budget: '2,50,000', service: 'AI Automation',    status: 'New',       score: 85, source: 'Chatbot',      date: '2026-06-03', notes: 'Interested in full AI pipeline.', conversation: 'User asked about chatbot integration, AI pricing.' },
+    { id: 2,  name: 'Rohan Mehta',     email: 'rohan@startup.io',       phone: '+91 97654 32109', company: 'Startup.io',         budget: '1,00,000', service: 'Website',          status: 'Qualified', score: 92, source: 'Contact Form', date: '2026-06-02', notes: 'Ready to start next week.',         conversation: 'Asked for portfolio. Responded quickly.' },
+    { id: 3,  name: 'Anika Gupta',     email: 'anika@corp.com',         phone: '+91 96543 21098', company: 'CorpSolutions',      budget: '5,00,000', service: 'SaaS Development', status: 'Contacted', score: 73, source: 'Direct',       date: '2026-06-02', notes: 'Needs custom SaaS tool.',           conversation: 'Sent intro email. Awaiting reply.' },
+    { id: 4,  name: 'Vikram Singh',    email: 'vikram@ventures.co',     phone: '+91 95432 10987', company: 'VenturesCo',         budget: '75,000',   service: 'AI Chatbot',       status: 'New',       score: 68, source: 'Chatbot',      date: '2026-06-01', notes: 'Small budget but high potential.',  conversation: 'Chatbot session: 12 messages. Good engagement.' },
+    { id: 5,  name: 'Deepa Nair',      email: 'deepa@fintech.in',       phone: '+91 94321 09876', company: 'FinTech India',      budget: '3,00,000', service: 'Automation',       status: 'Closed',    score: 95, source: 'Contact Form', date: '2026-05-31', notes: 'Deal closed! Project starting.',    conversation: 'Multiple calls. Contract signed.' },
+    { id: 6,  name: 'Arjun Patel',     email: 'arjun@designstudio.co',  phone: '+91 93210 98765', company: 'Design Studio Co',   budget: '1,50,000', service: 'Website',          status: 'Contacted', score: 61, source: 'Chatbot',      date: '2026-05-30', notes: 'Portfolio review scheduled.',       conversation: 'Asked about timeline and pricing.' },
+    { id: 7,  name: 'Sneha Kapoor',    email: 'sneha@logistics.in',     phone: '+91 92109 87654', company: 'Logistics Plus',     budget: '4,00,000', service: 'AI Automation',    status: 'Qualified', score: 88, source: 'Direct',       date: '2026-05-29', notes: 'Logistics AI use case.',            conversation: 'Very specific requirements. Good fit.' },
+    { id: 8,  name: 'Rahul Kumar',     email: 'rahul@ecom.shop',        phone: '+91 91098 76543', company: 'EcomShop',           budget: '80,000',   service: 'SaaS Development', status: 'New',       score: 55, source: 'Contact Form', date: '2026-05-28', notes: 'Ecommerce automation interest.',    conversation: 'Filled contact form. No follow-up yet.' },
+    { id: 9,  name: 'Meera Joshi',     email: 'meera@healthcare.com',   phone: '+91 90987 65432', company: 'HealthCare Plus',    budget: '6,00,000', service: 'AI Chatbot',       status: 'Qualified', score: 90, source: 'Chatbot',      date: '2026-05-27', notes: 'Healthcare chatbot project.',       conversation: 'Long session. Ready for demo.' },
+    { id: 10, name: 'Karan Malhotra',  email: 'karan@realestate.in',    phone: '+91 89876 54321', company: 'Realty Group',       budget: '2,00,000', service: 'Website',          status: 'Closed',    score: 78, source: 'Direct',       date: '2026-05-26', notes: 'Real estate website delivered.',    conversation: 'Project completed. Client satisfied.' },
+    { id: 11, name: 'Divya Reddy',     email: 'divya@education.io',     phone: '+91 88765 43210', company: 'EduTech Co',         budget: '1,20,000', service: 'AI Automation',    status: 'New',       score: 65, source: 'Chatbot',      date: '2026-05-25', notes: 'EdTech automation pipeline.',       conversation: 'Initial contact. Needs evaluation.' },
+    { id: 12, name: 'Sanjay Verma',    email: 'sanjay@manufacturing.co',phone: '+91 87654 32109', company: 'Mfg Solutions',      budget: '8,00,000', service: 'SaaS Development', status: 'Contacted', score: 82, source: 'Contact Form', date: '2026-05-24', notes: 'Manufacturing SaaS prototype.',     conversation: 'Detailed brief received. Proposal sent.' },
+  ];
+
+  let allLeads     = [...demoLeads];
+  let filteredLeads = [...demoLeads];
+  let currentPage  = 1;
+  const pageSize   = 8;
+
+  /* ─── Stats Strip ─── */
+  function updateStatsStrip(leads) {
+    const counts = { New: 0, Contacted: 0, Qualified: 0, Closed: 0 };
+    leads.forEach(l => { if (counts[l.status] !== undefined) counts[l.status]++; });
+    document.getElementById('stat-new').textContent       = counts.New;
+    document.getElementById('stat-contacted').textContent = counts.Contacted;
+    document.getElementById('stat-qualified').textContent = counts.Qualified;
+    document.getElementById('stat-closed').textContent    = counts.Closed;
+    const badge = document.getElementById('leads-badge');
+    if (badge) badge.textContent = counts.New;
+  }
+
+  /* ─── Status color helper ─── */
+  function statusColor(s) {
+    return { New: '#3b82f6', Contacted: '#f59e0b', Qualified: '#22c55e', Closed: '#8b5cf6' }[s] || '#94a3b8';
+  }
+
+  /* ─── Score bar ─── */
+  function scoreBar(score) {
+    const color = score >= 80 ? '#22c55e' : score >= 60 ? '#f59e0b' : '#ef4444';
+    return `<div style="display:flex;align-items:center;gap:8px;">
+      <div style="flex:1;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;">
+        <div style="width:${score}%;height:100%;background:${color};border-radius:3px;"></div>
+      </div>
+      <span style="font-size:12px;color:${color};font-weight:600;">${score}</span>
+    </div>`;
+  }
+
+  /* ─── Render Table ─── */
+  function renderLeadsTable() {
+    const tbody = document.getElementById('leads-tbody');
+    const start = (currentPage - 1) * pageSize;
+    const end   = start + pageSize;
+    const page  = filteredLeads.slice(start, end);
+
+    document.getElementById('leads-count').textContent =
+      `Showing ${Math.min(start + 1, filteredLeads.length)}–${Math.min(end, filteredLeads.length)} of ${filteredLeads.length}`;
+
+    if (page.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="10" class="loading-cell" style="color:rgba(255,255,255,0.3);">No leads found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = page.map(l => {
+      const sc = statusColor(l.status);
+      return `
+        <tr>
+          <td><strong>${l.name}</strong></td>
+          <td style="color:rgba(255,255,255,0.5);font-size:13px;">${l.email}</td>
+          <td style="font-size:13px;">${l.phone}</td>
+          <td style="font-size:13px;color:rgba(255,255,255,0.6);">${l.company}</td>
+          <td style="font-size:13px;font-weight:600;">₹${l.budget}</td>
+          <td style="font-size:13px;">${l.service}</td>
+          <td><span class="status-badge" style="background:${sc}22;color:${sc};border:1px solid ${sc}44;">${l.status}</span></td>
+          <td style="min-width:100px;">${scoreBar(l.score)}</td>
+          <td style="font-size:12px;color:rgba(255,255,255,0.4);">${l.date}</td>
+          <td>
+            <div style="display:flex;gap:6px;">
+              <button class="action-icon-btn" title="View Details" onclick="viewLead(${l.id})">👁</button>
+              <button class="action-icon-btn" title="Change Status" onclick="openStatusChange(${l.id})">✏️</button>
+              <button class="action-icon-btn danger" title="Delete" onclick="deleteLead(${l.id})">🗑</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  /* ─── Pagination ─── */
+  function renderPagination() {
+    const total = Math.ceil(filteredLeads.length / pageSize);
+    const pag   = document.getElementById('leads-pagination');
+    if (total <= 1) { pag.innerHTML = ''; return; }
+
+    let html = `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="gotoPage(${currentPage - 1})">‹ Prev</button>`;
+    for (let i = 1; i <= total; i++) {
+      html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="gotoPage(${i})">${i}</button>`;
+    }
+    html += `<button class="page-btn" ${currentPage === total ? 'disabled' : ''} onclick="gotoPage(${currentPage + 1})">Next ›</button>`;
+    pag.innerHTML = html;
+  }
+
+  function gotoPage(p) {
+    currentPage = p;
+    renderLeadsTable();
+    renderPagination();
+  }
+
+  /* ─── Filter ─── */
+  function filterAndRenderLeads() {
+    const search = (document.getElementById('lead-search').value || '').toLowerCase();
+    const status = document.getElementById('status-filter').value;
+    const source = document.getElementById('source-filter').value;
+
+    filteredLeads = allLeads.filter(l => {
+      const matchSearch = !search || l.name.toLowerCase().includes(search) || l.email.toLowerCase().includes(search);
+      const matchStatus = !status || l.status === status;
+      const matchSource = !source || l.source === source;
+      return matchSearch && matchStatus && matchSource;
+    });
+
+    currentPage = 1;
+    renderLeadsTable();
+    renderPagination();
+  }
+
+  /* ─── View Lead Modal ─── */
+  function viewLead(id) {
+    const l = allLeads.find(x => x.id === id);
+    if (!l) return;
+    document.getElementById('modal-lead-name').textContent = l.name;
+    const sc = statusColor(l.status);
+    document.getElementById('lead-detail-content').innerHTML = `
+      <div class="lead-detail-grid">
+        <div class="detail-col">
+          <div class="detail-section-label">Contact Info</div>
+          <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val">${l.email}</span></div>
+          <div class="detail-row"><span class="detail-key">Phone</span><span class="detail-val">${l.phone}</span></div>
+          <div class="detail-row"><span class="detail-key">Company</span><span class="detail-val">${l.company}</span></div>
+          <div class="detail-section-label" style="margin-top:20px;">Project Info</div>
+          <div class="detail-row"><span class="detail-key">Service</span><span class="detail-val">${l.service}</span></div>
+          <div class="detail-row"><span class="detail-key">Budget</span><span class="detail-val">₹${l.budget}</span></div>
+          <div class="detail-row"><span class="detail-key">Source</span><span class="detail-val">${l.source}</span></div>
+          <div class="detail-row"><span class="detail-key">Date</span><span class="detail-val">${l.date}</span></div>
+          <div class="detail-row">
+            <span class="detail-key">Status</span>
+            <span class="status-badge" style="background:${sc}22;color:${sc};border:1px solid ${sc}44;">${l.status}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Lead Score</span>
+            <div style="flex:1;">${scoreBar(l.score)}</div>
+          </div>
+        </div>
+        <div class="detail-col">
+          <div class="detail-section-label">Notes</div>
+          <div class="detail-notes">${l.notes || 'No notes added.'}</div>
+          <div class="detail-section-label" style="margin-top:20px;">Conversation History</div>
+          <div class="detail-conversation">${l.conversation || 'No conversation recorded.'}</div>
+          <div style="margin-top:20px;display:flex;gap:10px;">
+            <button class="btn-primary" onclick="openStatusChange(${l.id});closeModal('lead-detail-modal');">Change Status</button>
+            <button class="btn-ghost" onclick="closeModal('lead-detail-modal')">Close</button>
+          </div>
+        </div>
+      </div>
+    `;
+    openModal('lead-detail-modal');
+  }
+
+  /* ─── Status Change ─── */
+  function openStatusChange(id) {
+    document.getElementById('status-change-lead-id').value = id;
+    openModal('status-change-modal');
+  }
+
+  function applyStatusChange(newStatus) {
+    const id = parseInt(document.getElementById('status-change-lead-id').value);
+    const lead = allLeads.find(l => l.id === id);
+    if (lead) {
+      lead.status = newStatus;
+      filterAndRenderLeads();
+      updateStatsStrip(allLeads);
+    }
+    closeModal('status-change-modal');
+  }
+
+  /* ─── Delete Lead ─── */
+  function deleteLead(id) {
+    if (!confirm('Are you sure you want to delete this lead?')) return;
+    allLeads = allLeads.filter(l => l.id !== id);
+    filterAndRenderLeads();
+    updateStatsStrip(allLeads);
+  }
+
+  /* ─── Export CSV ─── */
+  function exportLeadsCSV() {
+    const headers = ['Name','Email','Phone','Company','Budget','Service','Status','Score','Source','Date'];
+    const rows = filteredLeads.map(l => [
+      l.name, l.email, l.phone, l.company, l.budget, l.service, l.status, l.score, l.source, l.date
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'catalyst_leads.csv';
+    a.click();
+  }
+
+  /* ─── Init ─── */
+  updateStatsStrip(allLeads);
+  filterAndRenderLeads();
+</script>
+</body>
+</html>

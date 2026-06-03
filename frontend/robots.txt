@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Block admin panel from indexing
+Disallow: /pages/admin/
+Disallow: /api/
+
+# Block development files
+Disallow: /*.json$
+
+# Allow important pages
+Allow: /pages/services.html
+Allow: /pages/portfolio.html
+Allow: /pages/pricing.html
+Allow: /pages/about.html
+Allow: /pages/blog.html
+Allow: /pages/contact.html
+Allow: /pages/faq.html
+
+# Sitemap
+Sitemap: https://catalystindia.com/sitemap.xml
+
+# Crawl-delay for courtesy
+Crawl-delay: 1

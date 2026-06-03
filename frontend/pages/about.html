@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Catalyst AI Agency | Our Story &amp; Team</title>
+  <meta name="description" content="Learn about Catalyst AI Agency — our mission to automate businesses, our expert team, and our journey building intelligent AI systems since 2020." />
+  <meta property="og:title" content="About — Catalyst AI Agency | Our Story &amp; Team" />
+  <meta property="og:description" content="Learn about Catalyst AI Agency — our mission to automate businesses, our expert team, and our journey building intelligent AI systems since 2020." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/about.css" />
+
+  <style>
+    /* ── Section header alignment ── */
+    .section-center {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .section-center .section-label {
+      justify-content: center;
+    }
+    .section-center h2 {
+      margin-bottom: var(--sp-4);
+    }
+    .section-center p {
+      font-size: var(--fs-lg);
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ── Gradient rule dividers ── */
+    .gradient-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border-strong), transparent);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── CTA Final Section ── */
+    .about-cta-section {
+      padding: var(--sp-24) var(--sp-6);
+    }
+
+    .about-cta-box {
+      max-width: 820px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(20, 30, 60, 0.85) 0%, rgba(16, 18, 26, 0.95) 50%, rgba(20, 30, 60, 0.85) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.28);
+      border-radius: var(--r-2xl);
+      padding: var(--sp-16) var(--sp-12);
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(59, 130, 246, 0.12), 0 4px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(96, 165, 250, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-cta-box::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-cta-box h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-cta-box p {
+      font-size: var(--fs-lg);
+      color: var(--text-secondary);
+      margin-bottom: var(--sp-8);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Mission stat highlight accent ── */
+    .mission-accent-bar {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-bright));
+      border-radius: var(--r-full);
+      margin: var(--sp-6) auto 0;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+    }
+
+    /* ── Team card divider line ── */
+    .team-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+      border-radius: var(--r-full);
+      margin: 0 auto var(--sp-4);
+    }
+
+    /* ── Shimmer animation for stats ── */
+    @keyframes shimmer-text {
+      0%, 100% { filter: brightness(1); }
+      50%       { filter: brightness(1.2) drop-shadow(0 0 10px rgba(59,130,246,0.4)); }
+    }
+
+    .stat-number-animated {
+      animation: shimmer-text 4s ease-in-out infinite;
+    }
+
+    /* ── Tech section subtitle ── */
+    .tech-sub {
+      font-size: var(--fs-base);
+      color: var(--text-muted);
+      margin-top: var(--sp-2);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HEADER / NAV
+════════════════════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="../index.html" class="nav-logo">Catalyst</a>
+    <div class="nav-links">
+      <a href="services.html"   class="nav-link">Services</a>
+      <a href="portfolio.html"  class="nav-link">Portfolio</a>
+      <a href="about.html"      class="nav-link active">About</a>
+      <a href="pricing.html"    class="nav-link">Pricing</a>
+      <a href="blog.html"       class="nav-link">Blog</a>
+      <a href="faq.html"        class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="contact.html" class="btn btn--primary btn--sm">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html"  class="mobile-nav-link">Services</a>
+  <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="about.html"     class="mobile-nav-link">About</a>
+  <a href="pricing.html"   class="mobile-nav-link">Pricing</a>
+  <a href="blog.html"      class="mobile-nav-link">Blog</a>
+  <a href="faq.html"       class="mobile-nav-link">FAQ</a>
+  <a href="contact.html"   class="mobile-nav-link">Contact</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     1. PAGE HERO
+════════════════════════════════════════════════ -->
+<section class="about-hero page-hero" aria-label="About hero">
+
+  <!-- CSS art blobs / ambient glow -->
+  <div class="about-hero-art" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+    <div class="blob blob--4"></div>
+    <div class="hero-stars"></div>
+  </div>
+
+  <div class="about-hero-content">
+    <div class="section-label">Our Story</div>
+    <h1>We Are Catalyst</h1>
+    <p>
+      A team of engineers, designers, and AI researchers united by a single purpose —
+      building the intelligent systems that let humans focus on what truly matters.
+    </p>
+    <div class="about-hero-buttons">
+      <a href="#team" class="btn btn--primary btn--lg" id="about-meet-team">Meet the Team</a>
+      <a href="contact.html" class="btn btn--ghost btn--lg" id="about-contact-cta">Work With Us</a>
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     2. MISSION SECTION
+════════════════════════════════════════════════ -->
+<section class="mission-section section" aria-label="Our mission">
+  <div class="mission-inner container">
+    <div class="section-label" style="justify-content:center;">Our Mission</div>
+
+    <p class="mission-statement reveal">
+      We automate businesses so
+      <span class="highlight">humans can focus</span>
+      on what matters.
+    </p>
+    <div class="mission-accent-bar"></div>
+
+    <p class="mission-body reveal">
+      Since 2020, Catalyst has been at the intersection of artificial intelligence and real-world business
+      impact. We don't just build tools — we craft intelligent systems that learn, adapt, and scale alongside
+      your ambitions. Our philosophy is simple: technology should eliminate friction, not create it.
+    </p>
+
+    <div class="mission-pillars">
+      <div class="mission-pillar reveal">
+        <span class="mission-pillar-icon">🎯</span>
+        <h3>Impact-First</h3>
+        <p>Every solution we ship is measured by its real-world business impact — not just lines of code or feature counts.</p>
+      </div>
+      <div class="mission-pillar reveal">
+        <span class="mission-pillar-icon">🔬</span>
+        <h3>Research-Driven</h3>
+        <p>We stay at the cutting edge of AI research, integrating the latest advancements directly into production-ready systems.</p>
+      </div>
+      <div class="mission-pillar reveal">
+        <span class="mission-pillar-icon">🤝</span>
+        <h3>Partner Mindset</h3>
+        <p>We embed ourselves in your business, becoming a true strategic partner rather than just another vendor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     3. STATS BAR
+════════════════════════════════════════════════ -->
+<section class="stats-bar-section" aria-label="Company statistics">
+  <div class="stats-bar-inner">
+
+    <div class="stat-item reveal">
+      <span class="stat-number stat-number-animated" data-count="150" id="stat-projects">0</span>
+      <span class="stat-label">Projects Delivered</span>
+    </div>
+
+    <div class="stat-item reveal">
+      <span class="stat-number stat-number-animated" data-count="98" data-suffix="%" id="stat-satisfaction">0</span>
+      <span class="stat-label">Client Satisfaction</span>
+    </div>
+
+    <div class="stat-item reveal">
+      <span class="stat-number stat-number-animated" data-count="5" data-suffix=" yrs" id="stat-years">0</span>
+      <span class="stat-label">Years of Excellence</span>
+    </div>
+
+    <div class="stat-item reveal">
+      <span class="stat-number stat-number-animated" data-count="40" data-suffix="+" id="stat-team">0</span>
+      <span class="stat-label">Team Members</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     4. SERVICES OVERVIEW GRID
+════════════════════════════════════════════════ -->
+<section class="about-services-section section" aria-label="Services overview">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label">What We Build</div>
+      <h2>Our Full Spectrum of AI Services</h2>
+      <p>From automating your internal workflows to deploying enterprise-grade AI agents — we cover every layer of the modern intelligence stack.</p>
+    </div>
+
+    <div class="about-services-grid">
+
+      <!-- AI Automation -->
+      <div class="about-service-card reveal">
+        <div class="about-service-icon">🤖</div>
+        <h3>AI Automation</h3>
+        <p>End-to-end workflow automation that reclaims 20+ hours per week. We map your processes and deploy AI systems that run reliably 24/7.</p>
+        <a href="services.html#automation" class="about-service-link" id="link-ai-automation">
+          Explore Service <span>→</span>
+        </a>
+      </div>
+
+      <!-- Website Development -->
+      <div class="about-service-card reveal">
+        <div class="about-service-icon">🌐</div>
+        <h3>Website Development</h3>
+        <p>High-performance, conversion-optimized websites built from the ground up. Sub-2s load times, mobile-first design, and 99+ PageSpeed scores.</p>
+        <a href="services.html#web" class="about-service-link" id="link-web-dev">
+          Explore Service <span>→</span>
+        </a>
+      </div>
+
+      <!-- SaaS Development -->
+      <div class="about-service-card reveal">
+        <div class="about-service-icon">⚡</div>
+        <h3>SaaS Development</h3>
+        <p>Full-stack SaaS platforms with authentication, billing, multi-tenancy, and AI-powered features baked in from day one.</p>
+        <a href="services.html" class="about-service-link" id="link-saas">
+          Explore Service <span>→</span>
+        </a>
+      </div>
+
+      <!-- AI Chatbots -->
+      <div class="about-service-card reveal">
+        <div class="about-service-icon">💬</div>
+        <h3>AI Chatbots</h3>
+        <p>Conversational AI trained on your business data. Support, sales, and onboarding bots that feel genuinely human and never sleep.</p>
+        <a href="services.html" class="about-service-link" id="link-chatbots">
+          Explore Service <span>→</span>
+        </a>
+      </div>
+
+      <!-- WhatsApp Automation -->
+      <div class="about-service-card reveal">
+        <div class="about-service-icon">📱</div>
+        <h3>WhatsApp Automation</h3>
+        <p>Engage customers where they already are. Automated WhatsApp flows for support, lead nurturing, appointment booking, and order updates.</p>
+        <a href="services.html" class="about-service-link" id="link-whatsapp">
+          Explore Service <span>→</span>
+        </a>
+      </div>
+
+      <!-- AI Agents -->
+      <div class="about-service-card reveal">
+        <div class="about-service-icon">🧠</div>
+        <h3>AI Agents</h3>
+        <p>Autonomous multi-step AI agents that research, decide, and act — connecting your entire tool stack with intelligence and precision.</p>
+        <a href="services.html" class="about-service-link" id="link-agents">
+          Explore Service <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     5. COMPANY TIMELINE
+════════════════════════════════════════════════ -->
+<section class="timeline-section section" aria-label="Company history">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label">Our Journey</div>
+      <h2>Five Years of Building the Future</h2>
+      <p>From a two-person studio to a 40+ person AI powerhouse — here's how we got here.</p>
+    </div>
+
+    <div class="timeline-wrapper">
+
+      <!-- 2020 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">2020</div>
+          <h3>Founded with a Vision</h3>
+          <p>Catalyst was born from a simple observation: businesses were drowning in repetitive tasks. Rahul and Priya founded the company with ₹5L seed investment and a bold mission to change that.</p>
+        </div>
+        <div class="timeline-dot-col">
+          <div class="timeline-dot" aria-hidden="true"></div>
+        </div>
+        <div class="timeline-empty"></div>
+      </div>
+
+      <!-- 2021 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-empty"></div>
+        <div class="timeline-dot-col">
+          <div class="timeline-dot" aria-hidden="true"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-year">2021</div>
+          <h3>First 10 Clients &amp; Product-Market Fit</h3>
+          <p>We landed our first 10 paying clients across SaaS, e-commerce, and healthcare. Average ROI for clients exceeded 300% — validating our automation-first approach.</p>
+        </div>
+      </div>
+
+      <!-- 2022 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">2022</div>
+          <h3>AI-Native Pivot &amp; Team Expansion</h3>
+          <p>GPT-3 changed everything. We pivoted fully to AI-native solutions, grew the team to 15 specialists, and launched our proprietary chatbot platform serving over 50 clients.</p>
+        </div>
+        <div class="timeline-dot-col">
+          <div class="timeline-dot" aria-hidden="true"></div>
+        </div>
+        <div class="timeline-empty"></div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-empty"></div>
+        <div class="timeline-dot-col">
+          <div class="timeline-dot" aria-hidden="true"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-year">2023</div>
+          <h3>Series A &amp; International Expansion</h3>
+          <p>Raised ₹4Cr Series A funding. Expanded operations to the Middle East and Southeast Asia. Delivered 80+ projects and hit a 98% client satisfaction rate for the first time.</p>
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">2024</div>
+          <h3>LangChain &amp; Agent Era</h3>
+          <p>Built our first generation of autonomous AI agents. Partnered with OpenAI and AWS as a certified solutions provider. Team grew to 35 and we crossed 120 delivered projects.</p>
+        </div>
+        <div class="timeline-dot-col">
+          <div class="timeline-dot" aria-hidden="true"></div>
+        </div>
+        <div class="timeline-empty"></div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-empty"></div>
+        <div class="timeline-dot-col">
+          <div class="timeline-dot" aria-hidden="true"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-year">2025</div>
+          <h3>150+ Projects &amp; What's Next</h3>
+          <p>Today we're a 40+ person team with 150+ delivered projects across 12 countries. We're building the next generation of multi-modal AI agents — and we're just getting started.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     6. TEAM SECTION
+════════════════════════════════════════════════ -->
+<section class="team-section section" id="team" aria-label="Our team">
+  <div class="container">
+    <div class="section-center">
+      <div class="section-label">The People</div>
+      <h2>Meet the Minds Behind Catalyst</h2>
+      <p>Our team combines deep AI expertise with production engineering discipline and creative design thinking.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Rahul Sharma / CEO -->
+      <div class="team-card reveal" id="team-card-rahul">
+        <div class="team-avatar" aria-label="Rahul Sharma avatar">RS</div>
+        <div class="team-name">Rahul Sharma</div>
+        <div class="team-role">CEO &amp; Co-Founder</div>
+        <div class="team-divider"></div>
+        <p class="team-bio">Former ML engineer at Flipkart. 10+ years building scalable systems. Rahul sets the strategic vision and ensures every engagement delivers measurable business value.</p>
+        <div class="team-social-links">
+          <a href="#" class="team-social-link" aria-label="Rahul Sharma LinkedIn">in</a>
+          <a href="#" class="team-social-link" aria-label="Rahul Sharma Twitter">𝕏</a>
+        </div>
+      </div>
+
+      <!-- Priya Patel / CTO -->
+      <div class="team-card reveal" id="team-card-priya">
+        <div class="team-avatar" aria-label="Priya Patel avatar">PP</div>
+        <div class="team-name">Priya Patel</div>
+        <div class="team-role">CTO &amp; Co-Founder</div>
+        <div class="team-divider"></div>
+        <p class="team-bio">PhD in Computer Science from IIT Bombay. Ex-Google DeepMind researcher. Priya leads our AI research agenda and oversees all technical architecture decisions.</p>
+        <div class="team-social-links">
+          <a href="#" class="team-social-link" aria-label="Priya Patel LinkedIn">in</a>
+          <a href="#" class="team-social-link" aria-label="Priya Patel GitHub">gh</a>
+        </div>
+      </div>
+
+      <!-- Arjun Singh / Lead Dev -->
+      <div class="team-card reveal" id="team-card-arjun">
+        <div class="team-avatar" aria-label="Arjun Singh avatar">AS</div>
+        <div class="team-name">Arjun Singh</div>
+        <div class="team-role">Lead Developer</div>
+        <div class="team-divider"></div>
+        <p class="team-bio">Full-stack architect with 8 years building production SaaS. Specializes in Next.js, Node.js, and distributed systems. Ships clean, performant code that scales.</p>
+        <div class="team-social-links">
+          <a href="#" class="team-social-link" aria-label="Arjun Singh LinkedIn">in</a>
+          <a href="#" class="team-social-link" aria-label="Arjun Singh GitHub">gh</a>
+        </div>
+      </div>
+
+      <!-- Meera Nair / AI Specialist -->
+      <div class="team-card reveal" id="team-card-meera">
+        <div class="team-avatar" aria-label="Meera Nair avatar">MN</div>
+        <div class="team-name">Meera Nair</div>
+        <div class="team-role">AI Specialist</div>
+        <div class="team-divider"></div>
+        <p class="team-bio">LLM fine-tuning expert and RAG system architect. Meera is the brain behind all our conversational AI products — from chatbots to autonomous multi-step agents.</p>
+        <div class="team-social-links">
+          <a href="#" class="team-social-link" aria-label="Meera Nair LinkedIn">in</a>
+          <a href="#" class="team-social-link" aria-label="Meera Nair Twitter">𝕏</a>
+        </div>
+      </div>
+
+      <!-- Kavya Reddy / Design Director -->
+      <div class="team-card reveal" id="team-card-kavya">
+        <div class="team-avatar" aria-label="Kavya Reddy avatar">KR</div>
+        <div class="team-name">Kavya Reddy</div>
+        <div class="team-role">Design Director</div>
+        <div class="team-divider"></div>
+        <p class="team-bio">Award-winning UX designer with a background in cognitive psychology. Kavya ensures every product we build is not just functional but genuinely delightful to use.</p>
+        <div class="team-social-links">
+          <a href="#" class="team-social-link" aria-label="Kavya Reddy LinkedIn">in</a>
+          <a href="#" class="team-social-link" aria-label="Kavya Reddy Dribbble">dr</a>
+        </div>
+      </div>
+
+      <!-- Rohit Kumar / Business Automation Lead -->
+      <div class="team-card reveal" id="team-card-rohit">
+        <div class="team-avatar" aria-label="Rohit Kumar avatar">RK</div>
+        <div class="team-name">Rohit Kumar</div>
+        <div class="team-role">Business Automation Lead</div>
+        <div class="team-divider"></div>
+        <p class="team-bio">Certified Zapier and Make expert with 200+ automation projects under his belt. Rohit maps complex business workflows into elegant, zero-maintenance automation pipelines.</p>
+        <div class="team-social-links">
+          <a href="#" class="team-social-link" aria-label="Rohit Kumar LinkedIn">in</a>
+          <a href="#" class="team-social-link" aria-label="Rohit Kumar Twitter">𝕏</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     7. TECH STACK / BADGES
+════════════════════════════════════════════════ -->
+<section class="tech-section section" aria-label="Our technology stack">
+  <div class="container">
+    <div class="section-label" style="justify-content:center;">Technology</div>
+    <h2>Built on Best-in-Class Tools</h2>
+    <p class="tech-sub">The technologies we wield to build production-grade AI systems</p>
+
+    <div class="tech-badges" role="list" aria-label="Technology stack badges">
+
+      <div class="tech-badge reveal" role="listitem" id="badge-react">
+        <div class="tech-badge-dot"></div>
+        React
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-nodejs">
+        <div class="tech-badge-dot"></div>
+        Node.js
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-python">
+        <div class="tech-badge-dot"></div>
+        Python
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-tensorflow">
+        <div class="tech-badge-dot"></div>
+        TensorFlow
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-langchain">
+        <div class="tech-badge-dot"></div>
+        LangChain
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-openai">
+        <div class="tech-badge-dot"></div>
+        OpenAI
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-aws">
+        <div class="tech-badge-dot"></div>
+        AWS
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-docker">
+        <div class="tech-badge-dot"></div>
+        Docker
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-postgresql">
+        <div class="tech-badge-dot"></div>
+        PostgreSQL
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-redis">
+        <div class="tech-badge-dot"></div>
+        Redis
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-prisma">
+        <div class="tech-badge-dot"></div>
+        Prisma
+      </div>
+      <div class="tech-badge reveal" role="listitem" id="badge-zapier">
+        <div class="tech-badge-dot"></div>
+        Zapier
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gradient-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     8. VISION SECTION
+════════════════════════════════════════════════ -->
+<section class="vision-section" aria-label="Our vision">
+  <div class="vision-inner">
+    <div class="vision-eyebrow">Our Vision</div>
+
+    <h2 class="vision-heading reveal">
+      A world where every business<br />
+      runs on <span>intelligent automation</span>
+    </h2>
+
+    <p class="vision-body reveal">
+      We believe the companies that will thrive in the next decade aren't those with the most people —
+      they're the ones with the most intelligent systems. Our vision is to be the partner that gets
+      every ambitious business there first. Not someday. Now.
+    </p>
+
+    <div class="vision-cta reveal">
+      <a href="contact.html" class="btn btn--primary btn--xl" id="vision-cta-start">Start Your AI Journey</a>
+      <a href="portfolio.html" class="btn btn--ghost btn--lg" id="vision-cta-portfolio">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     9. CTA SECTION
+════════════════════════════════════════════════ -->
+<section class="about-cta-section section" aria-label="Call to action">
+  <div class="about-cta-box reveal">
+    <div class="section-label" style="justify-content:center; margin-bottom:var(--sp-4);">Let's Build Together</div>
+    <h2>Ready to Transform Your Business?</h2>
+    <p>Book a free 30-minute consultation. We'll map your biggest bottlenecks and show you exactly how AI can solve them.</p>
+    <div class="about-cta-buttons">
+      <a href="contact.html" class="btn btn--primary btn--xl" id="cta-book-consultation">Book Free Consultation</a>
+      <a href="pricing.html" class="btn btn--ghost btn--lg" id="cta-view-pricing">View Pricing</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <span class="footer-logo">Catalyst</span>
+        <p>Intelligent AI systems for ambitious businesses. We automate so you can accelerate.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#automation">AI Automation</a></li>
+          <li><a href="services.html#web">Website Development</a></li>
+          <li><a href="services.html">SaaS Development</a></li>
+          <li><a href="services.html">AI Chatbots</a></li>
+          <li><a href="services.html">AI Agents</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="contact.html">Get a Quote</a></li>
+          <li><a href="mailto:hello@catalystai.in">hello@catalystai.in</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Catalyst AI Agency. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="Twitter / X">𝕏</a>
+        <a href="#" class="social-link" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/animations.js"></script>
+<script src="../js/counter.js"></script>
+
+<script>
+  // ── Animated counter for stats ───────────────────────────────
+  (function () {
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '+';
+      const duration = 1800;
+      const step = duration / target;
+      let current = 0;
+
+      const prefix = el.dataset.prefix || '';
+      const interval = setInterval(() => {
+        current++;
+        el.textContent = prefix + current + suffix;
+        if (current >= target) {
+          clearInterval(interval);
+          el.textContent = prefix + target + suffix;
+        }
+      }, step);
+    }
+
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(c => io.observe(c));
+    } else {
+      counters.forEach(animateCounter);
+    }
+  })();
+
+  // ── Stagger team cards entrance ──────────────────────────────
+  (function () {
+    const cards = document.querySelectorAll('.team-card');
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = (i * 80) + 'ms';
+    });
+  })();
+</script>
+
+</body>
+</html>

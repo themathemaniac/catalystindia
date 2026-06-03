@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Catalyst Admin</title>
+  <meta name="description" content="Catalyst Admin — Portfolio Project Management" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/admin.css" />
+</head>
+<body data-page="portfolio">
+
+<div class="admin-layout">
+
+  <!-- ───────────── SIDEBAR ───────────── -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-logo">Catalyst<span>AI</span></div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="sidebar-link" id="nav-dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a href="leads.html" class="sidebar-link" id="nav-leads">
+        <span class="nav-icon">👥</span>
+        <span class="nav-text">Leads / CRM</span>
+        <span class="nav-badge" id="leads-badge">0</span>
+      </a>
+      <a href="blog.html" class="sidebar-link" id="nav-blog">
+        <span class="nav-icon">📝</span>
+        <span class="nav-text">Blog</span>
+      </a>
+      <a href="portfolio.html" class="sidebar-link active" id="nav-portfolio">
+        <span class="nav-icon">🎨</span>
+        <span class="nav-text">Portfolio</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-link logout-btn" id="sidebar-logout-btn" onclick="logout()">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ───────────── MAIN ───────────── -->
+  <main class="admin-main">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div style="flex:1;">
+        <div class="topbar-greeting">Portfolio Management</div>
+        <div class="topbar-date" id="topbar-date"></div>
+      </div>
+      <button class="btn-primary" onclick="openPortfolioModal(null)">+ Add Project</button>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- Portfolio stats strip -->
+      <div class="blog-stats-strip">
+        <div class="blog-stat-item">
+          <div class="blog-stat-value" id="stat-total-projects">0</div>
+          <div class="blog-stat-label">Total Projects</div>
+        </div>
+        <div class="blog-stat-item">
+          <div class="blog-stat-value" id="stat-featured-projects">0</div>
+          <div class="blog-stat-label">Featured</div>
+        </div>
+        <div class="blog-stat-item">
+          <div class="blog-stat-value" id="stat-categories">0</div>
+          <div class="blog-stat-label">Categories</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <input
+          type="text"
+          class="search-input"
+          id="portfolio-search"
+          placeholder="Search projects by title or client..."
+          oninput="filterPortfolio()"
+        />
+        <select class="filter-select" id="portfolio-category-filter" onchange="filterPortfolio()">
+          <option value="">All Categories</option>
+          <option value="Website">Website</option>
+          <option value="Mobile App">Mobile App</option>
+          <option value="AI Agent">AI Agent</option>
+          <option value="Automation">Automation</option>
+          <option value="SaaS">SaaS</option>
+        </select>
+        <select class="filter-select" id="portfolio-featured-filter" onchange="filterPortfolio()">
+          <option value="">All</option>
+          <option value="true">Featured Only</option>
+          <option value="false">Not Featured</option>
+        </select>
+      </div>
+
+      <!-- Portfolio Table -->
+      <div class="data-section">
+        <div class="data-section-header">
+          <div class="data-section-title">All Projects</div>
+          <div class="leads-count-label" id="portfolio-count">Loading...</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="portfolio-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Client</th>
+                <th>Featured</th>
+                <th>Order</th>
+                <th>Tags</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio-tbody">
+              <tr><td colspan="8" class="loading-cell">Loading projects...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ───────────── Add/Edit Portfolio Modal ───────────── -->
+<div class="modal-overlay" id="portfolio-modal">
+  <div class="modal-card modal-large">
+    <div class="modal-header">
+      <div class="modal-title" id="portfolio-modal-title">Add Project</div>
+      <button class="modal-close" onclick="closeModal('portfolio-modal')">✕</button>
+    </div>
+    <div class="modal-body" style="overflow-y:auto;max-height:calc(90vh - 80px);">
+      <input type="hidden" id="editing-portfolio-id" />
+
+      <!-- Row 1: Title -->
+      <div class="form-group">
+        <label class="form-label">Project Title *</label>
+        <input class="form-input" id="p-title" type="text" placeholder="e.g. HealthCare AI Chatbot" />
+      </div>
+
+      <!-- Row 2: Description -->
+      <div class="form-group">
+        <label class="form-label">Description *</label>
+        <textarea class="form-textarea" id="p-desc" rows="3" placeholder="Brief description of the project and what was achieved..."></textarea>
+      </div>
+
+      <!-- Row 3: Category + Client -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="p-category">
+            <option value="Website">Website</option>
+            <option value="Mobile App">Mobile App</option>
+            <option value="AI Agent">AI Agent</option>
+            <option value="Automation">Automation</option>
+            <option value="SaaS">SaaS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Client Name</label>
+          <input class="form-input" id="p-client" type="text" placeholder="e.g. HealthCare Plus" />
+        </div>
+      </div>
+
+      <!-- Row 4: Live URL -->
+      <div class="form-group">
+        <label class="form-label">Live URL</label>
+        <input class="form-input" id="p-url" type="url" placeholder="https://..." />
+      </div>
+
+      <!-- Row 5: Tags -->
+      <div class="form-group">
+        <label class="form-label">Tags (comma separated)</label>
+        <input class="form-input" id="p-tags" type="text" placeholder="React, Node.js, OpenAI, Stripe" />
+      </div>
+
+      <!-- Row 6: Metrics -->
+      <div class="form-group">
+        <label class="form-label">Metrics / Results</label>
+        <textarea class="form-textarea" id="p-metrics" rows="2" placeholder="e.g. 3x revenue increase, 50% faster load time, 60% support ticket reduction"></textarea>
+      </div>
+
+      <!-- Row 7: Order + Featured -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Display Order</label>
+          <input class="form-input" id="p-order" type="number" value="0" min="0" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Featured</label>
+          <div style="margin-top:8px;display:flex;align-items:center;gap:12px;">
+            <div class="toggle-switch" id="p-featured-toggle" onclick="this.classList.toggle('on');"></div>
+            <span style="font-size:13px;color:rgba(255,255,255,0.5);">Show on homepage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);">
+        <button class="btn-ghost" onclick="closeModal('portfolio-modal')">Cancel</button>
+        <button class="btn-primary" id="save-portfolio-btn" onclick="savePortfolioItem()">Save Project</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-overlay" id="delete-portfolio-modal">
+  <div class="modal-card modal-small">
+    <div class="modal-header">
+      <div class="modal-title">Delete Project</div>
+      <button class="modal-close" onclick="closeModal('delete-portfolio-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="color:rgba(255,255,255,0.6);margin-bottom:20px;">Are you sure you want to delete "<span id="delete-portfolio-title-label" style="color:#f1f5f9;font-weight:600;"></span>"?</p>
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button class="btn-ghost" onclick="closeModal('delete-portfolio-modal')">Cancel</button>
+        <button class="btn-danger" id="confirm-delete-portfolio-btn">Delete Project</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/admin.js"></script>
+<script>
+  /* ─── Utilities ─── */
+  function logout() {
+    localStorage.removeItem('catalyst_admin_token');
+    window.location.href = 'index.html';
+  }
+
+  function openModal(id)  { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+  document.getElementById('topbar-date').textContent = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  }).format(new Date());
+
+  /* ─── Demo Portfolio Data ─── */
+  let allProjects = [
+    {
+      id: 1, title: 'HealthCare Plus AI Chatbot',   category: 'AI Agent',   client: 'HealthCare Plus',
+      liveUrl: 'https://healthcareplus.in', tags: ['React', 'OpenAI', 'Node.js'],
+      description: 'Built a HIPAA-compliant AI chatbot that handles patient queries, appointment scheduling, and symptom checking.',
+      metrics: '60% reduction in support tickets, 4.8★ patient satisfaction',
+      featured: true, order: 1, date: '2026-05-15'
+    },
+    {
+      id: 2, title: 'LogiTrack Automation Suite',    category: 'Automation', client: 'LogiTrack India',
+      liveUrl: 'https://logitrack.in', tags: ['Python', 'Zapier', 'n8n'],
+      description: 'End-to-end logistics automation system connecting warehouse, shipping, and customer notification systems.',
+      metrics: '40% reduction in manual work, ₹12L saved annually',
+      featured: true, order: 2, date: '2026-04-20'
+    },
+    {
+      id: 3, title: 'Startup Foundry SaaS Platform',  category: 'SaaS',       client: 'StartupFoundry.io',
+      liveUrl: 'https://startupfoundry.io', tags: ['Next.js', 'Supabase', 'Stripe'],
+      description: 'Full-stack SaaS platform for startup accelerators with cohort management, mentor matching, and investor portal.',
+      metrics: '500+ active users, 99.9% uptime',
+      featured: true, order: 3, date: '2026-03-10'
+    },
+    {
+      id: 4, title: 'Realty Group Premium Website',   category: 'Website',    client: 'Realty Group India',
+      liveUrl: 'https://realtygroup.in', tags: ['Next.js', 'Tailwind', 'Framer Motion'],
+      description: 'Premium real estate website with 3D property tours, AI-powered property recommendations, and lead capture.',
+      metrics: '3x lead generation increase, 2.1s load time',
+      featured: false, order: 4, date: '2026-02-14'
+    },
+    {
+      id: 5, title: 'EduLearn Mobile App',            category: 'Mobile App', client: 'EduLearn Tech',
+      liveUrl: 'https://edulearn.app', tags: ['React Native', 'Expo', 'Firebase'],
+      description: 'Gamified e-learning app for K-12 students with AI adaptive learning paths and parent progress dashboards.',
+      metrics: '10K+ downloads, 4.7★ App Store rating',
+      featured: false, order: 5, date: '2026-01-25'
+    },
+    {
+      id: 6, title: 'FinanceBot AI Advisor',          category: 'AI Agent',   client: 'FinTech India',
+      liveUrl: 'https://financebot.in', tags: ['GPT-4', 'Python', 'FastAPI'],
+      description: 'AI-powered personal finance advisor chatbot providing investment advice, tax tips, and portfolio analysis.',
+      metrics: '2000+ active users, ₹50Cr+ advice given',
+      featured: true, order: 6, date: '2025-12-10'
+    },
+  ];
+
+  let filteredProjects = [...allProjects];
+  let deletingProjectId = null;
+
+  /* ─── Category colors ─── */
+  function categoryColor(cat) {
+    return {
+      'Website':    '#3b82f6',
+      'Mobile App': '#8b5cf6',
+      'AI Agent':   '#22c55e',
+      'Automation': '#f59e0b',
+      'SaaS':       '#06b6d4',
+    }[cat] || '#94a3b8';
+  }
+
+  /* ─── Stats ─── */
+  function updatePortfolioStats() {
+    const featured   = allProjects.filter(p => p.featured).length;
+    const categories = new Set(allProjects.map(p => p.category)).size;
+    document.getElementById('stat-total-projects').textContent    = allProjects.length;
+    document.getElementById('stat-featured-projects').textContent = featured;
+    document.getElementById('stat-categories').textContent        = categories;
+  }
+
+  /* ─── Render Table ─── */
+  function renderPortfolioTable() {
+    const tbody = document.getElementById('portfolio-tbody');
+    document.getElementById('portfolio-count').textContent = `${filteredProjects.length} projects`;
+
+    if (filteredProjects.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" class="loading-cell" style="color:rgba(255,255,255,0.3);">No projects found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filteredProjects.map(p => {
+      const cc       = categoryColor(p.category);
+      const tagBadges = (p.tags || []).slice(0, 3).map(t => `<span class="tag-badge">${t}</span>`).join('');
+      return `
+        <tr>
+          <td>
+            <div style="font-weight:600;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${p.title}">${p.title}</div>
+            ${p.liveUrl ? `<div style="font-size:11px;color:rgba(59,130,246,0.7);margin-top:2px;">${p.liveUrl}</div>` : ''}
+          </td>
+          <td>
+            <span class="status-badge" style="background:${cc}22;color:${cc};border:1px solid ${cc}44;">${p.category}</span>
+          </td>
+          <td style="font-size:13px;">${p.client}</td>
+          <td style="text-align:center;">
+            ${p.featured
+              ? `<span class="status-badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44;">⭐ Featured</span>`
+              : `<span style="color:rgba(255,255,255,0.25);font-size:12px;">—</span>`
+            }
+          </td>
+          <td style="text-align:center;font-size:13px;font-weight:600;">${p.order}</td>
+          <td><div style="display:flex;gap:4px;flex-wrap:wrap;">${tagBadges}</div></td>
+          <td style="font-size:12px;color:rgba(255,255,255,0.4);">${p.date}</td>
+          <td>
+            <div style="display:flex;gap:6px;">
+              <button class="action-icon-btn" title="Edit" onclick="openPortfolioModal(getProject(${p.id}))">✏️</button>
+              <button class="action-icon-btn danger" title="Delete" onclick="confirmDeleteProject(${p.id})">🗑</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function getProject(id) {
+    return allProjects.find(p => p.id === id);
+  }
+
+  /* ─── Filter ─── */
+  function filterPortfolio() {
+    const search   = (document.getElementById('portfolio-search').value || '').toLowerCase();
+    const category = document.getElementById('portfolio-category-filter').value;
+    const featured = document.getElementById('portfolio-featured-filter').value;
+
+    filteredProjects = allProjects.filter(p => {
+      const matchSearch   = !search || p.title.toLowerCase().includes(search) || p.client.toLowerCase().includes(search);
+      const matchCategory = !category || p.category === category;
+      const matchFeatured = !featured || String(p.featured) === featured;
+      return matchSearch && matchCategory && matchFeatured;
+    });
+
+    renderPortfolioTable();
+  }
+
+  /* ─── Open Modal ─── */
+  function openPortfolioModal(item) {
+    document.getElementById('portfolio-modal-title').textContent = item ? 'Edit Project' : 'Add Project';
+    document.getElementById('editing-portfolio-id').value        = item ? item.id          : '';
+    document.getElementById('p-title').value                     = item ? item.title        : '';
+    document.getElementById('p-desc').value                      = item ? item.description  : '';
+    document.getElementById('p-category').value                  = item ? item.category     : 'Website';
+    document.getElementById('p-client').value                    = item ? item.client       : '';
+    document.getElementById('p-url').value                       = item ? item.liveUrl      : '';
+    document.getElementById('p-tags').value                      = item ? (item.tags || []).join(', ') : '';
+    document.getElementById('p-metrics').value                   = item ? item.metrics      : '';
+    document.getElementById('p-order').value                     = item ? item.order        : 0;
+
+    const toggle = document.getElementById('p-featured-toggle');
+    if (item && item.featured) toggle.classList.add('on');
+    else toggle.classList.remove('on');
+
+    openModal('portfolio-modal');
+  }
+
+  /* ─── Save Project ─── */
+  function savePortfolioItem() {
+    const id       = document.getElementById('editing-portfolio-id').value;
+    const title    = document.getElementById('p-title').value.trim();
+    const desc     = document.getElementById('p-desc').value.trim();
+    const category = document.getElementById('p-category').value;
+    const client   = document.getElementById('p-client').value.trim();
+    const liveUrl  = document.getElementById('p-url').value.trim();
+    const tags     = document.getElementById('p-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+    const metrics  = document.getElementById('p-metrics').value.trim();
+    const order    = parseInt(document.getElementById('p-order').value) || 0;
+    const featured = document.getElementById('p-featured-toggle').classList.contains('on');
+
+    if (!title) { alert('Please enter a project title.'); return; }
+
+    const projectData = {
+      title, description: desc, category, client, liveUrl, tags, metrics, order, featured,
+      date: new Date().toISOString().split('T')[0]
+    };
+
+    if (id) {
+      const idx = allProjects.findIndex(p => p.id === parseInt(id));
+      if (idx !== -1) allProjects[idx] = { ...allProjects[idx], ...projectData };
+    } else {
+      projectData.id = Date.now();
+      allProjects.push(projectData);
+      allProjects.sort((a, b) => a.order - b.order);
+    }
+
+    filteredProjects = [...allProjects];
+    updatePortfolioStats();
+    renderPortfolioTable();
+    closeModal('portfolio-modal');
+  }
+
+  /* ─── Delete ─── */
+  function confirmDeleteProject(id) {
+    deletingProjectId = id;
+    const p = allProjects.find(x => x.id === id);
+    document.getElementById('delete-portfolio-title-label').textContent = p ? p.title : '';
+    openModal('delete-portfolio-modal');
+    document.getElementById('confirm-delete-portfolio-btn').onclick = () => {
+      allProjects      = allProjects.filter(x => x.id !== deletingProjectId);
+      filteredProjects = [...allProjects];
+      updatePortfolioStats();
+      renderPortfolioTable();
+      closeModal('delete-portfolio-modal');
+    };
+  }
+
+  /* ─── Init ─── */
+  updatePortfolioStats();
+  renderPortfolioTable();
+</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Catalyst Admin</title>
+  <meta name="description" content="Catalyst AI Agency Admin Dashboard" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-page="dashboard">
+
+<div class="admin-layout">
+
+  <!-- ───────────── SIDEBAR ───────────── -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-logo">Catalyst<span>AI</span></div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="sidebar-link active" id="nav-dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a href="leads.html" class="sidebar-link" id="nav-leads">
+        <span class="nav-icon">👥</span>
+        <span class="nav-text">Leads / CRM</span>
+        <span class="nav-badge" id="leads-badge">0</span>
+      </a>
+      <a href="blog.html" class="sidebar-link" id="nav-blog">
+        <span class="nav-icon">📝</span>
+        <span class="nav-text">Blog</span>
+      </a>
+      <a href="portfolio.html" class="sidebar-link" id="nav-portfolio">
+        <span class="nav-icon">🎨</span>
+        <span class="nav-text">Portfolio</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-link logout-btn" id="sidebar-logout-btn" onclick="logout()">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ───────────── MAIN ───────────── -->
+  <main class="admin-main">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <div>
+        <div class="topbar-greeting" id="topbar-greeting">Good morning, Admin!</div>
+        <div class="topbar-date" id="topbar-date"></div>
+      </div>
+      <div class="topbar-avatar">A</div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- ── Stats Row ── -->
+      <div class="stats-grid">
+        <div class="metric-card">
+          <div class="metric-icon">👥</div>
+          <div class="metric-value" id="total-leads">—</div>
+          <div class="metric-label">Total Leads</div>
+          <div class="metric-trend up" id="leads-trend">↑ Loading...</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🔥</div>
+          <div class="metric-value" id="new-today">—</div>
+          <div class="metric-label">New Today</div>
+          <div class="metric-trend up" id="today-trend">↑ Live</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">⚡</div>
+          <div class="metric-value" id="active-projects">—</div>
+          <div class="metric-label">Active Projects</div>
+          <div class="metric-trend neutral" id="projects-trend">— Stable</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📝</div>
+          <div class="metric-value" id="blog-posts">—</div>
+          <div class="metric-label">Blog Posts</div>
+          <div class="metric-trend up" id="blog-trend">↑ Published</div>
+        </div>
+      </div>
+
+      <!-- ── Two-column: Leads Table + Chatbot Analytics ── -->
+      <div class="two-col-grid">
+
+        <!-- Recent Leads Table -->
+        <div class="data-section">
+          <div class="data-section-header">
+            <div class="data-section-title">Recent Leads</div>
+            <a href="leads.html" class="view-all-link">View all →</a>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Source</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="recent-leads-body">
+                <tr>
+                  <td colspan="6" class="loading-cell">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Chatbot Analytics -->
+        <div class="data-section chatbot-analytics-card">
+          <div class="data-section-header">
+            <div class="data-section-title">Chatbot Analytics</div>
+          </div>
+          <div class="analytics-body">
+            <div class="analytics-stat-item">
+              <div class="analytics-stat-label">CONVERSATIONS TODAY</div>
+              <div class="analytics-stat-value" id="conv-today">—</div>
+            </div>
+            <div class="analytics-divider"></div>
+            <div class="analytics-stat-item">
+              <div class="analytics-stat-label">CONVERSION RATE</div>
+              <div class="analytics-stat-value green" id="conv-rate">—</div>
+            </div>
+            <div class="analytics-divider"></div>
+            <div class="analytics-stat-item">
+              <div class="analytics-stat-label">AVG SESSION LENGTH</div>
+              <div class="analytics-stat-value" id="avg-session">—</div>
+              <div class="analytics-stat-sub">minutes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Leads Chart ── -->
+      <div class="data-section chart-section">
+        <div class="data-section-header">
+          <div class="data-section-title">Leads Over Time (Last 7 Days)</div>
+          <div class="chart-legend">
+            <span class="legend-dot blue"></span>
+            <span class="legend-text">Leads</span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="leads-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- ── Quick Actions ── -->
+      <div class="quick-actions">
+        <div class="quick-action-card" onclick="window.location.href='blog.html'">
+          <div class="quick-action-icon">✍️</div>
+          <div class="quick-action-title">Create Blog Post</div>
+          <div class="quick-action-desc">Write and publish new content</div>
+        </div>
+        <div class="quick-action-card" onclick="window.location.href='portfolio.html'">
+          <div class="quick-action-icon">🎨</div>
+          <div class="quick-action-title">Add Portfolio Item</div>
+          <div class="quick-action-desc">Showcase a new project</div>
+        </div>
+        <div class="quick-action-card" onclick="window.location.href='leads.html'">
+          <div class="quick-action-icon">👥</div>
+          <div class="quick-action-title">View All Leads</div>
+          <div class="quick-action-desc">Manage your CRM pipeline</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../../js/admin.js"></script>
+<script>
+  function logout() {
+    localStorage.removeItem('catalyst_admin_token');
+    window.location.href = 'index.html';
+  }
+
+  // Greeting based on time
+  const hour = new Date().getHours();
+  const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('topbar-greeting').textContent = greet + ', Admin!';
+  document.getElementById('topbar-date').textContent = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  }).format(new Date());
+
+  // Demo data for dashboard (used if admin.js doesn't populate)
+  function populateDashboardDemo() {
+    const totalLeadsEl = document.getElementById('total-leads');
+    const newTodayEl   = document.getElementById('new-today');
+    const activeProj   = document.getElementById('active-projects');
+    const blogPostsEl  = document.getElementById('blog-posts');
+
+    if (totalLeadsEl && totalLeadsEl.textContent === '—') totalLeadsEl.textContent = '247';
+    if (newTodayEl   && newTodayEl.textContent === '—')   newTodayEl.textContent   = '12';
+    if (activeProj   && activeProj.textContent === '—')   activeProj.textContent   = '8';
+    if (blogPostsEl  && blogPostsEl.textContent === '—')  blogPostsEl.textContent  = '34';
+
+    const convToday = document.getElementById('conv-today');
+    const convRate  = document.getElementById('conv-rate');
+    const avgSess   = document.getElementById('avg-session');
+    const leadsB    = document.getElementById('leads-badge');
+
+    if (convToday && convToday.textContent === '—') convToday.textContent = '89';
+    if (convRate  && convRate.textContent  === '—') convRate.textContent  = '23.4%';
+    if (avgSess   && avgSess.textContent   === '—') avgSess.textContent   = '4.2';
+    if (leadsB)   leadsB.textContent = '12';
+
+    // Recent leads table
+    const tbody = document.getElementById('recent-leads-body');
+    if (tbody && tbody.querySelector('.loading-cell')) {
+      const demoLeads = [
+        { name: 'Priya Sharma',   email: 'priya@techco.in',     status: 'New',       source: 'Chatbot',       date: '2026-06-03' },
+        { name: 'Rohan Mehta',    email: 'rohan@startup.io',    status: 'Qualified', source: 'Contact Form',  date: '2026-06-02' },
+        { name: 'Anika Gupta',    email: 'anika@corp.com',      status: 'Contacted', source: 'Direct',        date: '2026-06-02' },
+        { name: 'Vikram Singh',   email: 'vikram@ventures.co',  status: 'New',       source: 'Chatbot',       date: '2026-06-01' },
+        { name: 'Deepa Nair',     email: 'deepa@fintech.in',    status: 'Closed',    source: 'Contact Form',  date: '2026-05-31' },
+      ];
+      const statusColors = { New: '#3b82f6', Qualified: '#22c55e', Contacted: '#f59e0b', Closed: '#6366f1' };
+      tbody.innerHTML = demoLeads.map(l => `
+        <tr>
+          <td><strong>${l.name}</strong></td>
+          <td style="color:rgba(255,255,255,0.5);font-size:13px;">${l.email}</td>
+          <td><span class="status-badge" style="background:${statusColors[l.status]}22;color:${statusColors[l.status]};border:1px solid ${statusColors[l.status]}44;">${l.status}</span></td>
+          <td style="font-size:13px;">${l.source}</td>
+          <td style="font-size:13px;color:rgba(255,255,255,0.4);">${l.date}</td>
+          <td><a href="leads.html" class="action-btn-sm">View</a></td>
+        </tr>
+      `).join('');
+    }
+
+    // Chart
+    const ctx = document.getElementById('leads-chart');
+    if (ctx) {
+      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      const data = [18, 24, 19, 31, 27, 22, 29];
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: days,
+          datasets: [{
+            label: 'Leads',
+            data: data,
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59,130,246,0.08)',
+            borderWidth: 2.5,
+            pointBackgroundColor: '#3b82f6',
+            pointBorderColor: '#1e3a5f',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            fill: true,
+            tension: 0.4,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(10,14,26,0.95)',
+              borderColor: 'rgba(59,130,246,0.3)',
+              borderWidth: 1,
+              titleColor: '#f1f5f9',
+              bodyColor: '#94a3b8',
+              padding: 12,
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: 'rgba(255,255,255,0.4)', font: { family: 'Inter', size: 12 } }
+            },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: 'rgba(255,255,255,0.4)', font: { family: 'Inter', size: 12 } }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  // Wait for admin.js, then fill demo if needed
+  window.addEventListener('load', () => {
+    setTimeout(populateDashboardDemo, 600);
+  });
+</script>
+</body>
+</html>

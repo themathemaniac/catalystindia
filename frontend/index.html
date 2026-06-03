@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Catalyst — Premium Digital Presence for Ambitious Businesses</title>
-  <meta name="description" content="Catalyst builds premium websites, digital storefronts, and intelligent automation systems that help entrepreneurs and growing businesses thrive online." />
+  <title>Catalyst AI Agency — Intelligent Automation &amp; Digital Solutions</title>
+  <meta name="description" content="Catalyst AI Agency builds AI automation systems, chatbots, and premium digital solutions. Transform your business operations with cutting-edge AI technology." />
   <meta name="theme-color" content="#040507" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Catalyst AI Agency — Intelligent Automation &amp; Digital Solutions" />
+  <meta property="og:description" content="Build intelligent AI systems that automate your business. 150+ businesses transformed." />
+  <meta property="og:type" content="website" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/variables.css" />
@@ -14,6 +19,289 @@
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/pages/home.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+  <link rel="stylesheet" href="css/estimator.css" />
+
+  <style>
+    /* ── AI WORKFLOW ─────────────────────────────────────────── */
+    .ai-workflow-section { position: relative; overflow: hidden; }
+
+    .workflow-pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .workflow-node {
+      width: 160px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(96,165,250,0.2);
+      border-radius: 1rem;
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .workflow-node:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 30px rgba(96,165,250,0.25);
+      border-color: rgba(96,165,250,0.5);
+    }
+
+    .node-icon {
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .node-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary, #f1f5f9);
+      margin-bottom: 0.3rem;
+    }
+
+    .node-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted, #94a3b8);
+      line-height: 1.4;
+    }
+
+    .workflow-connector {
+      flex: 1;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 2px;
+    }
+
+    .connector-line {
+      height: 2px;
+      flex: 1;
+      background: linear-gradient(90deg, rgba(96,165,250,0.6), rgba(139,92,246,0.6));
+      border-radius: 2px;
+    }
+
+    .connector-dot {
+      width: 10px;
+      height: 10px;
+      background: #60a5fa;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: flowDot 2.5s linear infinite;
+      box-shadow: 0 0 8px rgba(96,165,250,0.8);
+    }
+
+    @keyframes flowDot {
+      0%   { left: 0%; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { left: calc(100% - 10px); opacity: 0; }
+    }
+
+    /* ── CASE STUDIES ─────────────────────────────────────────── */
+    .case-studies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .case-studies-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .case-studies-grid { grid-template-columns: 1fr; }
+      .workflow-pipeline { flex-direction: column; }
+      .workflow-connector { width: 2px; height: 40px; min-width: unset; flex-direction: column; }
+      .connector-line { width: 2px; height: 100%; flex: 1; background: linear-gradient(180deg, rgba(96,165,250,0.6), rgba(139,92,246,0.6)); }
+      .connector-dot { left: 50%; top: 0; transform: translateX(-50%); animation: flowDotV 2.5s linear infinite; }
+      @keyframes flowDotV {
+        0%   { top: 0%; opacity: 0; }
+        10%  { opacity: 1; }
+        90%  { opacity: 1; }
+        100% { top: calc(100% - 10px); opacity: 0; }
+      }
+    }
+
+    .case-study-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .case-study-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border-color: rgba(96,165,250,0.3);
+    }
+
+    .case-study-industry {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(96,165,250,0.15);
+      color: #60a5fa;
+      margin-bottom: 1rem;
+    }
+
+    .case-study-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-primary, #f1f5f9);
+    }
+
+    .case-meta-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted, #94a3b8);
+      margin-bottom: 1.25rem;
+    }
+
+    .case-study-results {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+
+    .result-stat {
+      flex: 1;
+      min-width: 60px;
+    }
+
+    .result-num {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .result-label {
+      font-size: 0.7rem;
+      color: var(--text-muted, #94a3b8);
+      margin-top: 2px;
+    }
+
+    /* ── TECH STACK ─────────────────────────────────────────── */
+    .tech-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .tech-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary, #cbd5e1);
+      backdrop-filter: blur(8px);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      cursor: default;
+    }
+
+    .tech-badge:hover {
+      border-color: rgba(96,165,250,0.5);
+      box-shadow: 0 0 16px rgba(96,165,250,0.2);
+      transform: translateY(-2px);
+    }
+
+    .tech-badge .tech-emoji {
+      font-size: 1rem;
+    }
+
+    /* ── AI STATS ─────────────────────────────────────────── */
+    .ai-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .ai-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .ai-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    .ai-stat-item {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.25rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ai-stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(96,165,250,0.12);
+    }
+
+    .ai-stat-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .ai-stat-value {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+
+    .ai-stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary, #f1f5f9);
+      margin-bottom: 0.3rem;
+    }
+
+    .ai-stat-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted, #94a3b8);
+    }
+  </style>
 </head>
 <body>
 
@@ -27,8 +315,10 @@
     <div class="nav-links">
       <a href="pages/services.html"  class="nav-link">Services</a>
       <a href="pages/portfolio.html" class="nav-link">Portfolio</a>
+      <a href="pages/about.html"     class="nav-link">About</a>
       <a href="index.html#process"   class="nav-link">Process</a>
       <a href="pages/pricing.html"   class="nav-link">Pricing</a>
+      <a href="pages/blog.html"      class="nav-link">Blog</a>
       <a href="pages/faq.html"       class="nav-link">FAQ</a>
     </div>
 
@@ -47,8 +337,10 @@
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
   <a href="pages/services.html"  class="mobile-nav-link">Services</a>
   <a href="pages/portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="pages/about.html"     class="mobile-nav-link">About</a>
   <a href="index.html#process"   class="mobile-nav-link">Process</a>
   <a href="pages/pricing.html"   class="mobile-nav-link">Pricing</a>
+  <a href="pages/blog.html"      class="mobile-nav-link">Blog</a>
   <a href="pages/faq.html"       class="mobile-nav-link">FAQ</a>
   <a href="pages/contact.html"   class="mobile-nav-link">Contact</a>
 </div>
@@ -66,10 +358,10 @@
     <div class="hero-content">
       <div class="hero-eyebrow">Trusted by 150+ Businesses Worldwide</div>
 
-      <h1>Build Your <span class="highlight">Business Presence</span> Online</h1>
+      <h1>Automate Your <span class="highlight">Business with AI</span></h1>
 
       <p class="hero-subtitle">
-        Transform your vision into a powerful digital experience. We create premium websites, digital storefronts, and automated systems that help entrepreneurs and growing businesses thrive.
+        We build intelligent AI systems, chatbots, and automated workflows that save time, reduce costs, and accelerate growth for ambitious businesses.
       </p>
 
       <div class="hero-ctas">
@@ -183,52 +475,193 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
+     AI WORKFLOW
+════════════════════════════════════════════════════════════ -->
+<section id="ai-workflow" class="section ai-workflow-section" aria-label="AI Workflow">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">See It In Action</div>
+      <h2>Intelligent Automation Pipeline</h2>
+      <p>Watch how our AI systems transform raw leads into closed deals — automatically, 24/7.</p>
+    </div>
+    <div class="workflow-pipeline">
+      <div class="workflow-node" id="node-lead">
+        <div class="node-icon">👤</div>
+        <div class="node-label">New Lead</div>
+        <div class="node-desc">Captured from web/WhatsApp</div>
+      </div>
+      <div class="workflow-connector">
+        <div class="connector-line"></div>
+        <div class="connector-dot"></div>
+      </div>
+      <div class="workflow-node" id="node-ai">
+        <div class="node-icon">🤖</div>
+        <div class="node-label">AI Analysis</div>
+        <div class="node-desc">Scored &amp; categorized instantly</div>
+      </div>
+      <div class="workflow-connector">
+        <div class="connector-line"></div>
+        <div class="connector-dot"></div>
+      </div>
+      <div class="workflow-node" id="node-qualify">
+        <div class="node-icon">✅</div>
+        <div class="node-label">Qualified</div>
+        <div class="node-desc">High-intent leads prioritized</div>
+      </div>
+      <div class="workflow-connector">
+        <div class="connector-line"></div>
+        <div class="connector-dot"></div>
+      </div>
+      <div class="workflow-node" id="node-crm">
+        <div class="node-icon">📊</div>
+        <div class="node-label">CRM Update</div>
+        <div class="node-desc">Auto-synced to your pipeline</div>
+      </div>
+      <div class="workflow-connector">
+        <div class="connector-line"></div>
+        <div class="connector-dot"></div>
+      </div>
+      <div class="workflow-node" id="node-followup">
+        <div class="node-icon">💬</div>
+        <div class="node-label">Follow-up</div>
+        <div class="node-desc">Personalized AI outreach sent</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 3rem;">
+      <a href="pages/services.html" class="btn btn--primary">Explore AI Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
      SERVICES
 ════════════════════════════════════════════════════════════ -->
 <section id="services" class="section services-section" aria-label="Our services">
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header">
-      <div class="section-label">What We Do</div>
-      <h2>Our Services</h2>
-      <p>Everything you need to establish and grow your digital presence with professional expertise and craftsmanship.</p>
+      <div class="section-label">AI-Powered Solutions</div>
+      <h2>What We Build</h2>
+      <p>Cutting-edge AI systems and digital solutions designed to automate, scale, and transform your business operations.</p>
     </div>
 
     <div class="grid-auto" data-stagger>
       <div class="card service-card metallic-shimmer">
+        <div class="card-icon">🤖</div>
+        <h3>AI Automation</h3>
+        <p>Eliminate repetitive manual tasks with intelligent AI workflows. Custom automation pipelines that save 40+ hours per week.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">💬</div>
+        <h3>AI Chatbots</h3>
+        <p>Intelligent 24/7 customer support powered by GPT-4. Multi-channel deployment with custom knowledge bases and escalation flows.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
+        <div class="card-icon">📱</div>
+        <h3>WhatsApp Automation</h3>
+        <p>Automated customer engagement via WhatsApp Business API. Drip campaigns, lead nurturing, and instant AI-powered replies.</p>
+      </div>
+      <div class="card service-card metallic-shimmer">
         <div class="card-icon">🌐</div>
         <h3>Website Development</h3>
-        <p>Custom, high-performance websites built with modern technology. Fast, secure, and optimized for conversion.</p>
+        <p>Premium custom websites with blazing speed, SEO built-in, and conversion-optimized design. Sub-2s load times guaranteed.</p>
       </div>
       <div class="card service-card metallic-shimmer">
-        <div class="card-icon">🛍️</div>
-        <h3>Digital Storefronts</h3>
-        <p>Complete e-commerce solutions that turn visitors into customers. Integrated payments, inventory, and analytics.</p>
+        <div class="card-icon">⚡</div>
+        <h3>SaaS Development</h3>
+        <p>Scalable software-as-a-service applications with full-stack architecture, Stripe billing, and multi-tenant design.</p>
       </div>
       <div class="card service-card metallic-shimmer">
-        <div class="card-icon">⚙️</div>
-        <h3>Business Automation</h3>
-        <p>Streamline operations with intelligent automation. Save time and resources on repetitive tasks.</p>
-      </div>
-      <div class="card service-card metallic-shimmer">
-        <div class="card-icon">🎨</div>
-        <h3>Brand Identity</h3>
-        <p>Cohesive branding that reflects your values. Logo design, visual systems, and brand guidelines included.</p>
-      </div>
-      <div class="card service-card metallic-shimmer">
-        <div class="card-icon">📊</div>
-        <h3>Analytics &amp; Growth</h3>
-        <p>Data-driven strategies to understand your audience and optimize every touchpoint for growth.</p>
-      </div>
-      <div class="card service-card metallic-shimmer">
-        <div class="card-icon">🔒</div>
-        <h3>Ongoing Support</h3>
-        <p>Dedicated support team ensuring your systems stay secure, fast, and competitive year-round.</p>
+        <div class="card-icon">🔗</div>
+        <h3>CRM Integration</h3>
+        <p>Seamless CRM sync with HubSpot, Salesforce, and Zoho. Automated data pipelines and real-time analytics dashboards.</p>
       </div>
     </div>
 
     <div style="text-align:center; margin-top: 3rem;">
-      <a href="pages/services.html" class="btn btn--ghost">Explore All Services →</a>
+      <a href="pages/services.html" class="btn btn--ghost">Explore All AI Services →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     CASE STUDIES
+════════════════════════════════════════════════════════════ -->
+<section id="case-studies" class="section" aria-label="Case studies">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Proven Results</div>
+      <h2>Case Studies</h2>
+      <p>Real businesses, real AI transformations — backed by measurable impact and data.</p>
+    </div>
+
+    <div class="case-studies-grid">
+      <!-- Case Study 1 -->
+      <div class="case-study-card reveal stagger-1">
+        <div class="case-study-industry">E-Commerce</div>
+        <h3>TechVista</h3>
+        <div class="case-meta-label">AI Automation + CRM Integration</div>
+        <p style="font-size:0.85rem; color:var(--text-muted,#94a3b8); line-height:1.6;">Implemented full AI sales pipeline with WhatsApp automation and smart lead scoring, transforming their revenue funnel.</p>
+        <div class="case-study-results">
+          <div class="result-stat">
+            <div class="result-num">300%</div>
+            <div class="result-label">Revenue Growth</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-num">40h</div>
+            <div class="result-label">Saved / Week</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-num">95%</div>
+            <div class="result-label">Less Errors</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 2 -->
+      <div class="case-study-card reveal stagger-2">
+        <div class="case-study-industry">Healthcare</div>
+        <h3>HealthFirst</h3>
+        <div class="case-meta-label">AI Chatbot + Appointment Automation</div>
+        <p style="font-size:0.85rem; color:var(--text-muted,#94a3b8); line-height:1.6;">Deployed a GPT-4 powered patient intake chatbot and automated scheduling system reducing staff workload dramatically.</p>
+        <div class="case-study-results">
+          <div class="result-stat">
+            <div class="result-num">80%</div>
+            <div class="result-label">Admin Saved</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-num">3×</div>
+            <div class="result-label">More Patients</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-num">99%</div>
+            <div class="result-label">Uptime</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 3 -->
+      <div class="case-study-card reveal stagger-3">
+        <div class="case-study-industry">Real Estate</div>
+        <h3>PrimeProperty</h3>
+        <div class="case-meta-label">AI Lead Gen + WhatsApp Automation</div>
+        <p style="font-size:0.85rem; color:var(--text-muted,#94a3b8); line-height:1.6;">Built an AI-powered lead qualification and 24/7 WhatsApp nurture engine that revolutionized their sales process.</p>
+        <div class="case-study-results">
+          <div class="result-stat">
+            <div class="result-num">5×</div>
+            <div class="result-label">Lead Generation</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-num">60%</div>
+            <div class="result-label">Cost Reduction</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-num">24/7</div>
+            <div class="result-label">AI Active</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -239,26 +672,26 @@
 <section class="section" aria-label="Why choose us">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">Our Edge</div>
+      <div class="section-label">Our AI Edge</div>
       <h2>Why Choose Catalyst</h2>
-      <p>We combine premium design, technical excellence, and strategic thinking to deliver results that matter.</p>
+      <p>We combine cutting-edge AI technology, technical excellence, and strategic thinking to deliver automation that drives real ROI.</p>
     </div>
 
     <div class="why-grid">
       <div class="card why-card reveal stagger-1">
         <div class="why-number">01</div>
-        <h3>Trust</h3>
-        <p>Transparent partnerships. Clear communication. Proven results with real businesses across diverse industries.</p>
+        <h3>AI-First Approach</h3>
+        <p>Every solution we build leverages the latest AI models — GPT-4, LangChain, and custom ML pipelines — to maximize automation and intelligence.</p>
       </div>
       <div class="card why-card reveal stagger-2">
         <div class="why-number">02</div>
-        <h3>Simplicity</h3>
-        <p>Complex technology made simple. Clean interfaces that your customers actually love to use every day.</p>
+        <h3>Speed &amp; Simplicity</h3>
+        <p>Complex AI technology made simple. Deployed in weeks, not months. Clean interfaces your team actually wants to use every day.</p>
       </div>
       <div class="card why-card reveal stagger-3">
         <div class="why-number">03</div>
-        <h3>Growth</h3>
-        <p>Systems designed to scale. As your business grows, your digital presence grows intelligently with you.</p>
+        <h3>Measurable Growth</h3>
+        <p>ROI-tracked systems designed to scale. As your business grows, your AI stack grows intelligently with you — no friction, no limits.</p>
       </div>
     </div>
   </div>
@@ -331,7 +764,7 @@
           <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
         </div>
         <span class="quote-mark">"</span>
-        <p class="testimonial-text">The automation they set up has saved us 20 hours a week. It's like having an extra, dedicated team member on staff.</p>
+        <p class="testimonial-text">The AI automation they set up has saved us 40 hours a week. It's like having an entire dedicated team working 24/7 on autopilot.</p>
         <div class="author-row">
           <div class="author-avatar">MC</div>
           <div>
@@ -359,14 +792,90 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
+     TECH STACK
+════════════════════════════════════════════════════════════ -->
+<section class="section" aria-label="Technology stack">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Our Arsenal</div>
+      <h2>Tech Stack</h2>
+      <p>We use the world's most powerful AI and engineering tools to build your solutions.</p>
+    </div>
+
+    <div class="tech-rows">
+      <div class="tech-row">
+        <div class="tech-badge"><span class="tech-emoji">⚛️</span> React</div>
+        <div class="tech-badge"><span class="tech-emoji">▲</span> Next.js</div>
+        <div class="tech-badge"><span class="tech-emoji">🟢</span> Node.js</div>
+        <div class="tech-badge"><span class="tech-emoji">🐍</span> Python</div>
+        <div class="tech-badge"><span class="tech-emoji">🧠</span> TensorFlow</div>
+        <div class="tech-badge"><span class="tech-emoji">🔗</span> LangChain</div>
+        <div class="tech-badge"><span class="tech-emoji">🤖</span> OpenAI</div>
+        <div class="tech-badge"><span class="tech-emoji">⚡</span> Grok AI</div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-badge"><span class="tech-emoji">🐘</span> PostgreSQL</div>
+        <div class="tech-badge"><span class="tech-emoji">🔴</span> Redis</div>
+        <div class="tech-badge"><span class="tech-emoji">🐳</span> Docker</div>
+        <div class="tech-badge"><span class="tech-emoji">☁️</span> AWS</div>
+        <div class="tech-badge"><span class="tech-emoji">🔷</span> Prisma</div>
+        <div class="tech-badge"><span class="tech-emoji">💳</span> Stripe</div>
+        <div class="tech-badge"><span class="tech-emoji">📱</span> WhatsApp API</div>
+        <div class="tech-badge"><span class="tech-emoji">⚡</span> Zapier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     AI STATS
+════════════════════════════════════════════════════════════ -->
+<section class="section" aria-label="AI performance statistics">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">AI Performance</div>
+      <h2>Numbers That Matter</h2>
+      <p>Our AI systems are engineered for speed, accuracy, and rock-solid reliability.</p>
+    </div>
+
+    <div class="ai-stats-grid">
+      <div class="ai-stat-item reveal stagger-1">
+        <div class="ai-stat-icon">🚀</div>
+        <div class="ai-stat-value">10×</div>
+        <div class="ai-stat-label">Faster Deployment</div>
+        <div class="ai-stat-desc">AI builds deployed 10× faster than traditional development timelines</div>
+      </div>
+      <div class="ai-stat-item reveal stagger-2">
+        <div class="ai-stat-icon">🎯</div>
+        <div class="ai-stat-value">95%</div>
+        <div class="ai-stat-label">Automation Accuracy</div>
+        <div class="ai-stat-desc">Industry-leading accuracy across all AI automation workflows</div>
+      </div>
+      <div class="ai-stat-item reveal stagger-3">
+        <div class="ai-stat-icon">💰</div>
+        <div class="ai-stat-value">40%</div>
+        <div class="ai-stat-label">Cost Reduction</div>
+        <div class="ai-stat-desc">Average operational cost savings after AI implementation</div>
+      </div>
+      <div class="ai-stat-item reveal stagger-4">
+        <div class="ai-stat-icon">⏰</div>
+        <div class="ai-stat-value">24/7</div>
+        <div class="ai-stat-label">AI Uptime</div>
+        <div class="ai-stat-desc">Our AI systems never sleep — always on, always working for you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
      FINAL CTA
 ════════════════════════════════════════════════════════════ -->
 <section class="section final-cta-section" aria-label="Call to action">
   <div class="container">
     <div class="final-cta-box reveal">
       <div class="section-label" style="justify-content:center;">Ready to Transform?</div>
-      <h2>Build Your Dream Digital Presence</h2>
-      <p>Let's discuss how we can help you create a powerful online presence that drives real, measurable growth for your business.</p>
+      <h2>Ready to Automate Your Business?</h2>
+      <p>Join 150+ businesses that have transformed their operations with Catalyst AI. Let's discuss how intelligent automation can unlock your next phase of growth.</p>
       <div class="final-cta-buttons">
         <a href="pages/contact.html" class="btn btn--primary btn--xl">Start Free Consultation</a>
         <a href="pages/portfolio.html" class="btn btn--steel btn--xl">View Our Portfolio</a>
@@ -383,24 +892,27 @@
     <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-logo">Catalyst</span>
-        <p>Premium digital presence for ambitious businesses. We build the systems that help you grow faster and smarter.</p>
+        <p>AI-first agency building intelligent automation systems, chatbots, and premium digital solutions that help ambitious businesses scale faster and smarter.</p>
       </div>
 
       <div class="footer-col">
-        <h5>Services</h5>
+        <h5>AI Services</h5>
         <ul>
+          <li><a href="pages/services.html#ai-automation">AI Automation</a></li>
+          <li><a href="pages/services.html#chatbots">AI Chatbots</a></li>
+          <li><a href="pages/services.html#whatsapp">WhatsApp Automation</a></li>
           <li><a href="pages/services.html#web">Website Development</a></li>
-          <li><a href="pages/services.html#ecom">Digital Storefronts</a></li>
-          <li><a href="pages/services.html#automation">Business Automation</a></li>
-          <li><a href="pages/services.html#brand">Brand Identity</a></li>
+          <li><a href="pages/services.html#saas">SaaS Development</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h5>Company</h5>
         <ul>
+          <li><a href="pages/about.html">About</a></li>
           <li><a href="pages/portfolio.html">Portfolio</a></li>
           <li><a href="pages/pricing.html">Pricing</a></li>
+          <li><a href="pages/blog.html">Blog</a></li>
           <li><a href="pages/faq.html">FAQ</a></li>
           <li><a href="pages/contact.html">Contact</a></li>
         </ul>
@@ -418,7 +930,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Catalyst. Premium digital presence for ambitious businesses. All rights reserved.</p>
+      <p class="footer-copy">© 2025 Catalyst AI Agency. Intelligent automation &amp; digital solutions. All rights reserved.</p>
       <div class="footer-socials">
         <a href="#" class="social-link" aria-label="LinkedIn">in</a>
         <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
@@ -432,5 +944,8 @@
 <script src="js/main.js"></script>
 <script src="js/animations.js"></script>
 <script src="js/counter.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/estimator.js"></script>
+<script src="js/workflow-demo.js"></script>
 </body>
 </html>
