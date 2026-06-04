@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synapse EduTech — Case Study | Catalyst AI Agency</title>
+  <meta name="description" content="How Catalyst built the marketing website for The Mathemaniac by Synapse EduTech — an IIT-JEE, NEET, and Olympiad coaching institute in Kolkata, combining SEO, animated UI, and a Google Forms enrolment funnel." />
+  <meta property="og:title" content="Synapse EduTech Case Study — Catalyst AI Agency" />
+  <meta property="og:description" content="Full marketing website for The Mathemaniac coaching institute — SEO-first, mobile-ready, and built to convert." />
+  <meta property="og:type" content="article" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+
+  <style>
+    /* ── Case Study Page ── */
+    .case-hero {
+      padding: 7rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(245,158,11,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .case-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 1.5rem;
+    }
+
+    .case-breadcrumb a {
+      color: var(--blue-bright, #3B82F6);
+      text-decoration: none;
+    }
+
+    .case-breadcrumb a:hover { text-decoration: underline; }
+
+    .case-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: #fbbf24;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .case-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #f0f6ff 0%, #a2b2c8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .case-hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary, #a2b2c8);
+      max-width: 640px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .case-hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .meta-item label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-item span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary, #f0f6ff);
+    }
+
+    /* Preview */
+    .preview-banner {
+      margin: 3rem 0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #0d1117;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .preview-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+
+    .browser-url {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted, #8892a4);
+      margin-left: 0.5rem;
+      user-select: none;
+    }
+
+    .preview-iframe-wrap {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      background: #0d1117;
+    }
+
+    .preview-iframe-wrap iframe {
+      width: 150%;
+      height: 150%;
+      border: none;
+      transform: scale(0.667);
+      transform-origin: top left;
+    }
+
+    .preview-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: #fbbf24;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .preview-open-btn:hover { gap: 0.75rem; }
+
+    /* Sections */
+    .case-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .case-section h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary, #f0f6ff);
+    }
+
+    .case-section p,
+    .case-section li {
+      color: var(--text-secondary, #a2b2c8);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .case-section ul {
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .ps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 700px) { .ps-grid { grid-template-columns: 1fr; } }
+
+    .ps-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .ps-card--problem {
+      background: rgba(239,68,68,0.05);
+      border-color: rgba(239,68,68,0.18);
+    }
+
+    .ps-card--solution {
+      background: rgba(245,158,11,0.05);
+      border-color: rgba(245,158,11,0.18);
+    }
+
+    .ps-card h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .ps-card--problem h4 { color: #f87171; }
+    .ps-card--solution h4 { color: #fbbf24; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-card {
+      padding: 1.4rem;
+      border-radius: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover { border-color: rgba(245,158,11,0.3); }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .feature-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary, #f0f6ff);
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted, #8892a4);
+      line-height: 1.6;
+    }
+
+    /* Rating stars */
+    .rating-block {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding: 1rem 1.5rem;
+      background: rgba(245,158,11,0.05);
+      border: 1px solid rgba(245,158,11,0.18);
+      border-radius: 1rem;
+      width: fit-content;
+    }
+
+    .rating-stars { font-size: 1.3rem; letter-spacing: 0.1em; }
+
+    .rating-text { font-size: 0.9rem; color: var(--text-secondary, #a2b2c8); }
+    .rating-text strong { color: #fbbf24; }
+
+    .tech-stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .tech-pill {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      color: #fbbf24;
+    }
+
+    .case-cta {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .case-cta h2 { margin-bottom: 0.75rem; }
+
+    .case-cta p {
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Course tiles showcase */
+    .course-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .course-showcase-tile {
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.15);
+      text-align: center;
+    }
+
+    .course-showcase-tile .ci { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+    .course-showcase-tile strong { font-size: 0.95rem; color: var(--text-primary, #f0f6ff); display: block; }
+    .course-showcase-tile span { font-size: 0.78rem; color: var(--text-muted, #8892a4); }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="../index.html" class="nav-logo">Catalyst</a>
+    <div class="nav-links">
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="portfolio.html" class="nav-link active">Portfolio</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="contact.html" class="btn btn--primary btn--sm">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="blog.html" class="mobile-nav-link">Blog</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- Case Study Hero -->
+<section class="case-hero">
+  <div class="container">
+    <div class="case-breadcrumb">
+      <a href="portfolio.html">← Portfolio</a>
+      <span>/</span>
+      <span>Synapse EduTech</span>
+    </div>
+    <div class="case-badge">📚 EdTech</div>
+    <h1>The Mathemaniac — IIT-JEE & NEET Coaching Website</h1>
+    <p class="case-hero-sub">A high-performance, SEO-first marketing website for The Mathemaniac by Synapse EduTech — Kolkata's specialist coaching institute for IIT-JEE, NEET, Engineering Math, and Olympiad preparation — designed to convert first-time visitors into enrolled students.</p>
+    <div class="case-hero-meta">
+      <div class="meta-item">
+        <label>Type</label>
+        <span>Marketing Website</span>
+      </div>
+      <div class="meta-item">
+        <label>Stack</label>
+        <span>HTML5 · CSS3 · Vanilla JS</span>
+      </div>
+      <div class="meta-item">
+        <label>Client</label>
+        <span>Synapse EduTech, Kolkata</span>
+      </div>
+      <div class="meta-item">
+        <label>Live URL</label>
+        <span><a href="https://synapseedutech.in/" target="_blank" rel="noopener noreferrer" style="color:#fbbf24;text-decoration:none;">synapseedutech.in ↗</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Preview -->
+<div class="container">
+  <div class="preview-banner reveal">
+    <div class="preview-browser-bar">
+      <span class="browser-dot"></span>
+      <span class="browser-dot"></span>
+      <span class="browser-dot"></span>
+      <span class="browser-url">https://synapseedutech.in/</span>
+    </div>
+    <div class="preview-iframe-wrap">
+      <iframe
+        src="https://synapseedutech.in/"
+        title="Synapse EduTech live preview"
+        loading="lazy"
+        scrolling="yes">
+      </iframe>
+    </div>
+  </div>
+  <a href="https://synapseedutech.in/" target="_blank" rel="noopener noreferrer" class="preview-open-btn">
+    Open full site in new tab →
+  </a>
+</div>
+
+<!-- Problem Statement -->
+<section class="case-section">
+  <div class="container">
+    <h2>The Problem</h2>
+    <p>The Mathemaniac had strong teaching results but a near-invisible digital presence. Parents researching coaching options in Madhyamgram and Kolkata couldn't find them online, and those who did land on the old site had no clear path to enrolment. The institute needed a website that would rank on Google for high-intent keywords, communicate trust instantly, and funnel visitors directly into an enrolment process — without any back-end complexity.</p>
+    <div class="ps-grid">
+      <div class="ps-card ps-card--problem">
+        <h4>❌ The Pain Points</h4>
+        <ul>
+          <li>No Google presence for "IIT-JEE coaching Kolkata" or "NEET coaching Madhyamgram"</li>
+          <li>Old site had no mobile layout, load times exceeding 8 seconds</li>
+          <li>No clear enrolment CTA — visitors left without taking action</li>
+          <li>Courses were buried in walls of text with no visual hierarchy</li>
+          <li>Zero structured data — Google couldn't understand the business</li>
+        </ul>
+      </div>
+      <div class="ps-card ps-card--solution">
+        <h4>✅ What Catalyst Delivered</h4>
+        <ul>
+          <li>Full SEO audit + implementation: canonical tags, JSON-LD, meta hierarchy</li>
+          <li>Mobile-first build with sub-3-second load times on 4G</li>
+          <li>Animated 2×2 course tile grid as the primary hero element</li>
+          <li>Google Forms enrolment funnel — no back-end required</li>
+          <li>4.8★ rating schema and social proof woven throughout the page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Courses Offered -->
+<section class="case-section">
+  <div class="container">
+    <h2>Courses Offered</h2>
+    <p>The Mathemaniac caters to four distinct student segments, each requiring clear messaging and a dedicated visual identity on the homepage.</p>
+    <div class="course-showcase">
+      <div class="course-showcase-tile">
+        <span class="ci">🏛️</span>
+        <strong>IIT-JEE</strong>
+        <span>Advanced &amp; Mains</span>
+      </div>
+      <div class="course-showcase-tile">
+        <span class="ci">⚕️</span>
+        <strong>NEET</strong>
+        <span>Medical Entrance</span>
+      </div>
+      <div class="course-showcase-tile">
+        <span class="ci">⚙️</span>
+        <strong>BTech / MTech</strong>
+        <span>Engineering Math</span>
+      </div>
+      <div class="course-showcase-tile">
+        <span class="ci">🏅</span>
+        <strong>Olympiad</strong>
+        <span>IIT Foundation</span>
+      </div>
+    </div>
+    <div class="rating-block">
+      <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+      <span class="rating-text"><strong>4.8 / 5</strong> — Based on verified student reviews (Schema.org AggregateRating)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Key Features -->
+<section class="case-section">
+  <div class="container">
+    <h2>What We Built</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h4>Local SEO Foundation</h4>
+        <p>Structured data (JSON-LD) marks up the institute as an EducationalOrganization, with Course entities for each programme — giving Google the context to display rich snippets in search results.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📱</span>
+        <h4>Mobile-First Design</h4>
+        <p>Built with a hamburger nav, responsive course grids, and fluid typography using the Syne + Orbitron + DM Sans font stack — pixel-perfect from 320px phones to 4K monitors.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✨</span>
+        <h4>Animated Hero Section</h4>
+        <p>The homepage hero features a scroll-reveal animated 2×2 course tile grid and a dual-CTA button row — combining visual appeal with conversion-focused design to direct students into enrolment.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📋</span>
+        <h4>Frictionless Enrolment</h4>
+        <p>A direct "Enroll" button in the nav and hero links straight to the Google Forms application — removing every possible barrier between a prospective student and their first contact with the institute.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎨</span>
+        <h4>Premium Visual Identity</h4>
+        <p>The Orbitron display font, a dark futuristic colour scheme, and the branded Mathemaniac logo give the site a premium, aspirational feel that resonates with students aiming for the country's top institutions.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h4>Performance Optimised</h4>
+        <p>All assets are served statically with no CMS overhead. Images are compressed, fonts are preloaded, and the CSS is minimal — delivering consistently fast load times and high Core Web Vitals scores.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="case-section">
+  <div class="container">
+    <h2>Technology Stack</h2>
+    <p>The Mathemaniac website is a deliberately zero-dependency build — no React, no WordPress, no CMS. Pure craft: HTML, CSS, and JavaScript, deployed as a static site for maximum speed and reliability.</p>
+    <div class="tech-stack-grid">
+      <span class="tech-pill">HTML5 (Semantic)</span>
+      <span class="tech-pill">CSS3 (Vanilla)</span>
+      <span class="tech-pill">Vanilla JavaScript</span>
+      <span class="tech-pill">Orbitron / Syne / DM Sans</span>
+      <span class="tech-pill">JSON-LD Structured Data</span>
+      <span class="tech-pill">Google Forms Integration</span>
+      <span class="tech-pill">Open Graph / Twitter Cards</span>
+      <span class="tech-pill">Static Hosting</span>
+    </div>
+  </div>
+</section>
+
+<!-- Key Outcomes -->
+<section class="case-section">
+  <div class="container">
+    <h2>Key Outcomes</h2>
+    <ul>
+      <li>The institute now ranks for local search queries including "IIT-JEE coaching Madhyamgram" and "NEET coaching Kolkata" — driving organic student enquiries for the first time.</li>
+      <li>Enrolment conversion path reduced from 5+ clicks to 1: nav → Google Form, tracked through UTM parameters.</li>
+      <li>A 4.8-star aggregate rating is exposed to Google via schema markup, increasing click-through rates from search results.</li>
+      <li>Mobile usability score of 100 on Google Search Console — eliminating mobile drop-off that cost the institute 60% of its audience on the old site.</li>
+      <li>Full social-media preview cards (OG + Twitter) make every shared link a rich, trust-building asset on Instagram and Facebook.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="case-cta reveal">
+    <h2>Need a Website That Actually Converts?</h2>
+    <p>We build fast, SEO-first websites for educators, coaches, and service businesses that turn visitors into paying customers.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn--primary btn--lg">Start a Conversation</a>
+      <a href="https://synapseedutech.in/" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--lg">Visit Live Site ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" style="margin-top:4rem;">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Catalyst</span>
+        <p>Premium AI automation for ambitious businesses.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Catalyst AI Agency. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/animations.js"></script>
+</body>
+</html>

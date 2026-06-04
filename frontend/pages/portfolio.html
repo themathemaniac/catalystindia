@@ -18,11 +18,8 @@
 
   <style>
     /* ── Portfolio page additions ── */
-    .card-thumb {
-      position: relative;
-      overflow: hidden;
-    }
 
+    /* ─── Project Category Badge ─── */
     .project-category-badge {
       position: absolute;
       top: 1rem;
@@ -38,19 +35,155 @@
       padding: 0.3rem 0.75rem;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.25);
+      z-index: 5;
+    }
+
+    /* ─── Website Preview Thumb ─── */
+    .card-thumb {
+      position: relative;
+      overflow: hidden;
+      height: 220px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .site-preview-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0d1117;
+    }
+
+    /* iframe scaled down to simulate a real browser screenshot */
+    .site-preview-wrap iframe {
+      width: 200%;
+      height: 200%;
+      border: none;
+      transform: scale(0.5);
+      transform-origin: top left;
+      pointer-events: none;
+      border-radius: 0;
+    }
+
+    /* Overlay that catches pointer events and prevents iframe clicks */
+    .preview-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      cursor: default;
+      background: transparent;
+    }
+
+    /* Live badge */
+    .live-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #10b981;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .live-badge::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulseDot 1.8s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* Hover: lift the overlay and reveal a "Visit Site" link */
+    .site-preview-wrap:hover .preview-hover-cta {
+      opacity: 1;
+    }
+
+    .preview-hover-cta {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1rem;
+      background: linear-gradient(0deg, rgba(3,7,18,0.95) 0%, transparent 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 4;
+    }
+
+    .preview-hover-cta a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #60a5fa;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1px solid rgba(96,165,250,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.1);
+      transition: background 0.2s;
+    }
+
+    .preview-hover-cta a:hover {
+      background: rgba(59,130,246,0.22);
+    }
+
+    /* ─── Card Body ─── */
+    .card-body {
+      padding: 2.2rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-body h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .card-body p {
+      font-size: 0.9rem;
+      color: var(--text-secondary, #94a3b8);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+      flex-grow: 1;
     }
 
     .project-client {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
       flex-wrap: wrap;
     }
 
     .client-name {
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--text-primary, #f0f6ff);
     }
 
@@ -60,63 +193,37 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 999px;
-      padding: 0.15rem 0.6rem;
-    }
-
-    .project-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-      margin: 1rem 0;
-      padding: 1rem;
-      background: rgba(255,255,255,0.04);
-      border-radius: 0.75rem;
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .metric {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .metric-val {
-      font-size: 1rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #3B82F6, #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.2;
-    }
-
-    .metric-key {
-      font-size: 0.62rem;
-      color: var(--text-muted, #8892a4);
-      line-height: 1.3;
-      text-align: center;
+      padding: 0.2rem 0.7rem;
+      letter-spacing: 0.05em;
     }
 
     .tech-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.25rem;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
     }
 
     .tech-tag {
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: var(--blue-bright, #3B82F6);
       background: rgba(59, 130, 246, 0.1);
       border: 1px solid rgba(59, 130, 246, 0.25);
       border-radius: 999px;
-      padding: 0.2rem 0.6rem;
+      padding: 0.3rem 0.8rem;
       letter-spacing: 0.03em;
     }
 
-    /* Filter bar enhancements for the new categories */
+    /* Card action row */
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* ─── Filter Bar ─── */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -125,19 +232,21 @@
       margin-bottom: 3rem;
     }
 
-    /* Portfolio grid – auto-fill responsive masonry-like */
+    /* ─── Portfolio Grid ─── */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 1.75rem;
-      align-items: start;
+      align-items: stretch;
     }
 
     .portfolio-item {
       transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* CTA block */
+    /* ─── CTA block ─── */
     .portfolio-cta {
       margin-top: 4rem;
       text-align: center;
@@ -147,9 +256,7 @@
       border-radius: 1.5rem;
     }
 
-    .portfolio-cta h3 {
-      margin-bottom: 0.75rem;
-    }
+    .portfolio-cta h3 { margin-bottom: 0.75rem; }
 
     .portfolio-cta p {
       color: var(--text-muted, #8892a4);
@@ -169,7 +276,6 @@
       <a href="services.html" class="nav-link">Services</a>
       <a href="portfolio.html" class="nav-link active">Portfolio</a>
       <a href="about.html" class="nav-link">About</a>
-      <a href="pricing.html" class="nav-link">Pricing</a>
       <a href="blog.html" class="nav-link">Blog</a>
       <a href="faq.html" class="nav-link">FAQ</a>
     </div>
@@ -187,7 +293,6 @@
   <a href="services.html" class="mobile-nav-link">Services</a>
   <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
   <a href="about.html" class="mobile-nav-link">About</a>
-  <a href="pricing.html" class="mobile-nav-link">Pricing</a>
   <a href="blog.html" class="mobile-nav-link">Blog</a>
   <a href="faq.html" class="mobile-nav-link">FAQ</a>
   <a href="contact.html" class="mobile-nav-link">Contact</a>
@@ -198,7 +303,7 @@
   <div class="container">
     <div class="section-label">Our Work</div>
     <h1>Portfolio</h1>
-    <p>Real AI automation success stories — from intelligent chatbots to enterprise-grade automation pipelines. Explore the systems we've built that drive measurable results.</p>
+    <p>Real products we've built — from civic-tech platforms to music streaming apps and coaching institutes. Every project solves a genuine problem with thoughtful engineering.</p>
   </div>
 </section>
 
@@ -209,339 +314,137 @@
     <!-- Filter Bar -->
     <div class="filter-bar reveal">
       <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="ai-automation">AI Automation</button>
+      <button class="filter-btn" data-filter="civic-tech">Civic Tech</button>
       <button class="filter-btn" data-filter="web-dev">Web Dev</button>
-      <button class="filter-btn" data-filter="saas">SaaS</button>
-      <button class="filter-btn" data-filter="chatbots">Chatbots</button>
+      <button class="filter-btn" data-filter="edtech">EdTech</button>
     </div>
 
     <!-- Portfolio Grid -->
     <div class="portfolio-grid">
 
-      <!-- 1: AI Order Processing -->
-      <div class="portfolio-item card reveal stagger-1" data-category="ai-automation">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #1a3a8a, #3B82F6); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">🤖</div>
-          <div class="project-category-badge">AI Automation</div>
+      <!-- 1: SevakNet -->
+      <div class="portfolio-item card reveal stagger-1" data-category="civic-tech">
+        <div class="card-thumb">
+          <span class="live-badge">Live</span>
+          <div class="project-category-badge">Civic Tech</div>
+          <div class="site-preview-wrap">
+            <iframe
+              src="https://sevaknet.vercel.app/"
+              title="SevakNet preview"
+              loading="lazy"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true">
+            </iframe>
+            <div class="preview-overlay"></div>
+            <div class="preview-hover-cta">
+              <a href="https://sevaknet.vercel.app/" target="_blank" rel="noopener noreferrer">
+                ↗ Visit Site
+              </a>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <div class="project-client">
-            <span class="client-name">TechVista Solutions</span>
-            <span class="client-industry">E-Commerce</span>
+            <span class="client-name">SevakNet</span>
+            <span class="client-industry">Civic Tech</span>
           </div>
-          <h3>AI Order Processing System</h3>
-          <p>End-to-end intelligent order management that auto-routes, validates, and fulfils orders with zero manual intervention — integrated directly with WhatsApp notifications.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">300%</span>
-              <span class="metric-key">Revenue Growth</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">40h</span>
-              <span class="metric-key">Saved / Week</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">95%</span>
-              <span class="metric-key">Error Reduction</span>
-            </div>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">OpenAI</span>
-            <span class="tech-tag">Zapier</span>
-            <span class="tech-tag">WhatsApp API</span>
-          </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
-        </div>
-      </div>
-
-      <!-- 2: AI Patient Support Chatbot -->
-      <div class="portfolio-item card reveal stagger-2" data-category="chatbots">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #0a3d2e, #00b09b); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">💬</div>
-          <div class="project-category-badge">Chatbots</div>
-        </div>
-        <div class="card-body">
-          <div class="project-client">
-            <span class="client-name">HealthFirst Clinic</span>
-            <span class="client-industry">Healthcare</span>
-          </div>
-          <h3>AI Patient Support Chatbot</h3>
-          <p>A HIPAA-aware GPT-4 powered chatbot handling appointment bookings, prescription reminders, and patient queries — freeing up the entire admin team.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">80%</span>
-              <span class="metric-key">Admin Saved</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">3×</span>
-              <span class="metric-key">Patient Volume</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">99%</span>
-              <span class="metric-key">Uptime</span>
-            </div>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">GPT-4</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">WhatsApp API</span>
-          </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
-        </div>
-      </div>
-
-      <!-- 3: B2B Analytics Platform -->
-      <div class="portfolio-item card reveal stagger-3" data-category="saas">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #2d1b69, #11998e); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">⚡</div>
-          <div class="project-category-badge">SaaS</div>
-        </div>
-        <div class="card-body">
-          <div class="project-client">
-            <span class="client-name">DataVault Analytics</span>
-            <span class="client-industry">SaaS</span>
-          </div>
-          <h3>B2B Analytics Platform</h3>
-          <p>Full-stack SaaS platform with real-time dashboards, AI-powered insights, and a seamless onboarding funnel that slashed churn by 38% in the first quarter.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">$2M</span>
-              <span class="metric-key">ARR Reached</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">38%</span>
-              <span class="metric-key">Less Churn</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">10k+</span>
-              <span class="metric-key">Active Users</span>
-            </div>
-          </div>
+          <h3>Community Aid Operations Platform</h3>
+          <p>SevakNet bridges citizens, NGOs, and local volunteers on a single coordination layer. Users report civic problems — from road damage to flooding — and verified NGOs or volunteer teams pick up geo-tagged tasks, complete them with photographic evidence, and close the loop in real time. A live map shows every active operation, and the task-management dashboard keeps everyone accountable.</p>
           <div class="tech-tags">
             <span class="tech-tag">React</span>
+            <span class="tech-tag">Leaflet.js</span>
             <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Vercel</span>
           </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
+          <div class="card-actions">
+            <a href="case-sevaknet.html" class="btn btn--ghost btn--sm">View Case Study →</a>
+            <a href="https://sevaknet.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">Live ↗</a>
+          </div>
         </div>
       </div>
 
-      <!-- 4: AI Lead Qualification -->
-      <div class="portfolio-item card reveal stagger-1" data-category="ai-automation">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #4A00E0, #8E2DE2); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">🎯</div>
-          <div class="project-category-badge">AI Automation</div>
-        </div>
-        <div class="card-body">
-          <div class="project-client">
-            <span class="client-name">PrimeProperty Agency</span>
-            <span class="client-industry">Real Estate</span>
-          </div>
-          <h3>AI Lead Qualification System</h3>
-          <p>Intelligent pipeline that scores, segments, and nurtures incoming real estate leads 24/7 — automatically booking qualified prospects directly into the sales team's calendar.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">5×</span>
-              <span class="metric-key">Lead Generation</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">60%</span>
-              <span class="metric-key">Cost Reduction</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">24/7</span>
-              <span class="metric-key">Coverage</span>
-            </div>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">CRM API</span>
-          </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
-        </div>
-      </div>
-
-      <!-- 5: Custom E-Catalogue Website -->
+      <!-- 2: StreamWave -->
       <div class="portfolio-item card reveal stagger-2" data-category="web-dev">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #0F2027, #2C5364); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">🌐</div>
+        <div class="card-thumb">
+          <span class="live-badge">Live</span>
           <div class="project-category-badge">Web Dev</div>
+          <div class="site-preview-wrap">
+            <iframe
+              src="https://mystreamwave.vercel.app/"
+              title="StreamWave preview"
+              loading="lazy"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true">
+            </iframe>
+            <div class="preview-overlay"></div>
+            <div class="preview-hover-cta">
+              <a href="https://mystreamwave.vercel.app/" target="_blank" rel="noopener noreferrer">
+                ↗ Visit Site
+              </a>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <div class="project-client">
-            <span class="client-name">LuxeStone Jewellers</span>
-            <span class="client-industry">Luxury Retail</span>
+            <span class="client-name">StreamWave</span>
+            <span class="client-industry">Music Streaming</span>
           </div>
-          <h3>Custom E-Catalogue Website</h3>
-          <p>Bespoke high-luxury e-catalogue with custom filtering, enquiry management, and a 99 PageSpeed score — setting the digital standard for premium jewellery brands in India.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">250%</span>
-              <span class="metric-key">Traffic Increase</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">180%</span>
-              <span class="metric-key">Conv. Rate</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">99</span>
-              <span class="metric-key">PageSpeed Score</span>
-            </div>
-          </div>
+          <h3>Jamendo-Powered Music Streaming App</h3>
+          <p>StreamWave is a clean, browser-native music player that taps directly into the Jamendo API to surface thousands of free, licensed tracks. Users search by mood, artist, or keyword and get an instant playlist — complete with seek bar, autoplay, loop, and volume controls. No account required, no ads, just music.</p>
           <div class="tech-tags">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Next.js</span>
-            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Vanilla JS</span>
+            <span class="tech-tag">Jamendo API</span>
+            <span class="tech-tag">HTML5 Audio</span>
+            <span class="tech-tag">CSS</span>
           </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
+          <div class="card-actions">
+            <a href="case-streamwave.html" class="btn btn--ghost btn--sm">View Case Study →</a>
+            <a href="https://mystreamwave.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">Live ↗</a>
+          </div>
         </div>
       </div>
 
-      <!-- 6: WhatsApp Sales Bot -->
-      <div class="portfolio-item card reveal stagger-3" data-category="chatbots">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #16213e, #0f3460); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">🤖</div>
-          <div class="project-category-badge">Chatbots</div>
+      <!-- 3: Synapse EduTech / The Mathemaniac -->
+      <div class="portfolio-item card reveal stagger-3" data-category="edtech">
+        <div class="card-thumb">
+          <span class="live-badge">Live</span>
+          <div class="project-category-badge">EdTech</div>
+          <div class="site-preview-wrap">
+            <iframe
+              src="https://synapseedutech.in/"
+              title="Synapse EduTech preview"
+              loading="lazy"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true">
+            </iframe>
+            <div class="preview-overlay"></div>
+            <div class="preview-hover-cta">
+              <a href="https://synapseedutech.in/" target="_blank" rel="noopener noreferrer">
+                ↗ Visit Site
+              </a>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <div class="project-client">
-            <span class="client-name">AlphaScale Consulting</span>
-            <span class="client-industry">B2B Consulting</span>
+            <span class="client-name">Synapse EduTech</span>
+            <span class="client-industry">EdTech</span>
           </div>
-          <h3>WhatsApp Sales Bot</h3>
-          <p>A conversational sales assistant deployed on WhatsApp that qualifies prospects, handles objections, and books discovery calls — running entirely on autopilot.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">200%</span>
-              <span class="metric-key">Response Rate</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">50%</span>
-              <span class="metric-key">Less Manual</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">4.9★</span>
-              <span class="metric-key">Client Rating</span>
-            </div>
-          </div>
+          <h3>The Mathemaniac — IIT-JEE & NEET Coaching</h3>
+          <p>Full marketing website for The Mathemaniac — Kolkata's specialist coaching institute for IIT-JEE, NEET, Engineering Math, and Olympiad preparation. The site combines a 4.8-star rated credibility system, animated course tiles, a Google Forms enrolment funnel, and mobile-first performance optimisations that drive real student sign-ups every week.</p>
           <div class="tech-tags">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">WhatsApp API</span>
-            <span class="tech-tag">OpenAI</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">Vanilla JS</span>
+            <span class="tech-tag">SEO</span>
           </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
-        </div>
-      </div>
-
-      <!-- 7: Shopify Storefront Redesign -->
-      <div class="portfolio-item card reveal stagger-1" data-category="web-dev">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #1a0533, #8A2387); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">🛒</div>
-          <div class="project-category-badge">Web Dev</div>
-        </div>
-        <div class="card-body">
-          <div class="project-client">
-            <span class="client-name">NovaSkin Cosmetics</span>
-            <span class="client-industry">Beauty</span>
+          <div class="card-actions">
+            <a href="case-synapse.html" class="btn btn--ghost btn--sm">View Case Study →</a>
+            <a href="https://synapseedutech.in/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">Live ↗</a>
           </div>
-          <h3>Shopify Storefront Redesign</h3>
-          <p>Full Shopify storefront redesign with a custom checkout flow, personalised product recommendations, and a loyalty rewards system that drove explosive revenue growth.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">3×</span>
-              <span class="metric-key">Revenue in 4mo</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">45%</span>
-              <span class="metric-key">Abandon Reduced</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">8k+</span>
-              <span class="metric-key">Orders / Month</span>
-            </div>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Shopify</span>
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Stripe</span>
-          </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
-        </div>
-      </div>
-
-      <!-- 8: Business Automation Suite -->
-      <div class="portfolio-item card reveal stagger-2" data-category="saas">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #023020, #38b000); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">⚙️</div>
-          <div class="project-category-badge">SaaS</div>
-        </div>
-        <div class="card-body">
-          <div class="project-client">
-            <span class="client-name">CoreOps Logistics</span>
-            <span class="client-industry">Logistics</span>
-          </div>
-          <h3>Business Automation Suite</h3>
-          <p>Modular automation platform covering invoicing, inventory alerts, delivery scheduling, and customer communication — eliminating 30 hours of manual work every week.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">30h</span>
-              <span class="metric-key">Saved / Week</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">99.9%</span>
-              <span class="metric-key">Uptime</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">$150k</span>
-              <span class="metric-key">Annual Savings</span>
-            </div>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">AWS</span>
-            <span class="tech-tag">Zapier</span>
-          </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
-        </div>
-      </div>
-
-      <!-- 9: AI Financial Report Automation -->
-      <div class="portfolio-item card reveal stagger-3" data-category="ai-automation">
-        <div class="card-thumb" style="background: linear-gradient(135deg, #0d1117, #30363d); min-height: 160px; display:flex; align-items:center; justify-content:center;">
-          <div class="thumb-icon" style="font-size:3rem;">🧠</div>
-          <div class="project-category-badge">AI Automation</div>
-        </div>
-        <div class="card-body">
-          <div class="project-client">
-            <span class="client-name">FintechPro Global</span>
-            <span class="client-industry">Finance</span>
-          </div>
-          <h3>AI Financial Report Automation</h3>
-          <p>ML-powered pipeline that ingests raw financial data, validates entries, generates compliant reports, and distributes them in real-time — with 100% accuracy guaranteed.</p>
-          <div class="project-metrics">
-            <div class="metric">
-              <span class="metric-val">90%</span>
-              <span class="metric-key">Time Saved</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">100%</span>
-              <span class="metric-key">Accuracy</span>
-            </div>
-            <div class="metric">
-              <span class="metric-val">Real-time</span>
-              <span class="metric-key">Reports</span>
-            </div>
-          </div>
-          <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">AWS</span>
-          </div>
-          <a href="#" class="btn btn--ghost btn--sm">View Case Study →</a>
         </div>
       </div>
 
@@ -549,8 +452,8 @@
 
     <!-- Portfolio CTA -->
     <div class="portfolio-cta reveal">
-      <h3>Don't See Your Industry?</h3>
-      <p>We've delivered AI automation across healthcare, legal, retail, fintech, logistics, and more. Let's talk about your project.</p>
+      <h3>Want a Website Like This?</h3>
+      <p>We design and build fast, modern, SEO-ready websites that actually convert. Let's talk about your project.</p>
       <a href="contact.html" class="btn btn--primary btn--lg">Start a Conversation</a>
     </div>
 
@@ -571,6 +474,7 @@
           <li><a href="services.html#chatbots">AI Chatbots</a></li>
           <li><a href="services.html#web-dev">Web Development</a></li>
           <li><a href="services.html#saas">SaaS Platforms</a></li>
+          <li><a href="services.html#full-stack">Full Stack App Dev</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -578,7 +482,7 @@
         <ul>
           <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
+          <li></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="contact.html">Contact</a></li>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SevakNet — Case Study | Catalyst AI Agency</title>
+  <meta name="description" content="How Catalyst built SevakNet — a civic-tech platform connecting citizens, NGOs, and volunteers for real-time community aid operations and transparent task management." />
+  <meta property="og:title" content="SevakNet Case Study — Catalyst AI Agency" />
+  <meta property="og:description" content="A civic-tech platform connecting citizens, NGOs, and volunteers for community aid operations." />
+  <meta property="og:type" content="article" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+
+  <style>
+    /* ── Case Study Page ── */
+    :root {
+      --accent: #3B82F6;
+      --accent-glow: rgba(59,130,246,0.18);
+      --green: #10b981;
+    }
+
+    /* Hero */
+    .case-hero {
+      padding: 7rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(59,130,246,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .case-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 1.5rem;
+    }
+
+    .case-breadcrumb a {
+      color: var(--blue-bright, #3B82F6);
+      text-decoration: none;
+    }
+
+    .case-breadcrumb a:hover { text-decoration: underline; }
+
+    .case-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: #60a5fa;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .case-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #f0f6ff 0%, #a2b2c8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .case-hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-secondary, #a2b2c8);
+      max-width: 640px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .case-hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .meta-item label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-item span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary, #f0f6ff);
+    }
+
+    /* ── Live Preview Banner ── */
+    .preview-banner {
+      margin: 3rem 0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #0d1117;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .preview-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .browser-dot:nth-child(1) { background: #ff5f57; }
+    .browser-dot:nth-child(2) { background: #febc2e; }
+    .browser-dot:nth-child(3) { background: #28c840; }
+
+    .browser-url {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted, #8892a4);
+      margin-left: 0.5rem;
+      user-select: none;
+    }
+
+    .preview-iframe-wrap {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      background: #0d1117;
+    }
+
+    .preview-iframe-wrap iframe {
+      width: 150%;
+      height: 150%;
+      border: none;
+      transform: scale(0.667);
+      transform-origin: top left;
+    }
+
+    .preview-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: #60a5fa;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .preview-open-btn:hover { gap: 0.75rem; }
+
+    /* ── Sections ── */
+    .case-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .case-section h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary, #f0f6ff);
+    }
+
+    .case-section p,
+    .case-section li {
+      color: var(--text-secondary, #a2b2c8);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .case-section ul {
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* ── Problem / Solution Cards ── */
+    .ps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 700px) { .ps-grid { grid-template-columns: 1fr; } }
+
+    .ps-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .ps-card--problem {
+      background: rgba(239,68,68,0.05);
+      border-color: rgba(239,68,68,0.18);
+    }
+
+    .ps-card--solution {
+      background: rgba(16,185,129,0.05);
+      border-color: rgba(16,185,129,0.18);
+    }
+
+    .ps-card h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .ps-card--problem h4 { color: #f87171; }
+    .ps-card--solution h4 { color: #34d399; }
+
+    /* ── Feature Cards ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-card {
+      padding: 1.4rem;
+      border-radius: 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .feature-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary, #f0f6ff);
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted, #8892a4);
+      line-height: 1.6;
+    }
+
+    /* ── Tech Stack ── */
+    .tech-stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .tech-pill {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      color: #60a5fa;
+    }
+
+    /* ── CTA ── */
+    .case-cta {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(59,130,246,0.06);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .case-cta h2 { margin-bottom: 0.75rem; }
+
+    .case-cta p {
+      color: var(--text-muted, #8892a4);
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="../index.html" class="nav-logo">Catalyst</a>
+    <div class="nav-links">
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="portfolio.html" class="nav-link active">Portfolio</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="contact.html" class="btn btn--primary btn--sm">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="blog.html" class="mobile-nav-link">Blog</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+</div>
+
+<!-- Case Study Hero -->
+<section class="case-hero">
+  <div class="container">
+    <div class="case-breadcrumb">
+      <a href="portfolio.html">← Portfolio</a>
+      <span>/</span>
+      <span>SevakNet</span>
+    </div>
+    <div class="case-badge">🏙️ Civic Tech</div>
+    <h1>SevakNet — Community Aid Operations Platform</h1>
+    <p class="case-hero-sub">A real-time coordination platform connecting citizens, NGOs, and volunteers to solve civic problems through transparent task management, evidence-based reporting, and live geo-tagged maps.</p>
+    <div class="case-hero-meta">
+      <div class="meta-item">
+        <label>Type</label>
+        <span>Civic Tech Web App</span>
+      </div>
+      <div class="meta-item">
+        <label>Stack</label>
+        <span>React · Node.js · Leaflet</span>
+      </div>
+      <div class="meta-item">
+        <label>Deployment</label>
+        <span>Vercel</span>
+      </div>
+      <div class="meta-item">
+        <label>Live URL</label>
+        <span><a href="https://sevaknet.vercel.app/" target="_blank" rel="noopener noreferrer" style="color:#60a5fa;text-decoration:none;">sevaknet.vercel.app ↗</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Preview -->
+<div class="container">
+  <div class="preview-banner reveal">
+    <div class="preview-browser-bar">
+      <span class="browser-dot"></span>
+      <span class="browser-dot"></span>
+      <span class="browser-dot"></span>
+      <span class="browser-url">https://sevaknet.vercel.app/</span>
+    </div>
+    <div class="preview-iframe-wrap">
+      <iframe
+        src="https://sevaknet.vercel.app/"
+        title="SevakNet live preview"
+        loading="lazy"
+        scrolling="yes">
+      </iframe>
+    </div>
+  </div>
+  <a href="https://sevaknet.vercel.app/" target="_blank" rel="noopener noreferrer" class="preview-open-btn">
+    Open full site in new tab →
+  </a>
+</div>
+
+<!-- Problem Statement -->
+<section class="case-section">
+  <div class="container">
+    <h2>The Problem</h2>
+    <p>India's civic infrastructure is plagued by a classic coordination failure: citizens know where problems exist but have no reliable way to escalate them. NGOs and volunteer groups are willing to help but lack structured workflows to accept, assign, and track community tasks. Reports get made via WhatsApp groups or social media, fall through the cracks, and nothing gets fixed — even when capable hands are available.</p>
+    <div class="ps-grid">
+      <div class="ps-card ps-card--problem">
+        <h4>❌ The Pain Points</h4>
+        <ul>
+          <li>No single platform to file and track civic complaints</li>
+          <li>NGOs operate in isolation without shared task queues</li>
+          <li>Zero accountability — no evidence that tasks were completed</li>
+          <li>Volunteer capacity goes unused because it's invisible</li>
+          <li>Geographic data is completely absent from the process</li>
+        </ul>
+      </div>
+      <div class="ps-card ps-card--solution">
+        <h4>✅ What SevakNet Solves</h4>
+        <ul>
+          <li>Unified portal for citizens to report civic issues with location pins</li>
+          <li>NGO dashboard with structured task pickup and assignment flows</li>
+          <li>Photo-verified task completion before closing a ticket</li>
+          <li>Live Leaflet map showing all active operations citywide</li>
+          <li>Volunteer discovery — matching available people to active tasks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="case-section">
+  <div class="container">
+    <h2>How It Works</h2>
+    <p>SevakNet operates on a simple three-actor model — Citizen, NGO, and Volunteer — each with a tailored experience on the same platform.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">📍</span>
+        <h4>Geo-Tagged Issue Reporting</h4>
+        <p>Citizens drop a pin on an interactive map and describe the problem — waterlogging, broken roads, power outages — with optional photos. Each report becomes a structured task in the system.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏢</span>
+        <h4>NGO Task Management Dashboard</h4>
+        <p>Registered NGOs see an organised queue of open civic tasks in their operational area. They can accept tasks, assign them to their on-ground volunteers, and set expected completion timelines.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🙋</span>
+        <h4>Volunteer Coordination</h4>
+        <p>Individual volunteers can register their skills and availability. They're matched to nearby tasks and receive notifications when an NGO needs hands on the ground.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📸</span>
+        <h4>Evidence-Based Closure</h4>
+        <p>Tasks can only be marked complete when photographic evidence is uploaded — creating a tamper-proof record of work done and restoring citizen trust in the resolution process.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🗺️</span>
+        <h4>Live Operations Map</h4>
+        <p>A Leaflet.js-powered real-time map gives all stakeholders a bird's-eye view of every active operation, completed task, and pending report across the city.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h4>Transparent Reporting</h4>
+        <p>Public-facing dashboards show aggregate stats — issues filed, tasks resolved, volunteer hours contributed — building city-level accountability and community trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="case-section">
+  <div class="container">
+    <h2>Technology Stack</h2>
+    <p>SevakNet was built with a lean, production-ready stack prioritising real-time data, map interactivity, and fast deployments.</p>
+    <div class="tech-stack-grid">
+      <span class="tech-pill">React (Vite)</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">Leaflet.js</span>
+      <span class="tech-pill">OpenStreetMap</span>
+      <span class="tech-pill">Poppins / Inter / Space Grotesk</span>
+      <span class="tech-pill">Vercel (CI/CD)</span>
+      <span class="tech-pill">JetBrains Mono</span>
+    </div>
+  </div>
+</section>
+
+<!-- Key Takeaways -->
+<section class="case-section">
+  <div class="container">
+    <h2>Key Outcomes</h2>
+    <ul>
+      <li>A complete civic task lifecycle — from citizen report to geo-tagged, photo-verified resolution — built in a single cohesive product.</li>
+      <li>Role-based UX for three distinct user types (Citizen, NGO, Volunteer) without sacrificing simplicity.</li>
+      <li>Live map that brings real-time operational awareness to every stakeholder, replacing fragmented WhatsApp coordination.</li>
+      <li>An open, scalable architecture that can be adopted by municipalities or NGO federations across any Indian city.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="case-cta reveal">
+    <h2>Inspired by SevakNet?</h2>
+    <p>We build purpose-driven civic-tech and community platforms. Tell us about your vision.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn--primary btn--lg">Start a Conversation</a>
+      <a href="https://sevaknet.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--lg">Visit Live Site ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" style="margin-top:4rem;">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Catalyst</span>
+        <p>Premium AI automation for ambitious businesses.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Catalyst AI Agency. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/animations.js"></script>
+</body>
+</html>
