@@ -151,3 +151,43 @@ document.addEventListener('click', (e) => {
   btn.appendChild(ripple);
   setTimeout(() => ripple.remove(), 700);
 });
+
+/* ── Custom Popup Notification ──────────────────────────────── */
+window.showCustomPopup = function(message) {
+  let popupContainer = document.getElementById('custom-popup-container');
+  if (!popupContainer) {
+    popupContainer = document.createElement('div');
+    popupContainer.id = 'custom-popup-container';
+    document.body.appendChild(popupContainer);
+  }
+
+  const popup = document.createElement('div');
+  popup.className = 'custom-popup-notification';
+  
+  popup.innerHTML = `
+    <div class="custom-popup-content">
+      <div class="custom-popup-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div class="custom-popup-text">${message}</div>
+      <button class="custom-popup-close" aria-label="Close popup">&times;</button>
+    </div>
+    <div class="custom-popup-progress"></div>
+  `;
+
+  popupContainer.appendChild(popup);
+
+  const closeBtn = popup.querySelector('.custom-popup-close');
+  const closePopup = () => {
+    popup.classList.add('hiding');
+    setTimeout(() => popup.remove(), 400); // Wait for animation
+  };
+
+  closeBtn.addEventListener('click', closePopup);
+
+  // Auto-close after 5 seconds
+  setTimeout(closePopup, 5000);
+};
+

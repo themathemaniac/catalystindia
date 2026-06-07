@@ -13,7 +13,6 @@ const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 
 const { requireAuth, requireAdmin } = require('../middleware/auth');
-const { sendLeadNotification, sendLeadConfirmation } = require('../utils/emailService');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -52,9 +51,7 @@ router.post('/', async (req, res) => {
       },
     });
 
-    // Fire-and-forget emails
-    sendLeadNotification(lead).catch(console.error);
-    sendLeadConfirmation(lead).catch(console.error);
+    // Emails removed as part of mailing system removal
 
     return res.status(201).json({ success: true, lead: { id: lead.id, score } });
   } catch (err) {

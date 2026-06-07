@@ -230,11 +230,12 @@
   font-size: var(--fs-lg);
   font-weight: 600;
   margin-bottom: var(--sp-3);
+  color: #ffffff;
 }
 
 .mission-pillar p {
   font-size: var(--fs-sm);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.7;
 }
 
@@ -395,11 +396,12 @@
   margin-bottom: var(--sp-3);
   position: relative;
   z-index: 1;
+  color: #ffffff;
 }
 
 .about-service-card p {
   font-size: var(--fs-sm);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.72;
   position: relative;
   z-index: 1;
@@ -559,6 +561,21 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  background: linear-gradient(145deg, rgba(30,50,90,0.3) 0%, rgba(23,26,34,0.85) 50%, rgba(20,38,70,0.3) 100%);
+  border: 1px solid rgba(59,130,246,0.22);
+  border-radius: var(--r-2xl);
+  padding: var(--sp-16) var(--sp-12);
+  text-align: center;
+  box-shadow: 0 12px 48px rgba(59,130,246,0.14), inset 0 1px 0 rgba(96,165,250,0.08), inset 0 -1px 0 rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.vision-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.4), transparent);
 }
 
 .vision-eyebrow {
@@ -581,7 +598,7 @@
   letter-spacing: -0.035em;
   line-height: 1.12;
   margin-bottom: var(--sp-6);
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .vision-heading span {
@@ -593,7 +610,7 @@
 
 .vision-body {
   font-size: var(--fs-lg);
-  color: var(--text-secondary);
+  color: rgba(241, 245, 249, 0.85);
   line-height: 1.75;
   margin-bottom: var(--sp-12);
   max-width: 680px;
@@ -606,6 +623,16 @@
   justify-content: center;
   gap: var(--sp-4);
   flex-wrap: wrap;
+}
+
+.vision-cta .btn--ghost {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.vision-cta .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 /* ══════════════════════════════════════════════════════════════

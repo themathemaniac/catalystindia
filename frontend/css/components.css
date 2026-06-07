@@ -62,8 +62,21 @@
 .btn--ghost:hover {
   background: var(--btn-ghost-hv);
   border-color: var(--blue);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.18);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.18);
   transform: translateY(-2px);
+}
+
+/* Dark Section Ghost Button Overrides */
+.hero .btn--ghost,
+.site-header .btn--ghost {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hero .btn--ghost:hover,
+.site-header .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
 }
 
 /* Steel / Outline */
@@ -106,7 +119,104 @@
 /* Loading state */
 .btn.loading {
   pointer-events: none;
-  opacity: 0.75;
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CUSTOM POPUP NOTIFICATION
+══════════════════════════════════════════════════════════════ */
+
+#custom-popup-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none; /* Let clicks pass through container */
+}
+
+.custom-popup-notification {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25), 0 0 0 4px rgba(59, 130, 246, 0.15), 0 0 40px rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
+  width: 550px;
+  max-width: calc(100vw - 48px);
+  overflow: hidden;
+  position: relative;
+  transform: translateY(100px);
+  opacity: 0;
+  animation: popup-slide-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.custom-popup-notification.hiding {
+  animation: popup-slide-down 0.4s cubic-bezier(0.8, 0.2, 0.8, 0.2) forwards;
+}
+
+.custom-popup-content {
+  display: flex;
+  align-items: flex-start;
+  padding: 32px;
+  gap: 20px;
+}
+
+.custom-popup-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: var(--blue-bright, #3b82f6);
+}
+
+.custom-popup-text {
+  flex-grow: 1;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #1e293b;
+  font-family: inherit;
+  margin-top: 2px;
+}
+
+.custom-popup-close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.custom-popup-close:hover {
+  color: #0f172a;
+}
+
+.custom-popup-progress {
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--mint));
+  width: 100%;
+  transform-origin: left;
+  animation: popup-progress 5s linear forwards;
+}
+
+@keyframes popup-slide-up {
+  0% { transform: translateY(100px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popup-slide-down {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100px); opacity: 0; }
+}
+
+@keyframes popup-progress {
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -143,6 +253,14 @@
   transform: translateY(-8px);
 }
 
+.card h1, .card h2, .card h3, .card h4 {
+  color: #ffffff;
+}
+
+.card p, .card li {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* ── Service Card ────────────────────────────────────────────── */
 .service-card {
   padding: var(--sp-8);
@@ -157,16 +275,16 @@
   justify-content: center;
   font-size: 24px;
   margin-bottom: var(--sp-6);
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.22) 0%, rgba(30, 34, 48, 0.6) 60%, rgba(59, 130, 246, 0.1) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(249, 115, 22, 0.1) 0%, rgba(255, 255, 255, 0.9) 60%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1px solid rgba(249, 115, 22, 0.15);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 1;
   transition: box-shadow var(--t-base), transform var(--t-spring);
 }
 
 .service-card:hover .card-icon {
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255,255,255,0.12);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.15), inset 0 1px 0 rgba(255,255,255,0.9);
   transform: scale(1.08) rotate(-3deg);
 }
 
@@ -176,11 +294,12 @@
   margin-bottom: var(--sp-3);
   position: relative;
   z-index: 1;
+  color: #ffffff;
 }
 
 .service-card p {
   font-size: var(--fs-sm);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.72;
   position: relative;
   z-index: 1;
@@ -225,7 +344,7 @@
 .testimonial-card .quote-mark {
   font-size: 48px;
   line-height: 1;
-  color: rgba(59, 130, 246, 0.25);
+  color: rgba(249, 115, 22, 0.25);
   font-family: Georgia, serif;
   margin-bottom: var(--sp-4);
   display: block;
@@ -233,11 +352,12 @@
 }
 
 .testimonial-card .testimonial-text {
-  font-size: var(--fs-base);
-  color: rgba(237, 241, 247, 0.82);
-  line-height: 1.75;
-  margin-bottom: var(--sp-6);
+  font-size: var(--fs-md);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
   font-style: italic;
+  margin-bottom: var(--sp-6);
+  flex: 1;
 }
 
 .testimonial-card .author-row {
@@ -250,28 +370,30 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-bright) 50%, rgba(162, 178, 200, 0.2) 100%);
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-bright) 50%, rgba(249, 115, 22, 0.8) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: var(--fs-xs);
   color: #fff;
-  border: 1px solid rgba(162, 178, 200, 0.2);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.22);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.22);
   flex-shrink: 0;
 }
 
 .testimonial-card .author-name {
-  font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
+  display: block;
+  font-size: var(--fs-base);
   margin-bottom: 2px;
 }
 
 .testimonial-card .author-role {
   font-size: var(--fs-xs);
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
 }
 
 .testimonial-card .star-row {
@@ -593,15 +715,15 @@ select.form-control option {
 }
 
 .timeline-marker {
-  width: 62px;
-  height: 62px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--blue) 0%, var(--blue-bright) 45%, rgba(162, 178, 200, 0.25) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: var(--fs-md);
+  font-size: var(--fs-xl);
   color: #fff;
   margin-bottom: var(--sp-6);
   border: 2px solid rgba(162, 178, 200, 0.22);
@@ -625,8 +747,8 @@ select.form-control option {
 .timeline-step:not(:last-child)::after {
   content: '';
   position: absolute;
-  top: 31px;
-  left: 62px;
+  top: 40px;
+  left: 80px;
   right: -1rem;
   height: 2px;
   background: linear-gradient(90deg, rgba(59, 130, 246, 0.55), rgba(59, 130, 246, 0.08));

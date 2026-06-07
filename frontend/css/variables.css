@@ -1,70 +1,70 @@
 /* ============================================================
    CATALYST — Design Tokens & CSS Custom Properties
-   Gunmetal Metallic Theme
+   SAASART Light Theme (Orange & Mint)
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,300;1,14..32,400&display=swap');
 
 :root {
   /* ── BACKGROUNDS ─────────────────────────────────────────── */
-  --bg-void:     #040507;
-  --bg-dark:     #0C0D11;
-  --bg-deep:     #10121A;
-  --bg-mid:      #171A22;
-  --bg-surface:  #1E2230;
-  --bg-elevated: #252939;
-  --bg-hover:    #2C3042;
+  --bg-void:     #fcfaf6;
+  --bg-dark:     #f7f4eb;
+  --bg-deep:     #f0ebd9;
+  --bg-mid:      #e5dec5;
+  --bg-surface:  #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-hover:    #fffdfa;
 
   /* ── STEEL / SILVER ──────────────────────────────────────── */
-  --steel-darker: #2A2F40;
-  --steel-dark:   #384055;
-  --steel-mid:    #4E5A70;
-  --steel-light:  #6E7E94;
-  --silver-dim:   #8E9DAF;
-  --silver:       #A8B8C8;
-  --silver-bright:#C2D0DC;
-  --silver-pure:  #DCE8F0;
+  --steel-darker: #0f172a;
+  --steel-dark:   #1e293b;
+  --steel-mid:    #334155;
+  --steel-light:  #475569;
+  --silver-dim:   #64748b;
+  --silver:       #94a3b8;
+  --silver-bright:#cbd5e1;
+  --silver-pure:  #e2e8f0;
 
-  /* ── ACCENT BLUE ─────────────────────────────────────────── */
-  --blue-deep:    #1A3A8A;
-  --blue-dim:     #1D4ED8;
-  --blue:         #3B82F6;
-  --blue-bright:  #60A5FA;
-  --blue-pale:    #93C5FD;
-  --blue-glow:    rgba(59, 130, 246, 0.35);
-  --blue-subtle:  rgba(59, 130, 246, 0.07);
-  --blue-tint:    rgba(59, 130, 246, 0.12);
+  /* ── ACCENT BLUE (Now Orange) ────────────────────────────── */
+  --blue-deep:    #c2410c;
+  --blue-dim:     #ea580c;
+  --blue:         #f97316;
+  --blue-bright:  #fb923c;
+  --blue-pale:    #fdba74;
+  --blue-glow:    rgba(249, 115, 22, 0.25);
+  --blue-subtle:  rgba(249, 115, 22, 0.05);
+  --blue-tint:    rgba(249, 115, 22, 0.1);
 
   /* ── TEXT ────────────────────────────────────────────────── */
-  --text-primary:   #EDF1F7;
-  --text-secondary: #8E9DAF;
-  --text-muted:     #4E5A70;
-  --text-accent:    #60A5FA;
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #64748b;
+  --text-accent:    #f97316;
 
   /* ── GLASS / SURFACE ─────────────────────────────────────── */
-  --glass-bg:            rgba(16, 18, 26, 0.72);
-  --glass-bg-light:      rgba(30, 34, 48, 0.6);
-  --glass-border:        rgba(162, 178, 200, 0.09);
-  --glass-border-strong: rgba(162, 178, 200, 0.16);
-  --glass-border-accent: rgba(59, 130, 246, 0.22);
-  --glass-shadow:        0 8px 32px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
-  --glass-shadow-hover:  0 20px 56px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(59, 130, 246, 0.18), inset 0 1px 0 rgba(200, 212, 224, 0.08);
-  --glass-inset:         inset 0 1px 0 rgba(200, 212, 224, 0.06), inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  --glass-bg:            rgba(255, 255, 255, 0.75);
+  --glass-bg-light:      rgba(255, 255, 255, 0.9);
+  --glass-border:        rgba(15, 23, 42, 0.06);
+  --glass-border-strong: rgba(15, 23, 42, 0.12);
+  --glass-border-accent: rgba(249, 115, 22, 0.2);
+  --glass-shadow:        0 8px 30px rgba(15, 23, 42, 0.04), 0 2px 8px rgba(15, 23, 42, 0.02);
+  --glass-shadow-hover:  0 20px 50px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(249, 115, 22, 0.15);
+  --glass-inset:         inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(15, 23, 42, 0.02);
 
   /* ── METALLIC GRADIENTS ──────────────────────────────────── */
-  --metallic-body:     linear-gradient(180deg, #040507 0%, #0C0D11 20%, #10121A 50%, #0C0D11 80%, #040507 100%);
-  --metallic-card:     linear-gradient(145deg, rgba(23, 26, 34, 0.92) 0%, rgba(30, 34, 48, 0.88) 50%, rgba(23, 26, 34, 0.92) 100%);
-  --metallic-card-hov: linear-gradient(145deg, rgba(37, 41, 57, 0.95) 0%, rgba(30, 34, 48, 0.98) 50%, rgba(37, 41, 57, 0.95) 100%);
-  --metallic-header:   linear-gradient(180deg, rgba(4, 5, 7, 0.97) 0%, rgba(12, 13, 17, 0.9) 100%);
-  --metallic-shine:    linear-gradient(90deg, transparent 0%, rgba(200, 212, 224, 0.07) 50%, transparent 100%);
-  --metallic-edge:     linear-gradient(135deg, rgba(162, 178, 200, 0.15) 0%, rgba(59, 130, 246, 0.06) 50%, rgba(162, 178, 200, 0.05) 100%);
+  --metallic-body:     #fcfaf6;
+  --metallic-card:     linear-gradient(145deg, rgba(110, 115, 125, 0.9) 0%, rgba(80, 85, 95, 0.8) 100%);
+  --metallic-card-hov: linear-gradient(145deg, rgba(120, 125, 135, 1) 0%, rgba(90, 95, 105, 0.9) 100%);
+  --metallic-header:   rgba(252, 250, 246, 0.85);
+  --metallic-shine:    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  --metallic-edge:     linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(249, 115, 22, 0.05) 50%, rgba(255, 255, 255, 0.6) 100%);
 
   /* ── BUTTONS ─────────────────────────────────────────────── */
-  --btn-bg:        linear-gradient(135deg, #3B82F6 0%, #2563EB 55%, #1E40AF 100%);
-  --btn-shadow:    0 6px 20px rgba(59, 130, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-  --btn-shadow-hv: 0 10px 32px rgba(59, 130, 246, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.22);
-  --btn-ghost-bg:  rgba(59, 130, 246, 0.06);
-  --btn-ghost-bdr: rgba(59, 130, 246, 0.35);
-  --btn-ghost-hv:  rgba(59, 130, 246, 0.14);
+  --btn-bg:        linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  --btn-shadow:    0 6px 16px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  --btn-shadow-hv: 0 10px 24px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --btn-ghost-bg:  rgba(249, 115, 22, 0.08);
+  --btn-ghost-bdr: rgba(249, 115, 22, 0.3);
+  --btn-ghost-hv:  rgba(249, 115, 22, 0.15);
 
   /* ── TYPOGRAPHY ──────────────────────────────────────────── */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

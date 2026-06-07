@@ -17,7 +17,6 @@ const { PrismaClient } = require('@prisma/client');
 const cron         = require('node-cron');
 
 // ── Route Imports ─────────────────────────────────────────
-const contactRouter    = require('./routes/contact');
 const newsletterRouter = require('./routes/newsletter');
 const authRouter       = require('./routes/auth');
 const leadsRouter      = require('./routes/leads');
@@ -80,7 +79,6 @@ const frontendDir = path.join(__dirname, '..', 'frontend');
 app.use(express.static(frontendDir));
 
 // ── API Routes ────────────────────────────────────────────
-app.use('/api/contact',    generalLimiter, contactRouter);
 app.use('/api/newsletter', generalLimiter, newsletterRouter);
 app.use('/api/auth',       authRouter);
 app.use('/api/leads',      apiLimiter,     leadsRouter);

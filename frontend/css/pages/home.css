@@ -121,7 +121,7 @@
   font-size: var(--fs-4xl);
   font-weight: 800;
   margin-bottom: var(--sp-5);
-  background: linear-gradient(145deg, var(--text-primary) 0%, var(--silver-bright) 50%, var(--blue-pale) 100%);
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -129,7 +129,7 @@
 
 .final-cta-box p {
   font-size: var(--fs-lg);
-  color: var(--text-secondary);
+  color: rgba(241, 245, 249, 0.85);
   margin-bottom: var(--sp-8);
   max-width: 520px;
   margin-left: auto;

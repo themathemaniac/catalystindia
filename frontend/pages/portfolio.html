@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Catalyst AI Agency | AI Automation Case Studies</title>
+  <link rel="icon" type="image/png" href="../assets/logo.png" />
   <meta name="description" content="Explore Catalyst AI Agency's portfolio of AI automation projects, chatbots, and web development case studies. Real results for real businesses." />
   <meta property="og:title" content="Portfolio — Catalyst AI Agency | AI Automation Case Studies" />
   <meta property="og:description" content="Explore Catalyst AI Agency's portfolio of AI automation projects, chatbots, and web development case studies. Real results for real businesses." />
@@ -167,7 +168,7 @@
 
     .card-body p {
       font-size: 0.9rem;
-      color: var(--text-secondary, #94a3b8);
+      color: rgba(255, 255, 255, 0.85);
       line-height: 1.7;
       margin-bottom: 1.75rem;
       flex-grow: 1;
@@ -184,14 +185,14 @@
     .client-name {
       font-weight: 700;
       font-size: 0.85rem;
-      color: var(--text-primary, #f0f6ff);
+      color: #ffffff;
     }
 
     .client-industry {
       font-size: 0.7rem;
-      color: var(--text-muted, #8892a4);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255, 255, 255, 0.8);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 999px;
       padding: 0.2rem 0.7rem;
       letter-spacing: 0.05em;
@@ -207,9 +208,9 @@
     .tech-tag {
       font-size: 0.7rem;
       font-weight: 600;
-      color: var(--blue-bright, #3B82F6);
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
       padding: 0.3rem 0.8rem;
       letter-spacing: 0.03em;
@@ -221,6 +222,16 @@
       align-items: center;
       gap: 0.75rem;
       flex-wrap: wrap;
+    }
+
+    .card-actions .btn--ghost {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .card-actions .btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
     }
 
     /* ─── Filter Bar ─── */
@@ -248,22 +259,110 @@
 
     /* ─── CTA block ─── */
     .portfolio-cta {
-      margin-top: 4rem;
+      position: relative;
+      margin-top: 5rem;
       text-align: center;
-      padding: 3rem 2rem;
-      background: rgba(59,130,246,0.06);
-      border: 1px solid rgba(59,130,246,0.2);
+      padding: 4.5rem 2rem;
+      background: linear-gradient(140deg, #788291 0%, #2d323b 25%, #2c313a 75%, #8e98a8 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      margin-bottom: 2rem;
     }
 
-    .portfolio-cta h3 { margin-bottom: 0.75rem; }
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1.25rem;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 999px;
+      color: #f59e0b;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-pill::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: #f59e0b;
+      border-radius: 50%;
+    }
+
+    .portfolio-cta h3 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
 
     .portfolio-cta p {
-      color: var(--text-muted, #8892a4);
-      margin-bottom: 1.5rem;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-primary {
+      background: linear-gradient(90deg, #f59e0b, #ea580c);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .btn-cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+      color: #ffffff;
+    }
+
+    .btn-cta-secondary {
+      background: #374151;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .btn-cta-secondary:hover {
+      background: #4b5563;
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-cta h3 {
+        font-size: 2rem;
+      }
+      .portfolio-cta {
+        padding: 3rem 1.5rem;
+      }
     }
   </style>
 </head>
@@ -279,8 +378,8 @@
       <a href="faq.html" class="nav-link">FAQ</a>
     </div>
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn--ghost btn--sm">Contact</a>
-      <a href="contact.html" class="btn btn--primary btn--sm">Get Started</a>
+      <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn btn--primary btn--sm">Get Started</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -293,7 +392,6 @@
   <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
   <a href="about.html" class="mobile-nav-link">About</a>
   <a href="faq.html" class="mobile-nav-link">FAQ</a>
-  <a href="contact.html" class="mobile-nav-link">Contact</a>
 </div>
 
 <!-- Page Hero -->
@@ -450,9 +548,13 @@
 
     <!-- Portfolio CTA -->
     <div class="portfolio-cta reveal">
-      <h3>Want a Website Like This?</h3>
-      <p>We design and build fast, modern, SEO-ready websites that actually convert. Let's talk about your project.</p>
-      <a href="contact.html" class="btn btn--primary btn--lg">Start a Conversation</a>
+      <div class="cta-pill">Let's Build Together</div>
+      <h3>Ready to Transform Your Business?</h3>
+      <p>Book a free 30-minute consultation. We'll map your biggest bottlenecks and show you exactly how AI can solve them.</p>
+      <div class="cta-buttons">
+        <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn-cta-primary">Book Free Consultation</a>
+        <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn-cta-secondary">Get a Quote</a>
+      </div>
     </div>
 
   </div>
@@ -483,14 +585,13 @@
           <li></li>
           <li></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Contact</h5>
         <ul>
           <li><a href="mailto:catalystindian@outlook.com">catalystindian@outlook.com</a></li>
-          <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+          <li><a href="tel:+918240177655">+91 8240177655</a></li>
         </ul>
       </div>
     </div>

@@ -6,7 +6,6 @@
 'use strict';
 
 const { validationResult } = require('express-validator');
-const mailer               = require('../utils/mailer');
 
 // In-memory store for demo. Replace with DB (MongoDB, PostgreSQL) in production.
 const subscribers = new Set();
@@ -35,16 +34,7 @@ exports.subscribe = async (req, res) => {
   subscribers.add(normalizedEmail);
   console.log(`[Newsletter] New subscriber: ${normalizedEmail} (total: ${subscribers.size})`);
 
-  try {
-    await mailer.sendNewsletterConfirmation({
-      to:      normalizedEmail,
-      subject: 'You\'re now subscribed — Catalyst',
-      name:    name || 'there',
-    });
-  } catch (err) {
-    console.error('[NewsletterController] Confirmation email failed:', err.message);
-    // Don't fail the subscription — email sending is non-critical
-  }
+  // Email confirmation removed as part of mailing system removal
 
   return res.status(201).json({
     success: true,

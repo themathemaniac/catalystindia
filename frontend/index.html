@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catalyst AI Agency — Intelligent Automation &amp; Digital Solutions</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
   <meta name="description" content="Catalyst AI Agency offers premium AI automation, Full Stack App Development, chatbots, SaaS, and custom web development to help your business scale." />
   <meta name="keywords" content="AI Automation Agency India, Full Stack App Development, Custom Web Apps, React Node.js Development, Custom AI Chatbots, Catalyst India" />
   <meta name="theme-color" content="#040507" />
@@ -37,13 +38,14 @@
     }
 
     .workflow-node {
-      width: 160px;
-      padding: 1.5rem 1rem;
+      width: 190px;
+      padding: 1.8rem 1.2rem;
       text-align: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(96,165,250,0.2);
+      background: var(--metallic-card, #ffffff);
+      border: 1px solid var(--glass-border, rgba(15,23,42,0.05));
       border-radius: 1rem;
       backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       flex-shrink: 0;
     }
@@ -55,7 +57,7 @@
     }
 
     .node-icon {
-      font-size: 2rem;
+      font-size: 3rem;
       line-height: 1;
       margin-bottom: 0.6rem;
     }
@@ -63,13 +65,13 @@
     .node-label {
       font-weight: 600;
       font-size: 0.9rem;
-      color: var(--text-primary, #f1f5f9);
+      color: #ffffff;
       margin-bottom: 0.3rem;
     }
 
     .node-desc {
       font-size: 0.75rem;
-      color: var(--text-muted, #94a3b8);
+      color: #ffffff;
       line-height: 1.4;
     }
 
@@ -135,12 +137,13 @@
     }
 
     .case-study-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--metallic-card, #ffffff);
+      border: 1px solid var(--glass-border, rgba(15,23,42,0.05));
       border-radius: 1.25rem;
       padding: 1.75rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
     }
 
     .case-study-card:hover {
@@ -165,14 +168,21 @@
     .case-study-card h3 {
       font-size: 1.1rem;
       margin-bottom: 0.25rem;
-      color: var(--text-primary, #f1f5f9);
+      color: #ffffff;
+    }
+
+    .case-study-card p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
     }
 
     .case-meta-label {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.07em;
-      color: var(--text-muted, #94a3b8);
+      color: rgba(255, 255, 255, 0.7);
       margin-bottom: 1.25rem;
     }
 
@@ -200,7 +210,7 @@
 
     .result-label {
       font-size: 0.7rem;
-      color: var(--text-muted, #94a3b8);
+      color: rgba(255, 255, 255, 0.7);
       margin-top: 2px;
     }
 
@@ -222,14 +232,15 @@
     .tech-badge {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 8px 16px;
+      gap: 0.6rem;
+      padding: 10px 20px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(15, 23, 42, 0.05);
       border-radius: 40px;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: 500;
-      color: var(--text-secondary, #cbd5e1);
+      color: var(--text-primary, #0f172a);
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
       backdrop-filter: blur(8px);
       transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
       cursor: default;
@@ -242,7 +253,7 @@
     }
 
     .tech-badge .tech-emoji {
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
 
     /* ── AI STATS ─────────────────────────────────────────── */
@@ -263,10 +274,11 @@
 
     .ai-stat-item {
       text-align: center;
-      padding: 2rem 1.5rem;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem 1.8rem;
+      background: var(--metallic-card, #ffffff);
+      border: 1px solid var(--glass-border, rgba(15,23,42,0.05));
       border-radius: 1.25rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -276,7 +288,7 @@
     }
 
     .ai-stat-icon {
-      font-size: 2rem;
+      font-size: 3rem;
       margin-bottom: 0.75rem;
     }
 
@@ -364,8 +376,8 @@
     </div>
 
     <div class="nav-actions">
-      <a href="pages/contact.html" class="btn btn--ghost btn--sm">Contact</a>
-      <a href="pages/contact.html" class="btn btn--primary btn--sm">Get Started</a>
+      <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn btn--ghost btn--sm">Contact</a>
+      <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn btn--primary btn--sm">Get Started</a>
     </div>
 
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
@@ -381,7 +393,6 @@
   <a href="pages/about.html"     class="mobile-nav-link">About</a>
   <a href="index.html#process"   class="mobile-nav-link">Process</a>
   <a href="pages/faq.html"       class="mobile-nav-link">FAQ</a>
-  <a href="pages/contact.html"   class="mobile-nav-link">Contact</a>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
@@ -404,7 +415,7 @@
       </p>
 
       <div class="hero-ctas">
-        <a href="pages/contact.html" class="btn btn--primary btn--lg">Start Free Consultation</a>
+        <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn btn--primary btn--lg">Start Free Consultation</a>
         <a href="pages/portfolio.html" class="btn btn--ghost btn--lg">See Our Work</a>
       </div>
 
@@ -842,7 +853,7 @@
       <h2>Ready to Automate Your Business?</h2>
       <p>Join 150+ businesses that have transformed their operations with Catalyst AI. Let's discuss how intelligent automation can unlock your next phase of growth.</p>
       <div class="final-cta-buttons">
-        <a href="pages/contact.html" class="btn btn--primary btn--xl">Start Free Consultation</a>
+        <a href="#" onclick="showCustomPopup('Please call us at +91 8240177655 to start a conversation!'); return false;" class="btn btn--primary btn--xl">Start Free Consultation</a>
         <a href="pages/portfolio.html" class="btn btn--steel btn--xl">View Our Portfolio</a>
       </div>
     </div>
@@ -880,7 +891,6 @@
           <li></li>
           <li></li>
           <li><a href="pages/faq.html">FAQ</a></li>
-          <li><a href="pages/contact.html">Contact</a></li>
         </ul>
       </div>
 

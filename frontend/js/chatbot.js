@@ -76,7 +76,7 @@
     {
       keywords: ['contact', 'reach', 'email', 'call', 'speak', 'talk', 'human', 'team', 'support'],
       responses: [
-        "You can reach the Catalyst team at: 📧 hello@catalystindia.in | 📞 +91 98765 43210 | 🌐 catalystindia.in. Or book a free 30-minute consultation directly from our website. Would you like to schedule a call?",
+        "You can reach the Catalyst team at: 📧 hello@catalystindia.in | 📞 +91 8240177655 | 🌐 catalystindia.in. Or book a free 30-minute consultation directly from our website. Would you like to schedule a call?",
         "Our team is available Mon–Sat, 10AM–7PM IST. Drop us an email at hello@catalystindia.in or use the booking widget on our homepage. I can also collect your details and have someone reach out to you — interested?",
       ],
     },
@@ -470,7 +470,7 @@
       } else {
         form.innerHTML = `
           <h4>Something went wrong</h4>
-          <p>Please reach us directly at <strong>hello@catalystindia.in</strong> or call <strong>+91 98765 43210</strong>.</p>
+          <p>Please reach us directly at <strong>hello@catalystindia.in</strong> or call <strong>+91 8240177655</strong>.</p>
         `;
       }
     }
