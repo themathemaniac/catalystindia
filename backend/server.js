@@ -49,7 +49,7 @@ app.use(helmet({
 }));
 
 // ── CORS ──────────────────────────────────────────────────
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000').split(',').map(o => o.trim());
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'https://catalystindia.vercel.app/').split(',').map(o => o.trim());
 
 app.use(cors({
   origin: (origin, callback) => {
