@@ -18,7 +18,8 @@ backend/data/
 *.db-journal
 
 # Prisma
-backend/prisma/migrations/
+# Note: Migrations SHOULD be committed to version control so prod can migrate properly!
+# backend/prisma/migrations/
 
 # Build
 dist/
@@ -49,7 +50,7 @@ logs/
 /var/log/
 
 # Docker
-.dockerignore
+# .dockerignore should be committed, so do not ignore it.
 
 # SSL certs (never commit)
 ssl/

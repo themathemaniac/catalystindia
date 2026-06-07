@@ -13,8 +13,13 @@ let transporter;
 function getTransporter() {
   if (transporter) return transporter;
 
-  // Use Ethereal (fake SMTP) in development if no SMTP config
-  if (!process.env.SMTP_HOST || process.env.NODE_ENV === 'development') {
+  const host = process.env.EMAIL_HOST || process.env.SMTP_HOST;
+  const user = process.env.EMAIL_USER || process.env.SMTP_USER;
+  const pass = process.env.EMAIL_PASS || process.env.SMTP_PASS;
+  const port = parseInt(process.env.EMAIL_PORT || process.env.SMTP_PORT, 10) || 587;
+
+  // Use Ethereal (fake SMTP) if no real host is provided and we are in development
+  if (!host && process.env.NODE_ENV === 'development') {
     console.log('[Mailer] Using Ethereal fake SMTP for development.');
     transporter = nodemailer.createTransport({
       host:   'smtp.ethereal.email',
@@ -28,13 +33,10 @@ function getTransporter() {
   }
 
   transporter = nodemailer.createTransport({
-    host:   process.env.SMTP_HOST,
-    port:   parseInt(process.env.SMTP_PORT, 10) || 587,
-    secure: process.env.SMTP_SECURE === 'true',
-    auth:   {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
+    host,
+    port,
+    secure: process.env.SMTP_SECURE === 'true' || port === 465,
+    auth:   { user, pass },
     tls: {
       rejectUnauthorized: process.env.NODE_ENV === 'production',
     },
@@ -43,7 +45,7 @@ function getTransporter() {
   return transporter;
 }
 
-const FROM = `"${process.env.FROM_NAME || 'Catalyst'}" <${process.env.FROM_EMAIL || 'noreply@catalyst.com'}>`;
+const FROM = `"${process.env.FROM_NAME || 'Catalyst'}" <${process.env.FROM_EMAIL || process.env.EMAIL_USER || process.env.SMTP_USER || 'noreply@catalyst.com'}>`;
 
 /**
  * Send contact form notification to the internal team.

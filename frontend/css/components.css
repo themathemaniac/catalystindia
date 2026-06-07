@@ -121,7 +121,7 @@
   backdrop-filter: blur(16px);
   position: relative;
   overflow: hidden;
-  transition: transform var(--t-slow), box-shadow var(--t-slow), border-color var(--t-slow), background var(--t-slow);
+  transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 100ms cubic-bezier(0.4, 0, 0.2, 1), border-color 100ms cubic-bezier(0.4, 0, 0.2, 1), background 100ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Top edge metallic highlight */

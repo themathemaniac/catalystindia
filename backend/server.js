@@ -14,6 +14,7 @@ const morgan       = require('morgan');
 const cookieParser = require('cookie-parser');
 const path         = require('path');
 const { PrismaClient } = require('@prisma/client');
+const cron         = require('node-cron');
 
 // ── Route Imports ─────────────────────────────────────────
 const contactRouter    = require('./routes/contact');
@@ -22,7 +23,6 @@ const authRouter       = require('./routes/auth');
 const leadsRouter      = require('./routes/leads');
 const chatbotRouter    = require('./routes/chatbot');
 const adminRouter      = require('./routes/admin');
-const blogRouter       = require('./routes/blog');
 const servicesRouter   = require('./routes/services');
 const portfolioRouter  = require('./routes/portfolio');
 const estimatorRouter  = require('./routes/estimator');
@@ -86,7 +86,6 @@ app.use('/api/auth',       authRouter);
 app.use('/api/leads',      apiLimiter,     leadsRouter);
 app.use('/api/chatbot',    chatbotRouter);
 app.use('/api/admin',      apiLimiter,     adminRouter);
-app.use('/api/blog',       apiLimiter,     blogRouter);
 app.use('/api/services',   apiLimiter,     servicesRouter);
 app.use('/api/portfolio',  apiLimiter,     portfolioRouter);
 app.use('/api/estimator',  apiLimiter,     estimatorRouter);

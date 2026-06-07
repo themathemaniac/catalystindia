@@ -38,7 +38,7 @@ exports.submit = async (req, res, next) => {
   try {
     // Send notification to team
     await mailer.sendContactNotification({
-      to:      process.env.TO_EMAIL || 'hello@catalyst.com',
+      to:      process.env.NOTIFICATION_EMAIL || process.env.TO_EMAIL || 'hello@catalyst.com',
       subject: `New Enquiry from ${fullName} — ${service || 'General'}`,
       html:    buildTeamEmailHTML({ fullName, email, phone, company, service, budget, message }),
     });

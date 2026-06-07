@@ -44,8 +44,8 @@ exports.validateContact = [
     .trim()
     .notEmpty().withMessage('Please select a service.')
     .isIn([
-      'website', 'ecommerce', 'automation', 'branding',
-      'analytics', 'support', 'custom',
+      'fullstack', 'ai-automation', 'chatbots', 'saas', 'web', 'whatsapp', 'custom',
+      'website', 'ecommerce', 'automation', 'branding', 'analytics', 'support'
     ]).withMessage('Invalid service selection.'),
 
   body('budget')

@@ -47,7 +47,7 @@ function initContactForm() {
         showSuccess(form);
       } else {
         const err = await res.json().catch(() => ({}));
-        showFormAlert(form, 'error', err.message || 'Something went wrong. Please try again.');
+        showFormAlert(form, 'error', err.error || err.message || 'Something went wrong. Please try again.');
       }
     } catch {
       // If backend is not running, show success for demo purposes
