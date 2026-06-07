@@ -49,12 +49,19 @@ app.use(helmet({
 }));
 
 // ── CORS ──────────────────────────────────────────────────
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'https://catalystindia.vercel.app/').split(',').map(o => o.trim());
+const defaultOrigins = [
+  'https://catalystindia.vercel.app',
+  'http://localhost:3000'
+];
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim().replace(/\/$/, '')) 
+  : defaultOrigins;
 
 app.use(cors({
   origin: (origin, callback) => {
+    const safeOrigin = origin ? origin.replace(/\/$/, '') : null;
     // Allow requests with no origin (same-origin, Postman, server-to-server)
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!safeOrigin || allowedOrigins.includes(safeOrigin)) {
       callback(null, true);
     } else {
       callback(new Error(`CORS: Origin ${origin} not allowed.`));
