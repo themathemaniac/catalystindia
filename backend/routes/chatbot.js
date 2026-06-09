@@ -132,7 +132,7 @@ router.post('/message', chatLimiter, async (req, res) => {
     console.error('[Chatbot/message]', err.message);
     return res.status(500).json({
       error: 'Chat service unavailable.',
-      reply: "I'm having trouble connecting right now. Please email us at hello@catalystindia.com and we'll get back to you shortly!",
+      reply: "I'm having trouble connecting right now. Please email us at hello@catalystindia.online and we'll get back to you shortly!",
     });
   }
 });

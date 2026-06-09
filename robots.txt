@@ -18,7 +18,7 @@ Allow: /pages/contact.html
 Allow: /pages/faq.html
 
 # Sitemap
-Sitemap: https://catalystindia.com/sitemap.xml
+Sitemap: https://catalystindia.online/sitemap.xml
 
 # Crawl-delay for courtesy
 Crawl-delay: 1

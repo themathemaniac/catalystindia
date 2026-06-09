@@ -17,7 +17,7 @@ About Catalyst:
 - Services: AI Automation, Website Development, SaaS Development, AI Chatbots, WhatsApp Automation, CRM Integration, Lead Generation, API Integration, Business Automation, AI Agents
 - Pricing: Starter from ₹25,000, Growth from ₹75,000, Enterprise custom
 - We serve businesses across India and globally
-- Contact: hello@catalystindia.com
+- Contact: hello@catalystindia.online
 
 Your goals:
 1. Answer questions about Catalyst's services warmly and professionally
@@ -76,7 +76,7 @@ async function chatWithGrok(messages, sessionContext = {}) {
     const data = await response.json();
     return (
       data.choices?.[0]?.message?.content ||
-      "I'm having trouble responding right now. Please email us at hello@catalystindia.com"
+      "I'm having trouble responding right now. Please email us at hello@catalystindia.online"
     );
   } catch (error) {
     console.error('[Grok API Error]', error.message);
@@ -144,7 +144,7 @@ function getFallbackResponse(userMessage) {
   }
 
   if (msg.includes('contact') || msg.includes('call') || msg.includes('meet') || msg.includes('talk')) {
-    return "I'd love to set up a discovery call! Please share your email and phone number and our team will reach out within 24 hours. Alternatively, email us directly at hello@catalystindia.com.";
+    return "I'd love to set up a discovery call! Please share your email and phone number and our team will reach out within 24 hours. Alternatively, email us directly at hello@catalystindia.online.";
   }
 
   if (msg.includes('time') || msg.includes('deadline') || msg.includes('long') || msg.includes('weeks')) {

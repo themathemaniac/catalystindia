@@ -17,7 +17,7 @@ async function main() {
   console.log('\n🌱 Seeding Catalyst database...\n');
 
   /* ── Admin User ─────────────────────────────────────── */
-  const adminEmail    = process.env.ADMIN_EMAIL    || 'admin@catalystindia.com';
+  const adminEmail    = process.env.ADMIN_EMAIL    || 'admin@catalystindia.online';
   const adminPassword = process.env.ADMIN_PASSWORD || 'Admin@123';
 
   const existingAdmin = await prisma.user.findUnique({ where: { email: adminEmail } });
