@@ -14,7 +14,10 @@ const walk = function(dir) {
   return results;
 }
 
-const files = walk('frontend');
+const files = [
+  'index.html',
+  ...walk('pages')
+];
 files.forEach(f => {
   let content = fs.readFileSync(f, 'utf8');
   // Remove pricing nav link

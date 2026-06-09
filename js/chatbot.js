@@ -20,7 +20,7 @@
     botName: 'Gippo',
     companyName: 'Catalyst',
     leadTriggerAfter: 3, // Show lead form after this many bot messages
-    cssPath: '/frontend/css/chatbot.css',
+    cssPath: '/css/chatbot.css',
   };
 
   // ── STATE ────────────────────────────────────────────────────────────────────

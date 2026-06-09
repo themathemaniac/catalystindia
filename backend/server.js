@@ -33,6 +33,9 @@ const app    = express();
 const PORT   = process.env.PORT || 3000;
 const prisma = new PrismaClient();
 
+// ── Trust Proxy for Rate Limiter (Railway/Vercel) ──────────
+app.set('trust proxy', 1);
+
 // ── Security Middleware ────────────────────────────────────
 app.use(helmet({
   contentSecurityPolicy: {
@@ -81,9 +84,16 @@ app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cookieParser());
 
-// ── Static Files — serve frontend ─────────────────────────
-const frontendDir = path.join(__dirname, '..', 'frontend');
-app.use(express.static(frontendDir));
+// ── Static Files — serve frontend from root ────────────────
+const rootDir = path.join(__dirname, '..');
+app.use('/assets', express.static(path.join(rootDir, 'assets')));
+app.use('/css', express.static(path.join(rootDir, 'css')));
+app.use('/js', express.static(path.join(rootDir, 'js')));
+app.use('/pages', express.static(path.join(rootDir, 'pages')));
+
+app.get('/robots.txt',  (req, res) => res.sendFile(path.join(rootDir, 'robots.txt')));
+app.get('/sitemap.xml', (req, res) => res.sendFile(path.join(rootDir, 'sitemap.xml')));
+app.get('/vercel.json', (req, res) => res.sendFile(path.join(rootDir, 'vercel.json')));
 
 // ── API Routes ────────────────────────────────────────────
 app.use('/api/newsletter', generalLimiter, newsletterRouter);
@@ -116,7 +126,7 @@ app.get('/api/health', async (_req, res) => {
 
 // ── SPA Fallback — serve index.html for unknown routes ────
 app.get('*', (_req, res) => {
-  res.sendFile(path.join(frontendDir, 'index.html'));
+  res.sendFile(path.join(rootDir, 'index.html'));
 });
 
 // ── Global Error Handler ──────────────────────────────────

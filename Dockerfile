@@ -36,8 +36,12 @@ COPY --from=deps /app/backend/node_modules ./backend/node_modules
 COPY --from=prisma /app/backend/node_modules/.prisma ./backend/node_modules/.prisma
 COPY backend/ ./backend/
 
-# Copy frontend (static files served by Express)
-COPY frontend/ ./frontend/
+# Copy frontend (static files served from root by Express)
+COPY assets/ ./assets/
+COPY css/ ./css/
+COPY js/ ./js/
+COPY pages/ ./pages/
+COPY index.html robots.txt sitemap.xml vercel.json ./
 
 # Create data directory for SQLite
 RUN mkdir -p /app/backend/data && chown -R catalyst:nodejs /app
